@@ -16,8 +16,11 @@ repositories {
 }
 
 val paperApiVersion: String by project
+val mockBukkitVersion: String by project
 dependencies {
     compileOnly("io.papermc.paper:paper-api:$paperApiVersion")
+
+    testImplementation("com.github.seeseemelk:MockBukkit-v$mockBukkitVersion")
 }
 
 tasks {
