@@ -28,4 +28,4 @@ If you encounter any issues or have questions, please open an issue on the GitHu
 
 ## License
 
-ComfyWhitelist is licensed under the MIT License. See the LICENSE file for more information.
+ComfyWhitelist is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for more information.
