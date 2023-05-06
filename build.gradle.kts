@@ -8,7 +8,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-group = "com.example"
+group = "com.cocahonka"
 version = "0.0.1"
 
 repositories {
@@ -31,7 +31,7 @@ tasks {
     }
 
     val shadowJar by existing(ShadowJar::class) {
-        archiveFileName.set("template-$version.jar")
+        archiveFileName.set("ComfyWhitelist-$version.jar")
         destinationDirectory.set(layout.buildDirectory.dir("../../paper_server/plugins"))
     }
 

@@ -1,8 +1,9 @@
-name: ExamplePlugin
+name: ComfyWhitelist
 api-version: 1.19
 authors:
-  - Example
-main: com.example.example_plugin.ExamplePlugin
-version: '${version}'
+  - cocahonka
+  - vmlakk
+main: com.cocahonka.comfywhitelist.ComfyWhitelist
+version: @version@
 
 
