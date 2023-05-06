@@ -16,11 +16,20 @@ repositories {
 }
 
 val paperApiVersion: String by project
+val striktCoreVersion: String by project
 dependencies {
     compileOnly("io.papermc.paper:paper-api:$paperApiVersion")
+
+    testImplementation(kotlin("test"))
+
+    testImplementation("io.strikt:strikt-core:$striktCoreVersion")
+
 }
 
 tasks {
+    test {
+        useJUnitPlatform()
+    }
     processResources {
         filter(FixCrLfFilter::class)
         filter(ReplaceTokens::class, "tokens" to mapOf("version" to project.version))
