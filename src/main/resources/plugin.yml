@@ -1,0 +1,8 @@
+name: ExamplePlugin
+api-version: 1.19
+authors:
+  - Example
+main: com.example.example_plugin.ExamplePlugin
+version: '${version}'
+
+
