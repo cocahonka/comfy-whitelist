@@ -45,4 +45,30 @@ abstract class WhitelistStorageTestBase {
         assertEquals(emptyList<String>(), storage.getAllWhitelistedPlayers().toList())
     }
 
+    @Test
+    fun `save and load whitelisted players`() {
+        val storage = createStorage()
+        val playerNames = listOf("player1", "player2", "player3")
+
+        playerNames.forEach { storage.addPlayer(it) }
+        assertTrue(storage.save(), "Failed to save data")
+
+        val storage2 = createStorage()
+        assertTrue(storage2.load(), "Failed to load data")
+        val loadedPlayers = storage2.getAllWhitelistedPlayers().toList()
+
+        assertEquals(playerNames.size, loadedPlayers.size)
+        assertTrue(loadedPlayers.containsAll(playerNames))
+    }
+
+    @Test
+    fun `save and load empty whitelist`() {
+        val storage = createStorage()
+        assertTrue(storage.save(), "Failed to save data")
+
+        val storage2 = createStorage()
+        assertTrue(storage2.load(), "Failed to load data")
+        assertEquals(emptyList<String>(), storage2.getAllWhitelistedPlayers().toList())
+    }
+
 }
