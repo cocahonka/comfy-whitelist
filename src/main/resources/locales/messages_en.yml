@@ -1,0 +1,7 @@
+not-whitelisted: "You are not whitelisted."
+player-added: "Player %s has been added to the whitelist."
+player-removed: "Player %s has been removed from the whitelist."
+whitelist-cleared: "All players have been removed from the whitelist."
+whitelist-enabled: "ComfyWhitelist enabled."
+whitelist-disabled: "ComfyWhitelist disabled."
+plugin-reloaded: "ComfyWhitelist has been successfully reloaded."
