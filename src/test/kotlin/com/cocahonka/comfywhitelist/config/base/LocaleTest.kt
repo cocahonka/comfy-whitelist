@@ -1,4 +1,4 @@
-package com.cocahonka.comfywhitelist.config
+package com.cocahonka.comfywhitelist.config.base
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.AfterEach

@@ -1,4 +1,4 @@
-package com.cocahonka.comfywhitelist.config
+package com.cocahonka.comfywhitelist.config.base
 
 import org.bukkit.Bukkit.getLogger
 

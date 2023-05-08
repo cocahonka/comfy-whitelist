@@ -1,5 +1,6 @@
-package com.cocahonka.comfywhitelist.config
+package com.cocahonka.comfywhitelist.config.message
 
+import com.cocahonka.comfywhitelist.config.base.Locale
 import org.bukkit.configuration.file.FileConfiguration
 
 /**
