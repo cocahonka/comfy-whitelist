@@ -1,0 +1,5 @@
+# Enabling or disabling ComfyWhitelist.
+enabled: true
+
+# Plugin's interface locales (ru, en).
+locale: en

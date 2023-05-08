@@ -1,0 +1,7 @@
+not-whitelisted: "Вы не в вайтлисте."
+player-added: "Игрок %s добавлен в вайтлист."
+player-removed: "Игрок %s удален из вайтлиста."
+whitelist-cleared: "Все игроки удалены из вайтлиста."
+whitelist-enabled: "ComfyWhitelist включен."
+whitelist-disabled: "ComfyWhitelist выключен."
+plugin-reloaded: "ComfyWhitelist успешно перезагружен."
