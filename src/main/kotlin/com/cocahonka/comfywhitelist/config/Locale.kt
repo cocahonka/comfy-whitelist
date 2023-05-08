@@ -19,7 +19,7 @@ enum class Locale(val code: String, val filePath: String) {
          * @param value The value to find a matching Locale object for.
          * @return The matching Locale object or the default English locale if not found.
          */
-        fun fromString(value: String): Locale {
+        fun fromString(value: String?): Locale {
             val locale = values().find { it.name.equals(value, true) }
             return if (locale == null){
                 getLogger().warning("locale '$value' does not exist!\n" +
