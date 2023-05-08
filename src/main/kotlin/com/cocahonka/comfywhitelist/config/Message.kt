@@ -1,5 +1,7 @@
 package com.cocahonka.comfywhitelist.config
 
+import org.bukkit.configuration.file.FileConfiguration
+
 /**
  * Sealed class that represents a message to be displayed to the user.
  * @param key The configuration key for the message.
@@ -12,6 +14,24 @@ sealed class Message(val key: String) {
      * @return The default message for the specified locale.
      */
     abstract fun getDefault(locale: Locale): String
+
+    companion object {
+
+        /**
+         * Retrieves a message from the configuration using the message key, and falls back
+         * to the default message for the given locale if the key is not found.
+         * @param M The type of message object that extends [Message].
+         * @param message The message object containing the key and default message.
+         * @param locale The locale to be used for retrieving the default message if the key is not found in the configuration.
+         * @return The message string from the configuration if the key exists, otherwise the default message for the specified locale.
+         */
+        fun <M : Message> FileConfiguration.getMessageWithDefault(
+            message: M,
+            locale: Locale
+        ): String {
+            return this.getString(message.key) ?: message.getDefault(locale)
+        }
+    }
 
     object NotWhitelisted : Message("not-whitelisted") {
         override fun getDefault(locale: Locale): String = when (locale) {
