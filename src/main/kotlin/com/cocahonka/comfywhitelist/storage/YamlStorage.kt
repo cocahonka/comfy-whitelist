@@ -4,13 +4,12 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
 /**
- * A YAML file-based implementation of the [Storage] interface.
+ * YamlStorage is an implementation of the Storage interface that uses a YAML file for storing
+ * the whitelist data. It provides methods for adding, removing, and checking players in the whitelist,
+ * as well as loading and saving the data to the YAML file.
  *
- * This class stores the whitelisted players' usernames in a YAML configuration file.
- * The storage file is provided during the construction of the class.
- * It supports all the required operations, such as adding, removing, and checking the presence of a player in the whitelist.
- *
- * @property storageFile The file in which the whitelist data is stored.
+ * @param dataFolder The folder where the YAML storage file should be located. It must be a directory.
+ * @throws IllegalArgumentException If the provided dataFolder is not a directory.
  */
 class YamlStorage(dataFolder: File) : Storage {
     private val whitelistedPlayers: MutableSet<String> = mutableSetOf()
@@ -18,7 +17,7 @@ class YamlStorage(dataFolder: File) : Storage {
     private val config: YamlConfiguration
 
     init {
-        check(dataFolder.isDirectory) { "provided dataFolder ($dataFolder) is not directory!" }
+        require(dataFolder.isDirectory) { "provided dataFolder ($dataFolder) is not directory!" }
         storageFile = File(dataFolder, FILE_NAME)
         if(!storageFile.exists()) {
             createFile()
