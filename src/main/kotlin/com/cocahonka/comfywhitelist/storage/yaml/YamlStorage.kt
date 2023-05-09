@@ -1,10 +1,11 @@
-package com.cocahonka.comfywhitelist.storage
+package com.cocahonka.comfywhitelist.storage.yaml
 
+import com.cocahonka.comfywhitelist.storage.Storage
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
 /**
- * A YAML file-based implementation of the [WhitelistStorage] interface.
+ * A YAML file-based implementation of the [Storage] interface.
  *
  * This class stores the whitelisted players' usernames in a YAML configuration file.
  * The storage file is provided during the construction of the class.
@@ -12,7 +13,7 @@ import java.io.File
  *
  * @property storageFile The file in which the whitelist data is stored.
  */
-class YamlWhitelistStorage(private val storageFile: File) : WhitelistStorage {
+class YamlStorage(private val storageFile: File) : Storage {
     private val whitelistedPlayers: MutableSet<String> = mutableSetOf()
     private val config: YamlConfiguration = YamlConfiguration.loadConfiguration(storageFile)
 
