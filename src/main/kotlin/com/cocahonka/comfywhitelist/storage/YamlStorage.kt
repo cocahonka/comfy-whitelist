@@ -1,6 +1,5 @@
-package com.cocahonka.comfywhitelist.storage.yaml
+package com.cocahonka.comfywhitelist.storage
 
-import com.cocahonka.comfywhitelist.storage.Storage
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
@@ -13,12 +12,23 @@ import java.io.File
  *
  * @property storageFile The file in which the whitelist data is stored.
  */
-class YamlStorage(private val storageFile: File) : Storage {
+class YamlStorage(dataFolder: File) : Storage {
     private val whitelistedPlayers: MutableSet<String> = mutableSetOf()
-    private val config: YamlConfiguration = YamlConfiguration.loadConfiguration(storageFile)
+    private val storageFile: File
+    private val config: YamlConfiguration
+
+    init {
+        check(dataFolder.isDirectory) { "provided dataFolder ($dataFolder) is not directory!" }
+        storageFile = File(dataFolder, FILE_NAME)
+        if(!storageFile.exists()) {
+            createFile()
+        }
+        config = YamlConfiguration.loadConfiguration(storageFile)
+    }
 
     companion object {
         private const val WHITELISTED_PLAYERS_KEY = "players"
+        private const val FILE_NAME = "whitelist.yml"
     }
 
     override fun addPlayer(username: String): Boolean {
@@ -66,4 +76,10 @@ class YamlStorage(private val storageFile: File) : Storage {
             false
         }
     }
+
+    private fun createFile() {
+        storageFile.parentFile.mkdirs()
+        storageFile.createNewFile()
+    }
+
 }
