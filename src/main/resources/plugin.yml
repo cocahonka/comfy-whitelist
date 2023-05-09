@@ -23,6 +23,7 @@ permissions:
       comfywhitelist.on: true
       comfywhitelist.off: true
       comfywhitelist.reload: true
+      comfywhitelist.help: true
   comfywhitelist.add:
     description: Give access to add player name to ComfyWhitelist.
     default: op
@@ -45,4 +46,7 @@ permissions:
     default: op
   comfywhitelist.reload:
     description: Give access to reload ComfyWhitelist.
+    default: op
+  comfywhitelist.help:
+    description: Displays information about ComfyWhitelist commands
     default: op
