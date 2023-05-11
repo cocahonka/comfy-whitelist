@@ -24,6 +24,8 @@ permissions:
       comfywhitelist.off: true
       comfywhitelist.reload: true
       comfywhitelist.help: true
+  comfywhitelist.comfywhitelist:
+    description: Give access to main ComfyWhitelist command.
   comfywhitelist.add:
     description: Give access to add player name to ComfyWhitelist.
     default: op
