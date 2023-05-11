@@ -82,4 +82,11 @@ sealed class Message(val key: String) {
             Locale.EN -> "ComfyWhitelist has been successfully reloaded."
         }
     }
+
+    object NoRights : Message("no-rights") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "У вас недостаточно прав для использования этой команды."
+            Locale.EN -> "You do not have sufficient rights to use this command."
+        }
+    }
 }
