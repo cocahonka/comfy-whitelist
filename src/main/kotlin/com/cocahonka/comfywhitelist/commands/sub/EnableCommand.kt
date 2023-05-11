@@ -10,7 +10,7 @@ class EnableCommand : SubCommand {
 
     override val identifier = "on"
     override val permission = "comfywhitelist.on"
-    override val usage = "/comfywhitelist on"
+    override val usage = "/comfywl on"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         TODO("Not yet implemented")

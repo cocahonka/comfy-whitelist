@@ -13,7 +13,7 @@ class ClearCommand(private val storage: Storage) : SubCommand {
 
     override val identifier = "clear"
     override val permission = "comfywhitelist.clear"
-    override val usage = "/comfywhitelist clear"
+    override val usage = "/comfywl clear"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         TODO("Not yet implemented")

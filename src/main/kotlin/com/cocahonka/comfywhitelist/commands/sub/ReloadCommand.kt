@@ -10,7 +10,7 @@ class ReloadCommand : SubCommand {
 
     override val identifier = "reload"
     override val permission = "comfywhitelist.reload"
-    override val usage = "/comfywhitelist reload"
+    override val usage = "/comfywl reload"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         TODO("Not yet implemented")

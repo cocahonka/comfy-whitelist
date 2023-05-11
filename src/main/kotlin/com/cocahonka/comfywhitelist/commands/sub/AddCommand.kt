@@ -13,7 +13,7 @@ class AddCommand(private val storage: Storage) : SubCommand {
 
     override val identifier = "add"
     override val permission = "comfywhitelist.add"
-    override val usage = "/comfywhitelist add <player_name>"
+    override val usage = "/comfywl add <name>"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         TODO("Not yet implemented")

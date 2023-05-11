@@ -13,7 +13,7 @@ class RemoveCommand(private val storage: Storage) : SubCommand {
 
     override val identifier = "remove"
     override val permission = "comfywhitelist.remove"
-    override val usage = "/comfywhitelist remove <player_name>"
+    override val usage = "/comfywl remove <name>"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         TODO("Not yet implemented")
