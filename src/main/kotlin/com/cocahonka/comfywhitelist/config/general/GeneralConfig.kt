@@ -34,4 +34,15 @@ class GeneralConfig(private val plugin: Plugin) : ConfigManager() {
         enabled = config.getBoolean(enabledKey, true)
         locale = Locale.fromString(config.getString(localeKey))
     }
+
+    fun enableWhitelist() {
+        enabled = true
+        config.set(enabledKey, true)
+    }
+
+    fun disableWhitelist() {
+        enabled = false
+        config.set(enabledKey, false)
+    }
+
 }
