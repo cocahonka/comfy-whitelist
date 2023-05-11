@@ -12,7 +12,7 @@ interface SubCommand {
     /**
      * The name of the subcommand, used to identify and execute the command.
      */
-    val name: String
+    val identifier: String
 
     /**
      * The permission required by the `CommandSender` to execute this subcommand.
