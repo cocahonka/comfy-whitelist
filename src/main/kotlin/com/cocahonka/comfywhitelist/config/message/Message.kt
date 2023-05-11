@@ -83,7 +83,7 @@ sealed class Message(val key: String) {
         }
     }
 
-    object NoRights : Message("no-rights") {
+    object NoPermission : Message("no-permission") {
         override fun getDefault(locale: Locale): String = when(locale) {
             Locale.RU -> "У вас недостаточно прав для использования этой команды."
             Locale.EN -> "You do not have sufficient rights to use this command."

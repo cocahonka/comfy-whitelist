@@ -22,7 +22,7 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         lateinit var whitelistEnabled: String private set
         lateinit var whitelistDisabled: String private set
         lateinit var pluginReloaded: String private set
-        lateinit var noRights: String private set
+        lateinit var noPermission: String private set
     }
 
     override fun createConfig() {
@@ -49,7 +49,7 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         whitelistEnabled = config.getMessageWithDefault(Message.WhitelistEnabled, locale)
         whitelistDisabled = config.getMessageWithDefault(Message.WhitelistDisabled, locale)
         pluginReloaded = config.getMessageWithDefault(Message.PluginReloaded, locale)
-        noRights = config.getMessageWithDefault(Message.NoRights, locale)
+        noPermission = config.getMessageWithDefault(Message.NoPermission, locale)
     }
 
 }
