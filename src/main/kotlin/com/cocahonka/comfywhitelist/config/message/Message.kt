@@ -89,4 +89,26 @@ sealed class Message(val key: String) {
             Locale.EN -> "You do not have sufficient rights to use this command."
         }
     }
+
+    object InvalidUsage : Message("invalid-usage") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Недопустимое использование команды (правильное использование: %s)"
+            Locale.EN -> "Invalid command usage. (correct use: %s)"
+        }
+    }
+
+    object WhitelistedPlayersList : Message("whitelisted-players-list") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Игроки в вайтлисте: %s"
+            Locale.EN -> "Whitelisted players: %s"
+        }
+    }
+
+    object EmptyWhitelistedPlayersList : Message("empty-whitelisted-players-list") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "В вайтлисте нет игроков."
+            Locale.EN -> "Whitelist is empty."
+        }
+    }
+
 }

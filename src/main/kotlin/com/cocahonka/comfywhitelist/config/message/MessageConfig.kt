@@ -23,6 +23,9 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         lateinit var whitelistDisabled: String private set
         lateinit var pluginReloaded: String private set
         lateinit var noPermission: String private set
+        lateinit var invalidUsage: String private set
+        lateinit var whitelistedPlayersList: String private set
+        lateinit var emptyWhitelistedPlayersList: String private set
     }
 
     override fun createConfig() {
@@ -50,6 +53,9 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         whitelistDisabled = config.getMessageWithDefault(Message.WhitelistDisabled, locale)
         pluginReloaded = config.getMessageWithDefault(Message.PluginReloaded, locale)
         noPermission = config.getMessageWithDefault(Message.NoPermission, locale)
+        invalidUsage = config.getMessageWithDefault(Message.InvalidUsage, locale)
+        whitelistedPlayersList = config.getMessageWithDefault(Message.WhitelistedPlayersList, locale)
+        emptyWhitelistedPlayersList = config.getMessageWithDefault(Message.EmptyWhitelistedPlayersList, locale)
     }
 
 }
