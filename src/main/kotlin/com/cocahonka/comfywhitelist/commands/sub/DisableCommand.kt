@@ -1,12 +1,13 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
+import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import org.bukkit.command.CommandSender
 
 /**
  * Disables the whitelist, allowing all players to join.
  */
-class DisableCommand : SubCommand {
+class DisableCommand(private val generalConfig: GeneralConfig) : SubCommand {
 
     override val identifier = "off"
     override val permission = "comfywhitelist.off"

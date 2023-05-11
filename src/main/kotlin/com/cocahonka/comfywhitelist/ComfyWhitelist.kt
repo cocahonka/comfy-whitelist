@@ -12,6 +12,10 @@ import java.io.File
 
 @Suppress("unused")
 class ComfyWhitelist : JavaPlugin {
+    companion object {
+        const val DISPLAY_NAME = "ComfyWhitelist"
+    }
+
     constructor() : super() {
         isUnitTest = false
     }
@@ -53,6 +57,11 @@ class ComfyWhitelist : JavaPlugin {
         generalConfig.loadConfig()
 
         messageConfig = MessageConfig(this, GeneralConfig.locale)
+        messageConfig.loadConfig()
+    }
+
+    fun reloadConfigs() {
+        generalConfig.loadConfig()
         messageConfig.loadConfig()
     }
 

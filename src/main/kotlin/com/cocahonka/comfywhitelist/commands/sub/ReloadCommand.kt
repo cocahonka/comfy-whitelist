@@ -1,12 +1,13 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
+import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import org.bukkit.command.CommandSender
 
 /**
  * Reloads the whitelist data from storage.
  */
-class ReloadCommand : SubCommand {
+class ReloadCommand(private val plugin: ComfyWhitelist) : SubCommand {
 
     override val identifier = "reload"
     override val permission = "comfywhitelist.reload"

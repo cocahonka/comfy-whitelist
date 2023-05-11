@@ -1,12 +1,13 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
+import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import org.bukkit.command.CommandSender
 
 /**
  * Enables the whitelist, restricting access to whitelisted players.
  */
-class EnableCommand : SubCommand {
+class EnableCommand(private val generalConfig: GeneralConfig) : SubCommand {
 
     override val identifier = "on"
     override val permission = "comfywhitelist.on"
