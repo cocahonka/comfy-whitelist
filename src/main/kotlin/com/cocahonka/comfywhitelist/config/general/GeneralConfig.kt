@@ -14,7 +14,7 @@ import java.io.File
  */
 class GeneralConfig(private val plugin: Plugin) : ConfigManager() {
     companion object {
-        var enabled: Boolean by Delegates.notNull()
+        var whitelistEnabled: Boolean by Delegates.notNull()
             private set
         lateinit var locale: Locale private set
 
@@ -31,17 +31,17 @@ class GeneralConfig(private val plugin: Plugin) : ConfigManager() {
     }
 
     override fun updateProperties() {
-        enabled = config.getBoolean(enabledKey, true)
+        whitelistEnabled = config.getBoolean(enabledKey, true)
         locale = Locale.fromString(config.getString(localeKey))
     }
 
     fun enableWhitelist() {
-        enabled = true
+        whitelistEnabled = true
         config.set(enabledKey, true)
     }
 
     fun disableWhitelist() {
-        enabled = false
+        whitelistEnabled = false
         config.set(enabledKey, false)
     }
 
