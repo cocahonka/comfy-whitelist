@@ -34,4 +34,8 @@ interface SubCommand {
      * @return true if the command executed successfully, false otherwise.
      */
     fun execute(sender: CommandSender, args: Array<String>): Boolean
+
+    companion object{
+        val playerNameRegex = Regex("""^[a-zA-Z0-9_]+$""")
+    }
 }

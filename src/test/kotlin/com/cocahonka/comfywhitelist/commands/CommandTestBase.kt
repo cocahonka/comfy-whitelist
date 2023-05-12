@@ -9,6 +9,7 @@ import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.config.base.Locale
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.Message
+import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.storage.Storage
 import com.cocahonka.comfywhitelist.storage.YamlStorage
 import org.bukkit.command.PluginCommand
@@ -26,6 +27,7 @@ abstract class CommandTestBase {
     protected lateinit var storage: Storage
     protected lateinit var handler: CommandHandler
     protected lateinit var generalConfig: GeneralConfig
+    protected lateinit var messageConfig: MessageConfig
     protected val locale = Locale.EN
 
     @BeforeEach
@@ -37,6 +39,7 @@ abstract class CommandTestBase {
         console = ConsoleCommandSenderMock()
         storage = YamlStorage(plugin.dataFolder)
         generalConfig = GeneralConfig(plugin).apply { loadConfig() }
+        messageConfig = MessageConfig(plugin, locale).apply { loadConfig() }
         handler = CommandHandler(storage, generalConfig, plugin)
     }
 

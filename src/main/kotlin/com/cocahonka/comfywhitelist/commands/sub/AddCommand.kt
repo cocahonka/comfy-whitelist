@@ -1,7 +1,9 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
+import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.storage.Storage
+import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
@@ -16,7 +18,22 @@ class AddCommand(private val storage: Storage) : SubCommand {
     override val usage = "/comfywl add <name>"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
-        TODO("Not yet implemented")
+        if (args.size != 1){
+            val message = MessageConfig.invalidUsage.replace("%s", usage)
+            sender.sendMessage(Component.text(message))
+            return false
+        }
+
+        val playerName = args[0]
+        if (!playerName.matches(SubCommand.playerNameRegex)){
+            val message = MessageConfig.invalidPlayerName
+            sender.sendMessage(Component.text(message))
+            return false
+        }
+
+        val message = MessageConfig.playerAdded.replace("%s", playerName)
+        sender.sendMessage(Component.text(message))
+        return storage.addPlayer(playerName)
     }
 
 }

@@ -17,7 +17,6 @@ import kotlin.properties.Delegates
 class ReloadCommandTest : CommandTestBase() {
 
     private lateinit var reloadCommand: ReloadCommand
-    private lateinit var messageConfig: MessageConfig
     private var newEnabled by Delegates.notNull<Boolean>()
     private lateinit var newPlayerAddedMessage: String
     private lateinit var label: String
