@@ -1,7 +1,6 @@
 package com.cocahonka.comfywhitelist.config.message
 
 import com.cocahonka.comfywhitelist.config.base.Locale
-import com.cocahonka.comfywhitelist.config.message.Message
 import com.cocahonka.comfywhitelist.config.message.Message.Companion.getMessageWithDefault
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
