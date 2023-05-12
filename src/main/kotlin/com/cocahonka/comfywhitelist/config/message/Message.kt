@@ -85,8 +85,8 @@ sealed class Message(val key: String) {
 
     object NoPermission : Message("no-permission") {
         override fun getDefault(locale: Locale): String = when(locale) {
-            Locale.RU -> "У вас недостаточно прав для использования этой команды."
-            Locale.EN -> "You do not have sufficient rights to use this command."
+            Locale.RU -> "У вас недостаточно полномочий для использования этой команды."
+            Locale.EN -> "You do not have permission to use this command."
         }
     }
 
@@ -108,6 +108,20 @@ sealed class Message(val key: String) {
         override fun getDefault(locale: Locale): String = when(locale) {
             Locale.RU -> "В вайтлисте нет игроков."
             Locale.EN -> "Whitelist is empty."
+        }
+    }
+
+    object UnknownSubcommand: Message("unknown-subcommand") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Неизвестная подкоманда. Введите /comfywl help для отображения доступных подкоманд."
+            Locale.EN -> "Unknown subcommand. Type /comfywl help for a list of commands."
+        }
+    }
+
+    object InvalidPlayerName: Message("invalid-player-name") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Некорректный формат имени игрока."
+            Locale.EN -> "Invalid player name."
         }
     }
 

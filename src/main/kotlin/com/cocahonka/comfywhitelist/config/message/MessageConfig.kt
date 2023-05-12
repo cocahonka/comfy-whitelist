@@ -26,6 +26,8 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         lateinit var invalidUsage: String private set
         lateinit var whitelistedPlayersList: String private set
         lateinit var emptyWhitelistedPlayersList: String private set
+        lateinit var unknownSubcommand: String private set
+        lateinit var invalidPlayerName: String private set
     }
 
     override fun createConfig() {
@@ -56,6 +58,8 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         invalidUsage = config.getMessageWithDefault(Message.InvalidUsage, locale)
         whitelistedPlayersList = config.getMessageWithDefault(Message.WhitelistedPlayersList, locale)
         emptyWhitelistedPlayersList = config.getMessageWithDefault(Message.EmptyWhitelistedPlayersList, locale)
+        unknownSubcommand = config.getMessageWithDefault(Message.UnknownSubcommand, locale)
+        invalidPlayerName = config.getMessageWithDefault(Message.InvalidPlayerName, locale)
     }
 
 }
