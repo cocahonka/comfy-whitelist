@@ -8,27 +8,26 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class ClearCommandTest : CommandTestBase() {
-    
-    private lateinit var clearCommand: ClearCommand
-    private lateinit var anotherPlayer: PlayerMock
+class DisableCommandTest : CommandTestBase() {
+
+    private lateinit var disableCommand: DisableCommand
+    private lateinit var joiner: PlayerMock
     private lateinit var label: String
-    
+
     @BeforeEach
     override fun setUp() {
         super.setUp()
-        clearCommand = ClearCommand(storage)
-        label = clearCommand.identifier
-        anotherPlayer = server.addPlayer()
-
-        storage.addPlayer(player.name)
-        storage.addPlayer(anotherPlayer.name)
+        disableCommand = DisableCommand(generalConfig)
+        label = disableCommand.identifier
+        generalConfig.enableWhitelist()
+        TODO("Register listener to prevent connection")
+        joiner = server.addPlayer()
     }
 
-    private fun assertOnlyWhitelistClearedMessage(sender: MessageTarget) {
+    private fun assertOnlyDisableMessage(sender: MessageTarget){
         assertEquals(
             sender.nextMessage(),
-            Message.PlayerAdded.getDefault(locale)
+            Message.WhitelistDisabled.getDefault(locale)
         )
         sender.assertNoMoreSaid()
     }
@@ -39,12 +38,15 @@ class ClearCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(clearCommand.identifier)
+            args = arrayOf(disableCommand.identifier)
         )
 
+        val reconnectedPlayer = server.addPlayer(joiner.name)
+
         assertTrue(result)
-        assertStorageEmpty()
-        assertOnlyWhitelistClearedMessage(console)
+        assertWhitelistDisabled()
+        assertConnectedTrue(reconnectedPlayer)
+        assertOnlyDisableMessage(console)
     }
 
     @Test
@@ -53,28 +55,33 @@ class ClearCommandTest : CommandTestBase() {
             sender = player,
             command = command,
             label = label,
-            args = arrayOf(clearCommand.identifier)
+            args = arrayOf(disableCommand.identifier)
         )
 
+        val reconnectedPlayer = server.addPlayer(joiner.name)
+
         assertFalse(result)
-        assertWhitelisted(player)
-        assertWhitelisted(anotherPlayer)
+        assertWhitelistEnabled()
+        assertConnectedFalse(reconnectedPlayer)
         assertOnlyNoPermissionMessage(player)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        player.addAttachment(plugin, clearCommand.permission, true)
+        player.addAttachment(plugin, disableCommand.permission, true)
         val result = handler.onCommand(
             sender = player,
             command = command,
             label = label,
-            args = arrayOf(clearCommand.identifier)
+            args = arrayOf(disableCommand.identifier)
         )
 
+        val reconnectedPlayer = server.addPlayer(joiner.name)
+
         assertTrue(result)
-        assertStorageEmpty()
-        assertOnlyWhitelistClearedMessage(player)
+        assertWhitelistDisabled()
+        assertConnectedTrue(reconnectedPlayer)
+        assertOnlyDisableMessage(player)
     }
 
     @Test
@@ -83,13 +90,15 @@ class ClearCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(clearCommand.identifier)
+            args = arrayOf(disableCommand.identifier, joiner.name)
         )
 
+        val reconnectedPlayer = server.addPlayer(joiner.name)
+
         assertFalse(result)
-        assertWhitelisted(player)
-        assertWhitelisted(anotherPlayer)
-        assertOnlyInvalidUsageMessage(console, clearCommand.usage)
+        assertWhitelistEnabled()
+        assertConnectedFalse(reconnectedPlayer)
+        assertOnlyInvalidUsageMessage(console, disableCommand.usage)
     }
 
 }

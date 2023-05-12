@@ -1,107 +1,103 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
+import be.seeseemelk.mockbukkit.command.MessageTarget
+import be.seeseemelk.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class AddCommandTest : CommandTestBase() {
+    
+    private lateinit var addCommand: AddCommand
+    private lateinit var label: String
+    
+    @BeforeEach
+    override fun setUp() {
+        super.setUp()
+        addCommand = AddCommand(storage)
+        label = addCommand.identifier
+    }
+
+    private fun assertOnlyPlayerAddedMessage(sender: MessageTarget, player: PlayerMock) {
+        assertEquals(
+            sender.nextMessage(),
+            Message.PlayerAdded.getDefault(locale).replace("%s", player.name)
+        )
+        sender.assertNoMoreSaid()
+    }
 
     @Test
     fun `when console is sender`() {
-        val addCommand = AddCommand(storage)
         val result = handler.onCommand(
             sender = console,
             command = command,
-            label = addCommand.identifier,
+            label = label,
             args = arrayOf(addCommand.identifier, player.name),
         )
 
         assertTrue(result)
-        assertWhitelisted(player.name)
-        assertEquals(
-            console.nextMessage(),
-            Message.PlayerAdded.getDefault(locale).replace("%s", player.name)
-        )
-        console.assertNoMoreSaid()
+        assertWhitelisted(player)
+        assertOnlyPlayerAddedMessage(console, player)
     }
 
     @Test
     fun `when player is sender without permission`() {
-        val addCommand = AddCommand(storage)
         val anotherPlayer = server.addPlayer()
         val result = handler.onCommand(
             sender = player,
             command = command,
-            label = addCommand.identifier,
+            label = label,
             args = arrayOf(addCommand.identifier, anotherPlayer.name),
         )
 
         assertFalse(result)
-        assertNotWhitelisted(anotherPlayer.name)
-        assertEquals(player.nextMessage(), Message.NoPermission.getDefault(locale))
-        player.assertNoMoreSaid()
+        assertNotWhitelisted(anotherPlayer)
+        assertOnlyNoPermissionMessage(player)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        val addCommand = AddCommand(storage)
         val anotherPlayer = server.addPlayer()
         player.addAttachment(plugin, addCommand.permission, true)
 
         val result = handler.onCommand(
             sender = player,
             command = command,
-            label = addCommand.identifier,
+            label = label,
             args = arrayOf(addCommand.identifier, anotherPlayer.name),
         )
 
         assertTrue(result)
-        assertWhitelisted(anotherPlayer.name)
-        assertEquals(
-            player.nextMessage(),
-            Message.PlayerAdded.getDefault(locale).replace("%s", player.name)
-        )
-        player.assertNoMoreSaid()
+        assertWhitelisted(anotherPlayer)
+        assertOnlyPlayerAddedMessage(player, anotherPlayer)
     }
 
     @Test
     fun `when player name not provided`() {
-        val addCommand = AddCommand(storage)
         val result = handler.onCommand(
             sender = console,
             command = command,
-            label = addCommand.identifier,
+            label = label,
             args = arrayOf(addCommand.identifier),
         )
 
         assertFalse(result)
-        assertEquals(
-            console.nextMessage(),
-            Message.InvalidUsage.getDefault(locale).replace("%s", addCommand.usage)
-        )
-        console.assertNoMoreSaid()
+        assertOnlyInvalidUsageMessage(player, addCommand.usage)
     }
 
     @Test
     fun `when to many arguments`() {
-        val addCommand = AddCommand(storage)
         val result = handler.onCommand(
             sender = console,
             command = command,
-            label = addCommand.identifier,
+            label = label,
             args = arrayOf(addCommand.identifier, player.name, player.name),
         )
-
         assertFalse(result)
-        assertNotWhitelisted(player.name)
-        assertEquals(
-            console.nextMessage(),
-            Message.InvalidUsage.getDefault(locale).replace("%s", addCommand.usage)
-        )
-        console.assertNoMoreSaid()
+        assertNotWhitelisted(player)
+        assertOnlyInvalidUsageMessage(console, addCommand.usage)
     }
 
 }
