@@ -2,6 +2,7 @@ package com.cocahonka.comfywhitelist.commands.sub
 
 import be.seeseemelk.mockbukkit.command.MessageTarget
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
+import com.cocahonka.comfywhitelist.commands.SubCommand
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -11,11 +12,7 @@ class HelpCommandTest : CommandTestBase() {
     private lateinit var helpCommand: HelpCommand
     private lateinit var label: String
 
-    private val commands = listOf(
-        AddCommand(storage),
-        RemoveCommand(storage),
-        ListCommand(storage)
-    )
+    private lateinit var commands: List<SubCommand>
     private val helpMessage =
         "ComfyWhitelist >\n" +
                 "> /comfywl add <name>\n" +
@@ -25,6 +22,11 @@ class HelpCommandTest : CommandTestBase() {
     @BeforeEach
     override fun setUp() {
         super.setUp()
+        commands = listOf(
+            AddCommand(storage),
+            RemoveCommand(storage),
+            ListCommand(storage)
+        )
         helpCommand = HelpCommand(commands)
         label = helpCommand.identifier
     }

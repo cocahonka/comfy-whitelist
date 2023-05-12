@@ -36,7 +36,7 @@ abstract class CommandTestBase {
         player = server.addPlayer()
         console = ConsoleCommandSenderMock()
         storage = YamlStorage(plugin.dataFolder)
-        generalConfig = GeneralConfig(plugin)
+        generalConfig = GeneralConfig(plugin).apply { loadConfig() }
         handler = CommandHandler(storage, generalConfig, plugin)
     }
 
