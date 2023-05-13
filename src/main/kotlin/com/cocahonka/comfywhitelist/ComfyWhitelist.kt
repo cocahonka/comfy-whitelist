@@ -4,6 +4,7 @@ package com.cocahonka.comfywhitelist
 
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.listeners.PlayerPreLoginEvent
 import com.cocahonka.comfywhitelist.storage.YamlStorage
 import org.bukkit.plugin.PluginDescriptionFile
 import org.bukkit.plugin.java.JavaPlugin
@@ -52,6 +53,7 @@ class ComfyWhitelist : JavaPlugin {
     private fun onPluginEnable() {
         loadConfigs()
         loadStorage()
+        registerEvents()
     }
 
     private fun loadConfigs() {
@@ -69,5 +71,9 @@ class ComfyWhitelist : JavaPlugin {
 
     private fun loadStorage() {
         storage = YamlStorage(dataFolder)
+    }
+
+    private fun registerEvents() {
+        server.pluginManager.registerEvents(PlayerPreLoginEvent(storage), this)
     }
 }

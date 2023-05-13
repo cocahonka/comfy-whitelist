@@ -3,6 +3,7 @@ package com.cocahonka.comfywhitelist.commands.sub
 import be.seeseemelk.mockbukkit.command.MessageTarget
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
+import com.cocahonka.comfywhitelist.listeners.PlayerPreLoginEvent
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -19,7 +20,7 @@ class EnableCommandTest : CommandTestBase() {
         label = enableCommand.identifier
 
         generalConfig.disableWhitelist()
-        TODO("Register listener to prevent connection")
+        server.pluginManager.registerEvents(PlayerPreLoginEvent(storage), plugin)
 
         playerWithPermission.addAttachment(plugin, enableCommand.permission, true)
     }
