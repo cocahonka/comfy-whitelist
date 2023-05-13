@@ -7,9 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Represents the "clear" subcommand, which clears the whitelist of all players.
+ * Represents the "clear" command, which clears the whitelist.
  *
- * @property storage The [Storage] instance used to interact with the whitelist.
+ * @property storage The [Storage] instance to interact with whitelist data.
  */
 class ClearCommand(private val storage: Storage) : SubCommand {
 

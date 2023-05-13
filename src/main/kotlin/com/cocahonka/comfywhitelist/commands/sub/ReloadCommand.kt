@@ -7,7 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Reloads the whitelist data from storage.
+ * Represents the "reload" command, which reloads the plugin configuration.
+ *
+ * @property plugin The [ComfyWhitelist] plugin instance.
  */
 class ReloadCommand(private val plugin: ComfyWhitelist) : SubCommand {
 

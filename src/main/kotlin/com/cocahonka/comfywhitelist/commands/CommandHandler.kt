@@ -12,9 +12,11 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 
 /**
- * Handles the execution of the main command and delegates to the appropriate SubCommand.
+ * Handles subcommands and their execution for the ComfyWhitelist plugin.
  *
- * @property storage The storage instance used to store and manage whitelist data.
+ * @param storage The [Storage] instance to interact with whitelist data.
+ * @param generalConfig The [GeneralConfig] instance to manage plugin configuration.
+ * @param plugin The [ComfyWhitelist] plugin instance.
  */
 class CommandHandler(
     storage: Storage,

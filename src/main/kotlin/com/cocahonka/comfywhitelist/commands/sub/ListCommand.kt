@@ -7,9 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Represents the "list" subcommand, which lists all players on the whitelist.
+ * Represents the "list" command, which lists all players in the whitelist.
  *
- * @property storage The [Storage] instance used to interact with the whitelist.
+ * @property storage The [Storage] instance to interact with whitelist data.
  */
 class ListCommand(private val storage: Storage) : SubCommand {
 

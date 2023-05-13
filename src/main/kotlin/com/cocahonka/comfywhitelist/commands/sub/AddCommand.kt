@@ -7,9 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Represents the "add" subcommand, which adds a player to the whitelist.
+ * Represents the "add" command, which adds a player to the whitelist.
  *
- * @property storage The [Storage] instance used to interact with the whitelist.
+ * @property storage The [Storage] instance to interact with whitelist data.
  */
 class AddCommand(private val storage: Storage) : SubCommand {
 

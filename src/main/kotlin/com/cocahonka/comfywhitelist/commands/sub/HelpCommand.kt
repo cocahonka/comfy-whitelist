@@ -7,7 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Displays help information for the plugin commands.
+ * Represents the "help" command, which displays help information about available subcommands.
+ *
+ * @property commands A list of available [SubCommand] instances.
  */
 class HelpCommand(private val commands: List<SubCommand>) : SubCommand {
 

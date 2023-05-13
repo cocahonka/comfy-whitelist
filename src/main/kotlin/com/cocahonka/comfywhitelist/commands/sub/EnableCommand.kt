@@ -7,7 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Enables the whitelist, restricting access to whitelisted players.
+ * Represents the "on" command, which enables the whitelist feature in the plugin.
+ *
+ * @property generalConfig The [GeneralConfig] instance to manage plugin configuration.
  */
 class EnableCommand(private val generalConfig: GeneralConfig) : SubCommand {
 

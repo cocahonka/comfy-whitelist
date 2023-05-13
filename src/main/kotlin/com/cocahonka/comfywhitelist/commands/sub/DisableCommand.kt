@@ -7,7 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Disables the whitelist, allowing all players to join.
+ * Represents the "off" command, which disables the whitelist feature in the plugin.
+ *
+ * @property generalConfig The [GeneralConfig] instance to manage plugin configuration.
  */
 class DisableCommand(private val generalConfig: GeneralConfig) : SubCommand {
 

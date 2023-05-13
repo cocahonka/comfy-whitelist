@@ -7,9 +7,9 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
- * Represents the "remove" subcommand, which removes a player from the whitelist.
+ * Represents the "remove" command, which removes a player from the whitelist.
  *
- * @property storage The [Storage] instance used to interact with the whitelist.
+ * @property storage The [Storage] instance to interact with whitelist data.
  */
 class RemoveCommand(private val storage: Storage) : SubCommand {
 

@@ -5,17 +5,17 @@ import org.bukkit.command.CommandSender
 /**
  * Represents a subcommand within the plugin.
  *
- * Implement this interface to create a new subcommand that can be executed by a `CommandSender`
- * and has its own name, permission, and usage information.
+ * Implement this interface to create a new subcommand that can be executed by a [CommandSender]
+ * and has its own [identifier], [permission], and [usage] information.
  */
 interface SubCommand {
     /**
-     * The name of the subcommand, used to identify and execute the command.
+     * The identifier of the subcommand, used to identify and execute the command.
      */
     val identifier: String
 
     /**
-     * The permission required by the `CommandSender` to execute this subcommand.
+     * The permission required by the [CommandSender] to execute this subcommand.
      * The subcommand will only be executed if the sender has the required permission.
      */
     val permission: String
@@ -36,6 +36,10 @@ interface SubCommand {
     fun execute(sender: CommandSender, args: Array<String>): Boolean
 
     companion object{
+
+        /**
+         * A regex pattern to match valid player names.
+         */
         val playerNameRegex = Regex("""^[a-zA-Z0-9_]+$""")
     }
 }
