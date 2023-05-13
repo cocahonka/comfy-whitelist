@@ -125,4 +125,11 @@ sealed class Message(val key: String) {
         }
     }
 
+    object NonExistentPlayerName : Message("non-existent-player-name") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Игрока с именем %s нет в вайтлисте."
+            Locale.EN -> "There is no player named %s in the whitelist."
+        }
+    }
+
 }

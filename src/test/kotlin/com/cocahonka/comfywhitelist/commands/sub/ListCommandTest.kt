@@ -104,7 +104,7 @@ class ListCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(listCommand.identifier, playerWithPermission.name),
+            args = arrayOf(listCommand.identifier, listCommand.identifier),
         )
 
         assertFalse(result)

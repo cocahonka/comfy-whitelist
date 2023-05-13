@@ -13,11 +13,16 @@ class RemoveCommandTest : CommandTestBase() {
     private lateinit var removeCommand: RemoveCommand
     private lateinit var label: String
 
+    private lateinit var addedPlayer: PlayerMock
+
     @BeforeEach
     override fun setUp() {
         super.setUp()
         removeCommand = RemoveCommand(storage)
         label = removeCommand.identifier
+
+        addedPlayer = server.addPlayer()
+        storage.addPlayer(addedPlayer.name)
 
         playerWithPermission.addAttachment(plugin, removeCommand.permission, true)
     }
@@ -30,58 +35,54 @@ class RemoveCommandTest : CommandTestBase() {
         sender.assertNoMoreSaid()
     }
 
+    private fun assertOnlyNonExistentPlayerName(sender: MessageTarget, player: PlayerMock) {
+        assertEquals(
+            sender.nextMessage(),
+            Message.NonExistentPlayerName.getDefault(locale).replace("%s", player.name)
+        )
+        sender.assertNoMoreSaid()
+    }
+
     @Test
     fun `when console is sender`() {
-        storage.addPlayer(playerWithPermission.name)
-
         val result = handler.onCommand(
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(removeCommand.identifier, playerWithPermission.name),
+            args = arrayOf(removeCommand.identifier, addedPlayer.name),
         )
 
         assertTrue(result)
-        assertNotWhitelisted(playerWithPermission)
-        assertOnlyPlayerRemovedMessage(console, playerWithPermission)
+        assertNotWhitelisted(addedPlayer)
+        assertOnlyPlayerRemovedMessage(console, addedPlayer)
     }
 
     @Test
     fun `when player is sender without permission`() {
-        val anotherPlayer = server.addPlayer()
-
-        storage.addPlayer(anotherPlayer.name)
-
         val result = handler.onCommand(
             sender = playerWithPermission,
             command = command,
             label = label,
-            args = arrayOf(removeCommand.identifier, anotherPlayer.name),
+            args = arrayOf(removeCommand.identifier, addedPlayer.name),
         )
 
         assertFalse(result)
-        assertWhitelisted(anotherPlayer)
+        assertWhitelisted(addedPlayer)
         assertOnlyNoPermissionMessage(playerWithPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        val anotherPlayer = server.addPlayer()
-
-        storage.addPlayer(anotherPlayer.name)
-
-        playerWithPermission.addAttachment(plugin, removeCommand.permission, true)
-
         val result = handler.onCommand(
             sender = playerWithPermission,
             command = command,
             label = label,
-            args = arrayOf(removeCommand.identifier, anotherPlayer.name),
+            args = arrayOf(removeCommand.identifier, addedPlayer.name),
         )
 
         assertTrue(result)
-        assertNotWhitelisted(anotherPlayer)
-        assertOnlyPlayerRemovedMessage(playerWithPermission, anotherPlayer)
+        assertNotWhitelisted(addedPlayer)
+        assertOnlyPlayerRemovedMessage(playerWithPermission, addedPlayer)
     }
 
     @Test
@@ -99,18 +100,45 @@ class RemoveCommandTest : CommandTestBase() {
 
     @Test
     fun `when to many arguments`() {
-        storage.addPlayer(playerWithPermission.name)
-
         val result = handler.onCommand(
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(removeCommand.identifier, playerWithPermission.name, playerWithPermission.name),
+            args = arrayOf(removeCommand.identifier, addedPlayer.name, addedPlayer.name),
         )
 
         assertFalse(result)
-        assertWhitelisted(playerWithPermission)
+        assertWhitelisted(addedPlayer)
         assertOnlyInvalidUsageMessage(console, removeCommand.usage)
+    }
+
+    @Test
+    fun `when player name is invalid`() {
+        val invalidPlayer = server.addPlayer("мотузок")
+        val result = handler.onCommand(
+            sender = playerWithPermission,
+            command = command,
+            label = label,
+            args = arrayOf(removeCommand.identifier, invalidPlayer.name),
+        )
+
+        assertFalse(result)
+        assertOnlyInvalidPlayerNameMessage(playerWithPermission)
+    }
+
+    @Test
+    fun `when player does not exist in whitelist`() {
+        val notAddedPlayer = server.addPlayer()
+        val result = handler.onCommand(
+            sender = playerWithPermission,
+            command = command,
+            label = label,
+            args = arrayOf(removeCommand.identifier, notAddedPlayer.name),
+        )
+
+        assertFalse(result)
+        assertNotWhitelisted(notAddedPlayer)
+        assertOnlyNonExistentPlayerName(playerWithPermission, notAddedPlayer)
     }
 
 }

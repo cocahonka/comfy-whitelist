@@ -139,7 +139,7 @@ class ReloadCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(reloadCommand.identifier, playerWithPermission.name)
+            args = arrayOf(reloadCommand.identifier, reloadCommand.identifier)
         )
 
         assertFalse(result)

@@ -89,7 +89,7 @@ class EnableCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(enableCommand.identifier, playerWithPermission.name)
+            args = arrayOf(enableCommand.identifier, enableCommand.identifier)
         )
 
         val joiningPlayer = server.addPlayer()

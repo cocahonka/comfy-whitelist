@@ -20,6 +20,7 @@ class AddCommandTest : CommandTestBase() {
         super.setUp()
         addCommand = AddCommand(storage)
         label = addCommand.identifier
+
         addedPlayer = server.addPlayer()
 
         playerWithPermission.addAttachment(plugin, addCommand.permission, true)
@@ -29,14 +30,6 @@ class AddCommandTest : CommandTestBase() {
         assertEquals(
             sender.nextMessage(),
             Message.PlayerAdded.getDefault(locale).replace("%s", player.name)
-        )
-        sender.assertNoMoreSaid()
-    }
-
-    private fun assertOnlyInvalidPlayerNameMessage(sender: MessageTarget) {
-        assertEquals(
-            sender.nextMessage(),
-            Message.InvalidPlayerName.getDefault(locale)
         )
         sender.assertNoMoreSaid()
     }

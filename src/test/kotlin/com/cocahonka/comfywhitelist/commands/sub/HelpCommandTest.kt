@@ -13,11 +13,7 @@ class HelpCommandTest : CommandTestBase() {
     private lateinit var label: String
 
     private lateinit var commands: List<SubCommand>
-    private val helpMessage =
-        "ComfyWhitelist >\n" +
-                "> /comfywl add <name>\n" +
-                "> /comfywl remove <name>\n" +
-                "> /comfywl list"
+    private val helpMessage: String = TODO("Check command order")
 
     @BeforeEach
     override fun setUp() {
@@ -25,7 +21,11 @@ class HelpCommandTest : CommandTestBase() {
         commands = listOf(
             AddCommand(storage),
             RemoveCommand(storage),
-            ListCommand(storage)
+            ClearCommand(storage),
+            ListCommand(storage),
+            EnableCommand(generalConfig),
+            DisableCommand(generalConfig),
+            ReloadCommand(plugin),
         )
 
         helpCommand = HelpCommand(commands)
@@ -87,7 +87,7 @@ class HelpCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(helpCommand.identifier, playerWithPermission.name),
+            args = arrayOf(helpCommand.identifier, helpCommand.identifier),
         )
 
         assertFalse(result)

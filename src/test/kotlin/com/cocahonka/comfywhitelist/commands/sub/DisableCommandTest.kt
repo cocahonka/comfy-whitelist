@@ -42,11 +42,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertTrue(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(reconnectedPlayer)
+        assertConnectedTrue(joiningPlayer)
         assertOnlyDisableMessage(console)
     }
 
@@ -59,11 +59,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertFalse(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(reconnectedPlayer)
+        assertConnectedFalse(joiningPlayer)
         assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
@@ -76,11 +76,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertTrue(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(reconnectedPlayer)
+        assertConnectedTrue(joiningPlayer)
         assertOnlyDisableMessage(playerWithPermission)
     }
 
@@ -93,11 +93,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier, disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertFalse(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(reconnectedPlayer)
+        assertConnectedFalse(joiningPlayer)
         assertOnlyInvalidUsageMessage(console, disableCommand.usage)
     }
 

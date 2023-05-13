@@ -35,7 +35,7 @@ class ClearCommandTest : CommandTestBase() {
     private fun assertOnlyWhitelistClearedMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            Message.PlayerAdded.getDefault(locale)
+            Message.WhitelistCleared.getDefault(locale)
         )
         sender.assertNoMoreSaid()
     }
@@ -89,7 +89,7 @@ class ClearCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(clearCommand.identifier)
+            args = arrayOf(clearCommand.identifier, clearCommand.identifier)
         )
 
         assertFalse(result)

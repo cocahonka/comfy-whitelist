@@ -85,6 +85,14 @@ abstract class CommandTestBase {
         sender.assertNoMoreSaid()
     }
 
+    protected fun assertOnlyInvalidPlayerNameMessage(sender: MessageTarget) {
+        assertEquals(
+            sender.nextMessage(),
+            Message.InvalidPlayerName.getDefault(locale)
+        )
+        sender.assertNoMoreSaid()
+    }
+
     protected fun assertOnlyInvalidUsageMessage(sender: MessageTarget, usage: String) {
         assertEquals(
             sender.nextMessage(),
