@@ -3,8 +3,8 @@ package com.cocahonka.comfywhitelist.storage
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-abstract class WhitelistStorageTestBase {
-    abstract fun createStorage(): WhitelistStorage
+abstract class StorageTestBase {
+    abstract fun createStorage(): Storage
 
     @Test
     fun `add player to whitelist`() {

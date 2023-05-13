@@ -5,5 +5,50 @@ authors:
   - vmlakk
 main: com.cocahonka.comfywhitelist.ComfyWhitelist
 version: @version@
-
-
+commands:
+  comfywhitelist:
+    description: ComfyWhitelist management.
+    usage: /<command> <params>
+    aliases: [ comfywl ]
+    permission: comfywhitelist.comfywhitelist
+permissions:
+  comfywhitelist.*:
+    description: Give access to all ComfyWhitelist commands.
+    default: op
+    children:
+      comfywhitelist.add: true
+      comfywhitelist.remove: true
+      comfywhitelist.clear: true
+      comfywhitelist.list: true
+      comfywhitelist.on: true
+      comfywhitelist.off: true
+      comfywhitelist.reload: true
+      comfywhitelist.help: true
+  comfywhitelist.comfywhitelist:
+    description: Give access to main ComfyWhitelist command.
+  comfywhitelist.add:
+    description: Give access to add player name to ComfyWhitelist.
+    default: op
+  comfywhitelist.remove:
+    description: Give access to remove player name from ComfyWhitelist.
+    default: op
+    children:
+      comfywhitelist.clear: true
+  comfywhitelist.clear:
+    description: Give access to hard-reset ComfyWhitelist.
+    default: false
+  comfywhitelist.list:
+    description: Give access to display all player names in ComfyWhitelist.
+    default: op
+  comfywhitelist.on:
+    description: Give access to enable ComfyWhitelist.
+    default: op
+  comfywhitelist.off:
+    description: Give access to disable ComfyWhitelist.
+    default: op
+  comfywhitelist.reload:
+    description: Give access to reload ComfyWhitelist.
+    default: op
+  comfywhitelist.help:
+    description: Displays information about ComfyWhitelist commands
+    default: op

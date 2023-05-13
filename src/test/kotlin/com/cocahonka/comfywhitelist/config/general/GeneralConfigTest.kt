@@ -9,9 +9,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.io.TempDir
 import java.io.File
-import java.nio.file.Path
 
 
 class GeneralConfigTest {
@@ -21,7 +19,7 @@ class GeneralConfigTest {
     private lateinit var plugin: Plugin
 
     @BeforeEach
-    fun setUp(@TempDir tempDirPath: Path) {
+    fun setUp() {
         server = MockBukkit.mock()
         plugin = MockBukkit.createMockPlugin()
         generalConfig = GeneralConfig(plugin)

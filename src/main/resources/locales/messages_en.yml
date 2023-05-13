@@ -1,7 +1,23 @@
+# General messages
+no-permission: "You do not have permission to use this command."
+invalid-usage: "Invalid command usage. (correct use: %s)"
+unknown-subcommand: "Unknown subcommand. Type /comfywl help for a list of commands."
+invalid-player-name: "Invalid player name."
+plugin-reloaded: "ComfyWhitelist has been successfully reloaded."
+
+# Whitelist status messages
+whitelist-enabled: "ComfyWhitelist enabled."
+whitelist-disabled: "ComfyWhitelist disabled."
+whitelist-already-enabled: "ComfyWhitelist already enabled."
+whitelist-already-disabled: "ComfyWhitelist already disabled."
+
+# Player management messages
 not-whitelisted: "You are not whitelisted."
 player-added: "Player %s has been added to the whitelist."
 player-removed: "Player %s has been removed from the whitelist."
+non-existent-player-name: "There is no player named %s in the whitelist."
+
+# Whitelist display messages
+whitelisted-players-list: "Whitelisted players: %s"
+empty-whitelisted-players-list: "Whitelist is empty."
 whitelist-cleared: "All players have been removed from the whitelist."
-whitelist-enabled: "ComfyWhitelist enabled."
-whitelist-disabled: "ComfyWhitelist disabled."
-plugin-reloaded: "ComfyWhitelist has been successfully reloaded."

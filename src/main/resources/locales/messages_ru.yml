@@ -1,7 +1,23 @@
+# Общие сообщения
+no-permission: "У вас недостаточно полномочий для использования этой команды."
+invalid-usage: "Недопустимое использование команды (правильное использование: %s)"
+unknown-subcommand: "Неизвестная подкоманда. Введите /comfywl help для отображения доступных подкоманд."
+invalid-player-name: "Некорректный формат имени игрока."
+plugin-reloaded: "ComfyWhitelist успешно перезагружен."
+
+# Сообщения о статусе вайтлиста
+whitelist-enabled: "ComfyWhitelist включен."
+whitelist-disabled: "ComfyWhitelist выключен."
+whitelist-already-enabled: "ComfyWhitelist уже включен."
+whitelist-already-disabled: "ComfyWhitelist уже выключен."
+
+# Сообщения об управлении игроками
 not-whitelisted: "Вы не в вайтлисте."
 player-added: "Игрок %s добавлен в вайтлист."
 player-removed: "Игрок %s удален из вайтлиста."
+non-existent-player-name: "Игрока с именем %s нет в вайтлисте."
+
+# Сообщения о отображении вайтлиста
+whitelisted-players-list: "Игроки в вайтлисте: %s"
+empty-whitelisted-players-list: "В вайтлисте нет игроков."
 whitelist-cleared: "Все игроки удалены из вайтлиста."
-whitelist-enabled: "ComfyWhitelist включен."
-whitelist-disabled: "ComfyWhitelist выключен."
-plugin-reloaded: "ComfyWhitelist успешно перезагружен."

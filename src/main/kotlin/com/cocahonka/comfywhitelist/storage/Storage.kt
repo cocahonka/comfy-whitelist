@@ -4,7 +4,7 @@ package com.cocahonka.comfywhitelist.storage
  * WhitelistStorage provides an abstraction for accessing and manipulating whitelist data.
  * Implementations of this interface can store the data in different sources, such as files or databases.
  */
-interface WhitelistStorage {
+interface Storage {
 
     /**
      * Adds a player to the whitelist.

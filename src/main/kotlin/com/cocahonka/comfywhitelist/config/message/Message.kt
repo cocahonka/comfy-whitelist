@@ -82,4 +82,68 @@ sealed class Message(val key: String) {
             Locale.EN -> "ComfyWhitelist has been successfully reloaded."
         }
     }
+
+    object NoPermission : Message("no-permission") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "У вас недостаточно полномочий для использования этой команды."
+            Locale.EN -> "You do not have permission to use this command."
+        }
+    }
+
+    object InvalidUsage : Message("invalid-usage") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Недопустимое использование команды (правильное использование: %s)"
+            Locale.EN -> "Invalid command usage. (correct use: %s)"
+        }
+    }
+
+    object WhitelistedPlayersList : Message("whitelisted-players-list") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Игроки в вайтлисте: %s"
+            Locale.EN -> "Whitelisted players: %s"
+        }
+    }
+
+    object EmptyWhitelistedPlayersList : Message("empty-whitelisted-players-list") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "В вайтлисте нет игроков."
+            Locale.EN -> "Whitelist is empty."
+        }
+    }
+
+    object UnknownSubcommand: Message("unknown-subcommand") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Неизвестная подкоманда. Введите /comfywl help для отображения доступных подкоманд."
+            Locale.EN -> "Unknown subcommand. Type /comfywl help for a list of commands."
+        }
+    }
+
+    object InvalidPlayerName: Message("invalid-player-name") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Некорректный формат имени игрока."
+            Locale.EN -> "Invalid player name."
+        }
+    }
+
+    object NonExistentPlayerName : Message("non-existent-player-name") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "Игрока с именем %s нет в вайтлисте."
+            Locale.EN -> "There is no player named %s in the whitelist."
+        }
+    }
+
+    object WhitelistAlreadyEnabled : Message("whitelist-already-enabled") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "ComfyWhitelist уже включен."
+            Locale.EN -> "ComfyWhitelist already enabled."
+        }
+    }
+
+    object WhitelistAlreadyDisabled : Message("whitelist-already-disabled") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "ComfyWhitelist уже выключен."
+            Locale.EN -> "ComfyWhitelist already disabled."
+        }
+    }
+
 }
