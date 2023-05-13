@@ -29,6 +29,8 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         lateinit var unknownSubcommand: String private set
         lateinit var invalidPlayerName: String private set
         lateinit var nonExistentPlayerName : String private set
+        lateinit var whitelistAlreadyEnabled: String private set
+        lateinit var whitelistAlreadyDisabled: String private set
     }
 
     override fun createConfig() {
@@ -62,6 +64,8 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
         unknownSubcommand = config.getMessageWithDefault(Message.UnknownSubcommand, locale)
         invalidPlayerName = config.getMessageWithDefault(Message.InvalidPlayerName, locale)
         nonExistentPlayerName = config.getMessageWithDefault(Message.NonExistentPlayerName, locale)
+        whitelistAlreadyEnabled = config.getMessageWithDefault(Message.WhitelistAlreadyEnabled, locale)
+        whitelistAlreadyDisabled = config.getMessageWithDefault(Message.WhitelistAlreadyDisabled, locale)
     }
 
 }

@@ -25,10 +25,18 @@ class DisableCommandTest : CommandTestBase() {
         playerWithPermission.addAttachment(plugin, disableCommand.permission, true)
     }
 
-    private fun assertOnlyDisableMessage(sender: MessageTarget){
+    private fun assertOnlyDisableMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
             Message.WhitelistDisabled.getDefault(locale)
+        )
+        sender.assertNoMoreSaid()
+    }
+
+    private fun assertOnlyAlreadyDisableMessage(sender: MessageTarget) {
+        assertEquals(
+            sender.nextMessage(),
+            Message.WhitelistAlreadyDisabled.getDefault(locale)
         )
         sender.assertNoMoreSaid()
     }
@@ -99,6 +107,24 @@ class DisableCommandTest : CommandTestBase() {
         assertWhitelistEnabled()
         assertConnectedFalse(joiningPlayer)
         assertOnlyInvalidUsageMessage(console, disableCommand.usage)
+    }
+
+    @Test
+    fun `when whitelist already disabled`() {
+        generalConfig.disableWhitelist()
+        val result = handler.onCommand(
+            sender = console,
+            command = command,
+            label = label,
+            args = arrayOf(disableCommand.identifier)
+        )
+
+        val joiningPlayer = server.addPlayer()
+
+        assertTrue(result)
+        assertWhitelistDisabled()
+        assertConnectedTrue(joiningPlayer)
+        assertOnlyAlreadyDisableMessage(console)
     }
 
 }

@@ -45,7 +45,9 @@ class ComfyWhitelist : JavaPlugin {
 
     override fun onDisable() {}
 
-    private fun onUnitTest() {}
+    private fun onUnitTest() {
+        loadConfigs()
+    }
 
     private fun onPluginEnable() {
         loadConfigs()

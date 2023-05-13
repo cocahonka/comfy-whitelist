@@ -38,11 +38,13 @@ class GeneralConfig(private val plugin: Plugin) : ConfigManager() {
     fun enableWhitelist() {
         whitelistEnabled = true
         config.set(enabledKey, true)
+        config.save(configFile)
     }
 
     fun disableWhitelist() {
         whitelistEnabled = false
         config.set(enabledKey, false)
+        config.save(configFile)
     }
 
 }

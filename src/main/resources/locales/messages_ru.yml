@@ -12,3 +12,5 @@ invalid-usage: "Недопустимое использование команд
 unknown-subcommand: "Неизвестная подкоманда. Введите /comfywl help для отображения доступных подкоманд."
 invalid-player-name: "Некорректный формат имени игрока."
 non-existent-player-name: "Игрока с именем %s нет в вайтлисте."
+whitelist-already-enabled: "ComfyWhitelist уже включен."
+whitelist-already-disabled: "ComfyWhitelist уже выключен."

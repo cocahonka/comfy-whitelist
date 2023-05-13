@@ -132,4 +132,18 @@ sealed class Message(val key: String) {
         }
     }
 
+    object WhitelistAlreadyEnabled : Message("whitelist-already-enabled") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "ComfyWhitelist уже включен."
+            Locale.EN -> "ComfyWhitelist already enabled."
+        }
+    }
+
+    object WhitelistAlreadyDisabled : Message("whitelist-already-disabled") {
+        override fun getDefault(locale: Locale): String = when(locale) {
+            Locale.RU -> "ComfyWhitelist уже выключен."
+            Locale.EN -> "ComfyWhitelist already disabled."
+        }
+    }
+
 }
