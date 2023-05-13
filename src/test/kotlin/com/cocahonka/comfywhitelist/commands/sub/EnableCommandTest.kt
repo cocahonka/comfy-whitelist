@@ -32,6 +32,14 @@ class EnableCommandTest : CommandTestBase() {
         sender.assertNoMoreSaid()
     }
 
+    private fun assertOnlyAlreadyEnableMessage(sender: MessageTarget){
+        assertEquals(
+            sender.nextMessage(),
+            Message.WhitelistAlreadyEnabled.getDefault(locale)
+        )
+        sender.assertNoMoreSaid()
+    }
+
     @Test
     fun `when console is sender`() {
         val result = handler.onCommand(
@@ -98,6 +106,24 @@ class EnableCommandTest : CommandTestBase() {
         assertWhitelistDisabled()
         assertConnectedTrue(joiningPlayer)
         assertOnlyInvalidUsageMessage(console, enableCommand.usage)
+    }
+
+    @Test
+    fun `when whitelist already enabled`() {
+        generalConfig.enableWhitelist()
+        val result = handler.onCommand(
+            sender = console,
+            command = command,
+            label = label,
+            args = arrayOf(enableCommand.identifier)
+        )
+
+        val joiningPlayer = server.addPlayer()
+
+        assertTrue(result)
+        assertWhitelistEnabled()
+        assertConnectedFalse(joiningPlayer)
+        assertOnlyAlreadyEnableMessage(console)
     }
 
 }

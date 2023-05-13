@@ -2,6 +2,8 @@ package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
+import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
@@ -14,7 +16,20 @@ class EnableCommand(private val generalConfig: GeneralConfig) : SubCommand {
     override val usage = "/comfywl on"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
-        TODO("Not yet implemented")
+        if (args.isNotEmpty()) {
+            val message = MessageConfig.invalidUsage.replace("%s", usage)
+            sender.sendMessage(Component.text(message))
+            return false
+        }
+
+        val message = if (GeneralConfig.whitelistEnabled){
+            MessageConfig.whitelistAlreadyEnabled
+        } else {
+            generalConfig.enableWhitelist()
+            MessageConfig.whitelistEnabled
+        }
+        sender.sendMessage(Component.text(message))
+        return true
     }
 
 }
