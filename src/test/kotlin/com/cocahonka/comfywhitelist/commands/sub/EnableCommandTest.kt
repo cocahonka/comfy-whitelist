@@ -17,8 +17,11 @@ class EnableCommandTest : CommandTestBase() {
         super.setUp()
         enableCommand = EnableCommand(generalConfig)
         label = enableCommand.identifier
+
         generalConfig.disableWhitelist()
         TODO("Register listener to prevent connection")
+
+        playerWithPermission.addAttachment(plugin, enableCommand.permission, true)
     }
 
     private fun assertOnlyEnableMessage(sender: MessageTarget){
@@ -38,47 +41,46 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiner = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiner)
+        assertConnectedFalse(joiningPlayer)
         assertOnlyEnableMessage(console)
     }
 
     @Test
     fun `when player is sender without permission`() {
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithoutPermission,
             command = command,
             label = label,
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiner = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertFalse(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(joiner)
-        assertOnlyNoPermissionMessage(player)
+        assertConnectedTrue(joiningPlayer)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        player.addAttachment(plugin, enableCommand.permission, true)
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiner = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiner)
-        assertOnlyEnableMessage(player)
+        assertConnectedFalse(joiningPlayer)
+        assertOnlyEnableMessage(playerWithPermission)
     }
 
     @Test
@@ -87,14 +89,14 @@ class EnableCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(enableCommand.identifier, player.name)
+            args = arrayOf(enableCommand.identifier, playerWithPermission.name)
         )
 
-        val joiner = server.addPlayer()
+        val joiningPlayer = server.addPlayer()
 
         assertFalse(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(joiner)
+        assertConnectedTrue(joiningPlayer)
         assertOnlyInvalidUsageMessage(console, enableCommand.usage)
     }
 

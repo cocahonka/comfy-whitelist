@@ -12,13 +12,17 @@ class AddCommandTest : CommandTestBase() {
     
     private lateinit var addCommand: AddCommand
     private lateinit var label: String
+
+    private lateinit var addedPlayer: PlayerMock
     
     @BeforeEach
     override fun setUp() {
         super.setUp()
         addCommand = AddCommand(storage)
         label = addCommand.identifier
-        player.addAttachment(plugin, addCommand.permission, true)
+        addedPlayer = server.addPlayer()
+
+        playerWithPermission.addAttachment(plugin, addCommand.permission, true)
     }
 
     private fun assertOnlyPlayerAddedMessage(sender: MessageTarget, player: PlayerMock) {
@@ -38,68 +42,81 @@ class AddCommandTest : CommandTestBase() {
     }
 
     @Test
-    fun `when player is sender without permission`() {
-        val anotherPlayer = server.addPlayer()
+    fun `when console is sender`() {
         val result = handler.onCommand(
-            sender = anotherPlayer,
+            sender = console,
             command = command,
             label = label,
-            args = arrayOf(addCommand.identifier, anotherPlayer.name),
+            args = arrayOf(addCommand.identifier, addedPlayer.name),
+        )
+
+        assertTrue(result)
+        assertWhitelisted(addedPlayer)
+        assertOnlyPlayerAddedMessage(console, addedPlayer)
+    }
+
+    @Test
+    fun `when player is sender without permission`() {
+        val result = handler.onCommand(
+            sender = playerWithoutPermission,
+            command = command,
+            label = label,
+            args = arrayOf(addCommand.identifier, addedPlayer.name),
         )
 
         assertFalse(result)
-        assertNotWhitelisted(anotherPlayer)
-        assertOnlyNoPermissionMessage(anotherPlayer)
+        assertNotWhitelisted(addedPlayer)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        val anotherPlayer = server.addPlayer()
-
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
-            args = arrayOf(addCommand.identifier, anotherPlayer.name),
+            args = arrayOf(addCommand.identifier, addedPlayer.name),
         )
 
         assertTrue(result)
-        assertWhitelisted(anotherPlayer)
-        assertOnlyPlayerAddedMessage(player, anotherPlayer)
+        assertWhitelisted(addedPlayer)
+        assertOnlyPlayerAddedMessage(playerWithPermission, addedPlayer)
     }
 
     @Test
     fun `when player name not provided`() {
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(addCommand.identifier),
         )
 
         assertFalse(result)
-        assertOnlyInvalidUsageMessage(player, addCommand.usage)
+        assertOnlyInvalidUsageMessage(playerWithPermission, addCommand.usage)
     }
 
     @Test
     fun `when to many arguments`() {
+        val addedPlayerSecond = server.addPlayer()
         val result = handler.onCommand(
-            sender = player,
+            sender = console,
             command = command,
             label = label,
-            args = arrayOf(addCommand.identifier, player.name, player.name),
+            args = arrayOf(addCommand.identifier, addedPlayer.name, addedPlayerSecond.name),
         )
 
         assertFalse(result)
-        assertNotWhitelisted(player)
-        assertOnlyInvalidUsageMessage(player, addCommand.usage)
+        assertNotWhitelisted(addedPlayer)
+        assertNotWhitelisted(addedPlayerSecond)
+        assertOnlyInvalidUsageMessage(console, addCommand.usage)
     }
 
     @Test
     fun `when player name is invalid`() {
         val invalidPlayer = server.addPlayer("мотузок")
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(addCommand.identifier, invalidPlayer.name),
@@ -107,7 +124,7 @@ class AddCommandTest : CommandTestBase() {
 
         assertFalse(result)
         assertNotWhitelisted(invalidPlayer)
-        assertOnlyInvalidPlayerNameMessage(player)
+        assertOnlyInvalidPlayerNameMessage(playerWithPermission)
     }
 
 }

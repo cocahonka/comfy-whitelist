@@ -17,9 +17,11 @@ import kotlin.properties.Delegates
 class ReloadCommandTest : CommandTestBase() {
 
     private lateinit var reloadCommand: ReloadCommand
+    private lateinit var label: String
+
     private var newEnabled by Delegates.notNull<Boolean>()
     private lateinit var newPlayerAddedMessage: String
-    private lateinit var label: String
+
 
     private fun assertOnlyPluginReloadedMessage(sender: MessageTarget) {
         assertEquals(
@@ -34,9 +36,10 @@ class ReloadCommandTest : CommandTestBase() {
         super.setUp()
         reloadCommand = ReloadCommand(plugin)
         label = reloadCommand.identifier
-        messageConfig = MessageConfig(plugin, locale).apply { loadConfig() }
+
         newEnabled = !GeneralConfig.whitelistEnabled
         newPlayerAddedMessage = UUID.randomUUID().toString()
+
         val generalFileConfiguration = ConfigManager::class.java
             .getDeclaredField("config")
             .apply { isAccessible = true }
@@ -69,6 +72,8 @@ class ReloadCommandTest : CommandTestBase() {
 
         messageFileConfiguration.set(playerAddedKey, newPlayerAddedMessage)
         messageFileConfiguration.save(messageConfigFile)
+
+        playerWithPermission.addAttachment(plugin, reloadCommand.permission, true)
     }
 
     private fun assertEnabledUpdatedTrue() =
@@ -101,7 +106,7 @@ class ReloadCommandTest : CommandTestBase() {
     @Test
     fun `when player is sender without permission`() {
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithoutPermission,
             command = command,
             label = label,
             args = arrayOf(reloadCommand.identifier)
@@ -110,14 +115,13 @@ class ReloadCommandTest : CommandTestBase() {
         assertFalse(result)
         assertEnabledUpdatedFalse()
         assertMessageUpdatedFalse()
-        assertOnlyNoPermissionMessage(player)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        player.addAttachment(plugin, reloadCommand.permission, true)
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(reloadCommand.identifier)
@@ -126,7 +130,7 @@ class ReloadCommandTest : CommandTestBase() {
         assertTrue(result)
         assertEnabledUpdatedTrue()
         assertMessageUpdatedTrue()
-        assertOnlyPluginReloadedMessage(console)
+        assertOnlyPluginReloadedMessage(playerWithPermission)
     }
 
     @Test
@@ -135,7 +139,7 @@ class ReloadCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(reloadCommand.identifier, player.name)
+            args = arrayOf(reloadCommand.identifier, playerWithPermission.name)
         )
 
         assertFalse(result)

@@ -27,8 +27,11 @@ class HelpCommandTest : CommandTestBase() {
             RemoveCommand(storage),
             ListCommand(storage)
         )
+
         helpCommand = HelpCommand(commands)
         label = helpCommand.identifier
+
+        playerWithPermission.addAttachment(plugin, helpCommand.permission, true)
     }
 
     private fun assertOnlyHelpMessage(sender: MessageTarget) {
@@ -55,28 +58,27 @@ class HelpCommandTest : CommandTestBase() {
     @Test
     fun `when player is sender without permission`() {
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithoutPermission,
             command = command,
             label = label,
             args = arrayOf(helpCommand.identifier)
         )
 
         assertFalse(result)
-        assertOnlyNoPermissionMessage(player)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        player.addAttachment(plugin, helpCommand.permission, true)
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(helpCommand.identifier)
         )
 
         assertTrue(result)
-        assertOnlyHelpMessage(player)
+        assertOnlyHelpMessage(playerWithPermission)
     }
 
     @Test
@@ -85,7 +87,7 @@ class HelpCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(helpCommand.identifier, player.name),
+            args = arrayOf(helpCommand.identifier, playerWithPermission.name),
         )
 
         assertFalse(result)

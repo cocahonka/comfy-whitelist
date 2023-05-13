@@ -18,6 +18,8 @@ class RemoveCommandTest : CommandTestBase() {
         super.setUp()
         removeCommand = RemoveCommand(storage)
         label = removeCommand.identifier
+
+        playerWithPermission.addAttachment(plugin, removeCommand.permission, true)
     }
 
     private fun assertOnlyPlayerRemovedMessage(sender: MessageTarget, player: PlayerMock) {
@@ -30,18 +32,18 @@ class RemoveCommandTest : CommandTestBase() {
 
     @Test
     fun `when console is sender`() {
-        storage.addPlayer(player.name)
+        storage.addPlayer(playerWithPermission.name)
 
         val result = handler.onCommand(
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(removeCommand.identifier, player.name),
+            args = arrayOf(removeCommand.identifier, playerWithPermission.name),
         )
 
         assertTrue(result)
-        assertNotWhitelisted(player)
-        assertOnlyPlayerRemovedMessage(console, player)
+        assertNotWhitelisted(playerWithPermission)
+        assertOnlyPlayerRemovedMessage(console, playerWithPermission)
     }
 
     @Test
@@ -51,7 +53,7 @@ class RemoveCommandTest : CommandTestBase() {
         storage.addPlayer(anotherPlayer.name)
 
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(removeCommand.identifier, anotherPlayer.name),
@@ -59,7 +61,7 @@ class RemoveCommandTest : CommandTestBase() {
 
         assertFalse(result)
         assertWhitelisted(anotherPlayer)
-        assertOnlyNoPermissionMessage(player)
+        assertOnlyNoPermissionMessage(playerWithPermission)
     }
 
     @Test
@@ -68,10 +70,10 @@ class RemoveCommandTest : CommandTestBase() {
 
         storage.addPlayer(anotherPlayer.name)
 
-        player.addAttachment(plugin, removeCommand.permission, true)
+        playerWithPermission.addAttachment(plugin, removeCommand.permission, true)
 
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(removeCommand.identifier, anotherPlayer.name),
@@ -79,7 +81,7 @@ class RemoveCommandTest : CommandTestBase() {
 
         assertTrue(result)
         assertNotWhitelisted(anotherPlayer)
-        assertOnlyPlayerRemovedMessage(player, anotherPlayer)
+        assertOnlyPlayerRemovedMessage(playerWithPermission, anotherPlayer)
     }
 
     @Test
@@ -97,17 +99,17 @@ class RemoveCommandTest : CommandTestBase() {
 
     @Test
     fun `when to many arguments`() {
-        storage.addPlayer(player.name)
+        storage.addPlayer(playerWithPermission.name)
 
         val result = handler.onCommand(
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(removeCommand.identifier, player.name, player.name),
+            args = arrayOf(removeCommand.identifier, playerWithPermission.name, playerWithPermission.name),
         )
 
         assertFalse(result)
-        assertWhitelisted(player)
+        assertWhitelisted(playerWithPermission)
         assertOnlyInvalidUsageMessage(console, removeCommand.usage)
     }
 

@@ -11,18 +11,25 @@ import org.junit.jupiter.api.Test
 class ClearCommandTest : CommandTestBase() {
     
     private lateinit var clearCommand: ClearCommand
-    private lateinit var anotherPlayer: PlayerMock
     private lateinit var label: String
+
+    private lateinit var addedPlayer: PlayerMock
+    private lateinit var addedPlayerSecond: PlayerMock
+
     
     @BeforeEach
     override fun setUp() {
         super.setUp()
         clearCommand = ClearCommand(storage)
         label = clearCommand.identifier
-        anotherPlayer = server.addPlayer()
 
-        storage.addPlayer(player.name)
-        storage.addPlayer(anotherPlayer.name)
+        addedPlayer = server.addPlayer()
+        addedPlayerSecond = server.addPlayer()
+
+        storage.addPlayer(addedPlayer.name)
+        storage.addPlayer(addedPlayerSecond.name)
+
+        playerWithPermission.addAttachment(plugin, clearCommand.permission, true)
     }
 
     private fun assertOnlyWhitelistClearedMessage(sender: MessageTarget) {
@@ -50,23 +57,22 @@ class ClearCommandTest : CommandTestBase() {
     @Test
     fun `when player is sender without permission`() {
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithoutPermission,
             command = command,
             label = label,
             args = arrayOf(clearCommand.identifier)
         )
 
         assertFalse(result)
-        assertWhitelisted(player)
-        assertWhitelisted(anotherPlayer)
-        assertOnlyNoPermissionMessage(player)
+        assertWhitelisted(addedPlayer)
+        assertWhitelisted(addedPlayerSecond)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        player.addAttachment(plugin, clearCommand.permission, true)
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(clearCommand.identifier)
@@ -74,7 +80,7 @@ class ClearCommandTest : CommandTestBase() {
 
         assertTrue(result)
         assertStorageEmpty()
-        assertOnlyWhitelistClearedMessage(player)
+        assertOnlyWhitelistClearedMessage(playerWithPermission)
     }
 
     @Test
@@ -87,8 +93,8 @@ class ClearCommandTest : CommandTestBase() {
         )
 
         assertFalse(result)
-        assertWhitelisted(player)
-        assertWhitelisted(anotherPlayer)
+        assertWhitelisted(addedPlayer)
+        assertWhitelisted(addedPlayerSecond)
         assertOnlyInvalidUsageMessage(console, clearCommand.usage)
     }
 

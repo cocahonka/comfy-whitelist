@@ -17,6 +17,8 @@ class ListCommandTest : CommandTestBase() {
         super.setUp()
         listCommand = ListCommand(storage)
         label = listCommand.identifier
+
+        playerWithPermission.addAttachment(plugin, listCommand.permission, true)
     }
 
     private fun assertOnlyWhitelistedPlayersListMessage(sender: MessageTarget) {
@@ -40,10 +42,11 @@ class ListCommandTest : CommandTestBase() {
 
     @Test
     fun `when console is sender and storage not empty`() {
-        val anotherPlayer = server.addPlayer()
+        val addedPlayer = server.addPlayer()
+        val addedPlayerSecond = server.addPlayer()
 
-        storage.addPlayer(player.name)
-        storage.addPlayer(anotherPlayer.name)
+        storage.addPlayer(addedPlayer.name)
+        storage.addPlayer(addedPlayerSecond.name)
 
         val result = handler.onCommand(
             sender = console,
@@ -72,29 +75,27 @@ class ListCommandTest : CommandTestBase() {
     @Test
     fun `when player is sender without permission`() {
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithoutPermission,
             command = command,
             label = label,
             args = arrayOf(listCommand.identifier),
         )
 
         assertFalse(result)
-        assertOnlyNoPermissionMessage(player)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        player.addAttachment(plugin, listCommand.permission, true)
-
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(listCommand.identifier),
         )
 
         assertTrue(result)
-        assertOnlyEmptyWhitelistedPlayersListMessage(player)
+        assertOnlyEmptyWhitelistedPlayersListMessage(playerWithPermission)
     }
 
     @Test
@@ -103,7 +104,7 @@ class ListCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(listCommand.identifier, player.name),
+            args = arrayOf(listCommand.identifier, playerWithPermission.name),
         )
 
         assertFalse(result)

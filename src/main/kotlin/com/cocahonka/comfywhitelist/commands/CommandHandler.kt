@@ -9,6 +9,7 @@ import net.kyori.adventure.text.Component
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import org.bukkit.command.ConsoleCommandSender
 
 /**
  * Handles the execution of the main command and delegates to the appropriate SubCommand.
@@ -57,7 +58,7 @@ class CommandHandler(
             return false
         }
 
-        if (!sender.hasPermission(subCommand.permission)){
+        if (sender !is ConsoleCommandSender && !sender.hasPermission(subCommand.permission)){
             val message = MessageConfig.noPermission
             sender.sendMessage(Component.text(message))
             return false

@@ -21,25 +21,33 @@ abstract class CommandTestBase {
 
     protected lateinit var server: ServerMock
     protected lateinit var plugin: ComfyWhitelist
-    protected lateinit var command: PluginCommand
-    protected lateinit var player: PlayerMock
+
     protected lateinit var console: ConsoleCommandSenderMock
+    protected lateinit var playerWithPermission: PlayerMock
+    protected lateinit var playerWithoutPermission: PlayerMock
+
     protected lateinit var storage: Storage
-    protected lateinit var handler: CommandHandler
     protected lateinit var generalConfig: GeneralConfig
     protected lateinit var messageConfig: MessageConfig
     protected val locale = Locale.EN
+
+    protected lateinit var command: PluginCommand
+    protected lateinit var handler: CommandHandler
 
     @BeforeEach
     open fun setUp() {
         server = MockBukkit.mock()
         plugin = MockBukkit.load(ComfyWhitelist::class.java)
-        command = plugin.getCommand(CommandHandler.identifier)!!
-        player = server.addPlayer()
+
         console = ConsoleCommandSenderMock()
+        playerWithPermission = server.addPlayer()
+        playerWithoutPermission = server.addPlayer()
+
         storage = YamlStorage(plugin.dataFolder)
         generalConfig = GeneralConfig(plugin).apply { loadConfig() }
         messageConfig = MessageConfig(plugin, locale).apply { loadConfig() }
+
+        command = plugin.getCommand(CommandHandler.identifier)!!
         handler = CommandHandler(storage, generalConfig, plugin)
     }
 

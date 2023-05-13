@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test
 class DisableCommandTest : CommandTestBase() {
 
     private lateinit var disableCommand: DisableCommand
-    private lateinit var joiner: PlayerMock
     private lateinit var label: String
 
     @BeforeEach
@@ -19,9 +18,11 @@ class DisableCommandTest : CommandTestBase() {
         super.setUp()
         disableCommand = DisableCommand(generalConfig)
         label = disableCommand.identifier
+
         generalConfig.enableWhitelist()
         TODO("Register listener to prevent connection")
-        joiner = server.addPlayer()
+
+        playerWithPermission.addAttachment(plugin, disableCommand.permission, true)
     }
 
     private fun assertOnlyDisableMessage(sender: MessageTarget){
@@ -41,7 +42,7 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer(joiner.name)
+        val reconnectedPlayer = server.addPlayer()
 
         assertTrue(result)
         assertWhitelistDisabled()
@@ -52,36 +53,35 @@ class DisableCommandTest : CommandTestBase() {
     @Test
     fun `when player is sender without permission`() {
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithoutPermission,
             command = command,
             label = label,
             args = arrayOf(disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer(joiner.name)
+        val reconnectedPlayer = server.addPlayer()
 
         assertFalse(result)
         assertWhitelistEnabled()
         assertConnectedFalse(reconnectedPlayer)
-        assertOnlyNoPermissionMessage(player)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
     fun `when player is sender with permission`() {
-        player.addAttachment(plugin, disableCommand.permission, true)
         val result = handler.onCommand(
-            sender = player,
+            sender = playerWithPermission,
             command = command,
             label = label,
             args = arrayOf(disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer(joiner.name)
+        val reconnectedPlayer = server.addPlayer()
 
         assertTrue(result)
         assertWhitelistDisabled()
         assertConnectedTrue(reconnectedPlayer)
-        assertOnlyDisableMessage(player)
+        assertOnlyDisableMessage(playerWithPermission)
     }
 
     @Test
@@ -90,10 +90,10 @@ class DisableCommandTest : CommandTestBase() {
             sender = console,
             command = command,
             label = label,
-            args = arrayOf(disableCommand.identifier, joiner.name)
+            args = arrayOf(disableCommand.identifier, disableCommand.identifier)
         )
 
-        val reconnectedPlayer = server.addPlayer(joiner.name)
+        val reconnectedPlayer = server.addPlayer()
 
         assertFalse(result)
         assertWhitelistEnabled()
