@@ -60,7 +60,7 @@ class RemoveCommandTest : CommandTestBase() {
     @Test
     fun `when player is sender without permission`() {
         val result = handler.onCommand(
-            sender = playerWithPermission,
+            sender = playerWithoutPermission,
             command = command,
             label = label,
             args = arrayOf(removeCommand.identifier, addedPlayer.name),
@@ -68,7 +68,7 @@ class RemoveCommandTest : CommandTestBase() {
 
         assertFalse(result)
         assertWhitelisted(addedPlayer)
-        assertOnlyNoPermissionMessage(playerWithPermission)
+        assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
     @Test
