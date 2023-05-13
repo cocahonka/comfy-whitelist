@@ -13,7 +13,15 @@ class HelpCommandTest : CommandTestBase() {
     private lateinit var label: String
 
     private lateinit var commands: List<SubCommand>
-    private val helpMessage: String = TODO("Check command order")
+    private val helpMessage: String =
+        "ComfyWhitelist >\n" +
+                "> /comfywl add <name>\n" +
+                "> /comfywl remove <name>\n" +
+                "> /comfywl clear\n" +
+                "> /comfywl list\n" +
+                "> /comfywl on\n" +
+                "> /comfywl off\n" +
+                "> /comfywl reload"
 
     @BeforeEach
     override fun setUp() {
@@ -35,7 +43,7 @@ class HelpCommandTest : CommandTestBase() {
     }
 
     private fun assertOnlyHelpMessage(sender: MessageTarget) {
-       assertEquals(
+        assertEquals(
             sender.nextMessage(),
             helpMessage
         )
