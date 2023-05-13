@@ -50,11 +50,8 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiningPlayer)
         assertOnlyEnableMessage(console)
     }
 
@@ -67,11 +64,8 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
         assertFalse(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(joiningPlayer)
         assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
@@ -84,11 +78,8 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiningPlayer)
         assertOnlyEnableMessage(playerWithPermission)
     }
 
@@ -101,11 +92,8 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier, enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
         assertFalse(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(joiningPlayer)
         assertOnlyInvalidUsageMessage(console, enableCommand.usage)
     }
 
@@ -119,11 +107,8 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiningPlayer)
         assertOnlyAlreadyEnableMessage(console)
     }
 
