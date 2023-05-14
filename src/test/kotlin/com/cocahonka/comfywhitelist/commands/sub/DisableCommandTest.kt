@@ -37,7 +37,6 @@ class DisableCommandTest : CommandTestBase() {
         val joiningPlayer = server.addPlayer()
 
         latch = CountDownLatch(1)
-
         eventCallerThread = Thread {
             val inetAddress = InetAddress.getLocalHost()
             event = AsyncPlayerPreLoginEvent(joiningPlayer.name, inetAddress, joiningPlayer.uniqueId)
@@ -65,6 +64,11 @@ class DisableCommandTest : CommandTestBase() {
         )
         sender.assertNoMoreSaid()
     }
+    
+    private fun executeEvent() {
+        eventCallerThread.start()
+        latch.await(timeout, timeUnit)
+    }
 
     @Test
     fun `when console is sender`() {
@@ -75,8 +79,7 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        eventCallerThread.start()
-        latch.await(timeout, timeUnit)
+        executeEvent()
 
         assertTrue(result)
         assertWhitelistDisabled()
@@ -93,8 +96,7 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        eventCallerThread.start()
-        latch.await(timeout, timeUnit)
+        executeEvent()
 
         assertFalse(result)
         assertWhitelistEnabled()
@@ -111,8 +113,7 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        eventCallerThread.start()
-        latch.await(timeout, timeUnit)
+        executeEvent()
 
         assertTrue(result)
         assertWhitelistDisabled()
@@ -129,8 +130,7 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier, disableCommand.identifier)
         )
 
-        eventCallerThread.start()
-        latch.await(timeout, timeUnit)
+        executeEvent()
 
         assertFalse(result)
         assertWhitelistEnabled()
@@ -148,8 +148,7 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
-        eventCallerThread.start()
-        latch.await(timeout, timeUnit)
+        executeEvent()
 
         assertTrue(result)
         assertWhitelistDisabled()
