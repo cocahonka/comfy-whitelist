@@ -29,16 +29,16 @@ class CommandHandler(
         const val usage = "/comfywl <command>"
     }
 
-    private val subCommands: List<SubCommand>
+    val subCommands: List<SubCommand>
 
     init {
         val commands = listOf(
             AddCommand(storage),
             RemoveCommand(storage),
-            ClearCommand(storage),
             ListCommand(storage),
             EnableCommand(generalConfig),
             DisableCommand(generalConfig),
+            ClearCommand(storage),
             ReloadCommand(plugin),
         )
         val helpCommand = HelpCommand(commands)
