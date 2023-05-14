@@ -8,7 +8,6 @@ version: @version@
 commands:
   comfywhitelist:
     description: ComfyWhitelist management.
-    usage: /<command> <params>
     aliases: [ comfywl ]
     permission: comfywhitelist.comfywhitelist
 permissions:

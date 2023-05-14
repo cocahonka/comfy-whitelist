@@ -3,14 +3,26 @@ package com.cocahonka.comfywhitelist.commands.sub
 import be.seeseemelk.mockbukkit.command.MessageTarget
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
+import com.cocahonka.comfywhitelist.listeners.PlayerPreLoginEvent
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.net.InetAddress
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class EnableCommandTest : CommandTestBase() {
 
+    private lateinit var eventCallerThread: Thread
+    private lateinit var event: AsyncPlayerPreLoginEvent
+    private lateinit var latch: CountDownLatch
+
     private lateinit var enableCommand: EnableCommand
     private lateinit var label: String
+
+    private val timeout = 2L
+    private val timeUnit = TimeUnit.SECONDS
 
     @BeforeEach
     override fun setUp() {
@@ -19,7 +31,20 @@ class EnableCommandTest : CommandTestBase() {
         label = enableCommand.identifier
 
         generalConfig.disableWhitelist()
-        TODO("Register listener to prevent connection")
+
+        server.pluginManager.registerEvents(PlayerPreLoginEvent(storage), plugin)
+
+        val joiningPlayer = server.addPlayer()
+        
+        latch = CountDownLatch(1)
+        eventCallerThread = Thread {
+            val inetAddress = InetAddress.getLocalHost()
+            event = AsyncPlayerPreLoginEvent(joiningPlayer.name, inetAddress, joiningPlayer.uniqueId)
+
+            server.pluginManager.callEvent(event)
+
+            latch.countDown()
+        }
 
         playerWithPermission.addAttachment(plugin, enableCommand.permission, true)
     }
@@ -40,6 +65,11 @@ class EnableCommandTest : CommandTestBase() {
         sender.assertNoMoreSaid()
     }
 
+    private fun executeEvent() {
+        eventCallerThread.start()
+        latch.await(timeout, timeUnit)
+    }
+
     @Test
     fun `when console is sender`() {
         val result = handler.onCommand(
@@ -49,11 +79,11 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
+        executeEvent()
+        
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiningPlayer)
+        assertConnectedFalse(event)
         assertOnlyEnableMessage(console)
     }
 
@@ -66,11 +96,11 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
+        executeEvent()
+        
         assertFalse(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(joiningPlayer)
+        assertConnectedTrue(event)
         assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
@@ -83,11 +113,11 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
+        executeEvent()
+        
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiningPlayer)
+        assertConnectedFalse(event)
         assertOnlyEnableMessage(playerWithPermission)
     }
 
@@ -100,11 +130,11 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier, enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
+        executeEvent()
+        
         assertFalse(result)
         assertWhitelistDisabled()
-        assertConnectedTrue(joiningPlayer)
+        assertConnectedTrue(event)
         assertOnlyInvalidUsageMessage(console, enableCommand.usage)
     }
 
@@ -118,11 +148,11 @@ class EnableCommandTest : CommandTestBase() {
             args = arrayOf(enableCommand.identifier)
         )
 
-        val joiningPlayer = server.addPlayer()
-
+        executeEvent()
+        
         assertTrue(result)
         assertWhitelistEnabled()
-        assertConnectedFalse(joiningPlayer)
+        assertConnectedFalse(event)
         assertOnlyAlreadyEnableMessage(console)
     }
 

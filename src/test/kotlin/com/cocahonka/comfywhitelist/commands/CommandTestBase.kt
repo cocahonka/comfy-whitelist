@@ -13,6 +13,7 @@ import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.storage.Storage
 import com.cocahonka.comfywhitelist.storage.YamlStorage
 import org.bukkit.command.PluginCommand
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -56,11 +57,11 @@ abstract class CommandTestBase {
         MockBukkit.unmock()
     }
 
-    protected fun assertConnectedTrue(player: PlayerMock) =
-        assertTrue(player.isOnline)
+    protected fun assertConnectedTrue(event: AsyncPlayerPreLoginEvent) =
+        assertEquals(AsyncPlayerPreLoginEvent.Result.ALLOWED, event.loginResult)
 
-    protected fun assertConnectedFalse(player: PlayerMock) =
-        assertFalse(player.isOnline)
+    protected fun assertConnectedFalse(event: AsyncPlayerPreLoginEvent) =
+        assertEquals(AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST, event.loginResult)
 
     protected fun assertWhitelistEnabled() =
         assertTrue(GeneralConfig.whitelistEnabled)
