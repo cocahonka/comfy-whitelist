@@ -56,6 +56,12 @@ abstract class CommandTestBase {
         MockBukkit.unmock()
     }
 
+    protected fun assertConnectedTrue(player: PlayerMock) =
+        assertTrue(player.isOnline)
+
+    protected fun assertConnectedFalse(player: PlayerMock) =
+        assertFalse(player.isOnline)
+
     protected fun assertWhitelistEnabled() =
         assertTrue(GeneralConfig.whitelistEnabled)
 

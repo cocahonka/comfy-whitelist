@@ -1,10 +1,10 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
 import be.seeseemelk.mockbukkit.command.MessageTarget
+import be.seeseemelk.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
 import com.cocahonka.comfywhitelist.listeners.PlayerPreLoginEvent
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -21,6 +21,7 @@ class DisableCommandTest : CommandTestBase() {
         label = disableCommand.identifier
 
         generalConfig.enableWhitelist()
+        server.pluginManager.registerEvents(PlayerPreLoginEvent(storage), plugin)
 
         playerWithPermission.addAttachment(plugin, disableCommand.permission, true)
     }
@@ -50,8 +51,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
+        val joiningPlayer = server.addPlayer()
+
         assertTrue(result)
         assertWhitelistDisabled()
+        assertConnectedTrue(joiningPlayer)
         assertOnlyDisableMessage(console)
     }
 
@@ -64,8 +68,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
+        val joiningPlayer = server.addPlayer()
+
         assertFalse(result)
         assertWhitelistEnabled()
+        assertConnectedFalse(joiningPlayer)
         assertOnlyNoPermissionMessage(playerWithoutPermission)
     }
 
@@ -78,8 +85,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
+        val joiningPlayer = server.addPlayer()
+
         assertTrue(result)
         assertWhitelistDisabled()
+        assertConnectedTrue(joiningPlayer)
         assertOnlyDisableMessage(playerWithPermission)
     }
 
@@ -92,8 +102,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier, disableCommand.identifier)
         )
 
+        val joiningPlayer = server.addPlayer()
+
         assertFalse(result)
         assertWhitelistEnabled()
+        assertConnectedFalse(joiningPlayer)
         assertOnlyInvalidUsageMessage(console, disableCommand.usage)
     }
 
@@ -107,8 +120,11 @@ class DisableCommandTest : CommandTestBase() {
             args = arrayOf(disableCommand.identifier)
         )
 
+        val joiningPlayer = server.addPlayer()
+
         assertTrue(result)
         assertWhitelistDisabled()
+        assertConnectedTrue(joiningPlayer)
         assertOnlyAlreadyDisableMessage(console)
     }
 
