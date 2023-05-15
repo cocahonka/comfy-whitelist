@@ -17,10 +17,10 @@ class HelpCommandTest : CommandTestBase() {
         "ComfyWhitelist >\n" +
                 "> /comfywl add <name>\n" +
                 "> /comfywl remove <name>\n" +
-                "> /comfywl clear\n" +
                 "> /comfywl list\n" +
                 "> /comfywl on\n" +
                 "> /comfywl off\n" +
+                "> /comfywl clear\n" +
                 "> /comfywl reload"
 
     @BeforeEach

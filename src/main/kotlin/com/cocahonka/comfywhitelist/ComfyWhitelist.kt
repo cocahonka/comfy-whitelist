@@ -3,6 +3,7 @@
 package com.cocahonka.comfywhitelist
 
 import com.cocahonka.comfywhitelist.commands.CommandHandler
+import com.cocahonka.comfywhitelist.commands.CommandTabCompleter
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.listeners.PlayerPreLoginEvent
@@ -49,6 +50,7 @@ class ComfyWhitelist : JavaPlugin {
 
     private fun onUnitTest() {
         loadConfigs()
+        loadStorage()
     }
 
     private fun onPluginEnable() {
@@ -67,6 +69,7 @@ class ComfyWhitelist : JavaPlugin {
     fun reloadConfigs() {
         generalConfig.loadConfig()
         messageConfig = MessageConfig(this, GeneralConfig.locale).apply { loadConfig() }
+        storage.load()
     }
 
     private fun loadStorage() {
@@ -78,12 +81,16 @@ class ComfyWhitelist : JavaPlugin {
     }
 
     private fun registerCommands() {
-        getCommand(CommandHandler.identifier)!!.setExecutor(
-            CommandHandler(
-                storage,
-                generalConfig,
-                this
-            )
-        )
+        val commandHandler = CommandHandler(storage, generalConfig, this)
+        val identifier = CommandHandler.identifier
+
+        getCommand(identifier)!!.setExecutor(commandHandler)
+        getCommand(identifier)!!.tabCompleter = CommandTabCompleter(storage, commandHandler.subCommands)
+
+        server.commandMap.knownCommands.remove("$identifier:$identifier")
+        val aliases = CommandHandler.aliases
+        for(alias in aliases) {
+            server.commandMap.knownCommands.remove("$identifier:$alias")
+        }
     }
 }
