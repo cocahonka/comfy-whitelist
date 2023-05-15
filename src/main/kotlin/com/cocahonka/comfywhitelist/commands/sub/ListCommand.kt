@@ -2,8 +2,10 @@ package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageTagResolvers
 import com.cocahonka.comfywhitelist.storage.Storage
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
 /**
@@ -19,21 +21,33 @@ class ListCommand(private val storage: Storage) : SubCommand {
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         if (args.isNotEmpty()) {
-            val message = MessageConfig.invalidUsage.replace("%s", usage)
-            sender.sendMessage(Component.text(message))
+            val message = MessageConfig.invalidUsage
+            val messageComponent = MiniMessage.miniMessage().deserialize(
+                message,
+                MessageTagResolvers.warning,
+                MessageTagResolvers.insertUsage(usage),
+            )
             return false
         }
 
         val playerNameList = storage.getAllWhitelistedPlayers()
 
-        val message = if (playerNameList.isEmpty()) {
-            MessageConfig.emptyWhitelistedPlayersList
+        val messageComponent = if (playerNameList.isEmpty()) {
+            val message = MessageConfig.emptyWhitelistedPlayersList
+            MiniMessage.miniMessage().deserialize(
+                message,
+                MessageTagResolvers.off,
+            )
         } else {
-            MessageConfig.whitelistedPlayersList
-                .replace("%s", playerNameList.joinToString())
+            val message = MessageConfig.whitelistedPlayersList
+            MiniMessage.miniMessage().deserialize(
+                message,
+                MessageTagResolvers.success,
+                MessageTagResolvers.insertPlayers(playerNameList),
+            )
         }
+        sender.sendMessage(messageComponent)
 
-        sender.sendMessage(Component.text(message))
         return true
     }
 
