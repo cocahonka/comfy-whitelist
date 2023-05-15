@@ -50,6 +50,7 @@ class ComfyWhitelist : JavaPlugin {
 
     private fun onUnitTest() {
         loadConfigs()
+        loadStorage()
     }
 
     private fun onPluginEnable() {
@@ -81,8 +82,15 @@ class ComfyWhitelist : JavaPlugin {
 
     private fun registerCommands() {
         val commandHandler = CommandHandler(storage, generalConfig, this)
-        getCommand(CommandHandler.identifier)!!.setExecutor(commandHandler)
-        getCommand(CommandHandler.identifier)!!.tabCompleter = CommandTabCompleter(storage, commandHandler.subCommands)
+        val identifier = CommandHandler.identifier
 
+        getCommand(identifier)!!.setExecutor(commandHandler)
+        getCommand(identifier)!!.tabCompleter = CommandTabCompleter(storage, commandHandler.subCommands)
+
+        server.commandMap.knownCommands.remove("$identifier:$identifier")
+        val aliases = CommandHandler.aliases
+        for(alias in aliases) {
+            server.commandMap.knownCommands.remove("$identifier:$alias")
+        }
     }
 }

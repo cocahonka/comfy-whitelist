@@ -7,6 +7,15 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 
+/**
+ * This class is responsible for providing tab completion suggestions for the plugin's commands.
+ *
+ * It suggests the command identifiers as the first argument, and for specific commands ("add" and "remove"),
+ * it suggests the online player names or the whitelisted player names respectively.
+ *
+ * @param storage The [Storage] instance that contains the whitelist data.
+ * @param subCommands The list of [SubCommand] instances that the plugin can execute.
+ */
 class CommandTabCompleter(private val storage: Storage, private val subCommands: List<SubCommand>) : TabCompleter {
 
     override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {

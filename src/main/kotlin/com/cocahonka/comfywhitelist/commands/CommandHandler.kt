@@ -27,6 +27,7 @@ class CommandHandler(
     companion object {
         const val identifier = "comfywhitelist"
         const val usage = "/comfywl <command>"
+        val aliases = listOf("comfywl")
     }
 
     val subCommands: List<SubCommand>
