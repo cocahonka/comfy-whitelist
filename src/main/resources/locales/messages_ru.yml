@@ -1,23 +1,23 @@
 # Общие сообщения
-no-permission: "У вас недостаточно полномочий для использования этой команды."
-invalid-usage: "Недопустимое использование команды (правильное использование: %s)"
-unknown-subcommand: "Неизвестная подкоманда. Введите /comfywl help для отображения доступных подкоманд."
-invalid-player-name: "Некорректный формат имени игрока."
-plugin-reloaded: "ComfyWhitelist успешно перезагружен."
+no-permission: "<warning>У вас недостаточно полномочий для использования этой команды.</warning>"
+invalid-usage: "<warning>Недопустимое использование команды.</warning> Используйте: <usage>"
+unknown-subcommand: "<warning>Неизвестная подкоманда.</warning> Введите /comfywl help для отображения доступных подкоманд."
+invalid-player-name: "<warning>Некорректный формат имени игрока.</warning>"
+plugin-reloaded: "ComfyWhitelist <success>успешно перезагружен.</success>"
 
 # Сообщения о статусе вайтлиста
-whitelist-enabled: "ComfyWhitelist включен."
-whitelist-disabled: "ComfyWhitelist выключен."
-whitelist-already-enabled: "ComfyWhitelist уже включен."
-whitelist-already-disabled: "ComfyWhitelist уже выключен."
+whitelist-enabled: "ComfyWhitelist <success>включен.</success>"
+whitelist-disabled: "ComfyWhitelist <off>выключен.</off>"
+whitelist-already-enabled: "ComfyWhitelist <success>уже включен.</success>"
+whitelist-already-disabled: "ComfyWhitelist <off>уже выключен.</off>"
 
 # Сообщения об управлении игроками
-not-whitelisted: "Вы не в вайтлисте."
-player-added: "Игрок %s добавлен в вайтлист."
-player-removed: "Игрок %s удален из вайтлиста."
-non-existent-player-name: "Игрока с именем %s нет в вайтлисте."
+not-whitelisted: "<warning>Вы не в вайтлисте.</warning>"
+player-added: "Игрок <success><name></success> <success>добавлен</success> в вайтлист."
+player-removed: "Игрок <remove><name></remove> <remove>удален</remove> из вайтлиста."
+non-existent-player-name: "Игрока с именем <warning><name></warning> <warning>нет</warning> в вайтлисте."
 
 # Сообщения о отображении вайтлиста
-whitelisted-players-list: "Игроки в вайтлисте: %s"
-empty-whitelisted-players-list: "В вайтлисте нет игроков."
-whitelist-cleared: "Все игроки удалены из вайтлиста."
+whitelisted-players-list: "Игроки в вайтлисте: <success><players></success>"
+empty-whitelisted-players-list: "В вайтлисте <off>нет игроков.</off>"
+whitelist-cleared: "Все игроки <remove>удалены</remove> из вайтлиста."

@@ -1,5 +1,7 @@
 package com.cocahonka.comfywhitelist.commands
 
+import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import org.bukkit.command.CommandSender
 
 /**
@@ -34,6 +36,23 @@ interface SubCommand {
      * @return true if the command executed successfully, false otherwise.
      */
     fun execute(sender: CommandSender, args: Array<String>): Boolean
+
+    /**
+     * Checks the validity of the subcommand usage and notifies the [sender] if it's invalid.
+     *
+     * @param sender The [CommandSender] who executed the command.
+     * @param expected A lambda that returns true if the subcommand usage is valid.
+     * @return true if the usage is invalid, false otherwise.
+     */
+    fun isInvalidUsage(sender: CommandSender, expected: () -> Boolean): Boolean {
+        if (!expected()){
+            val replacementConfig = MessageFormat.ConfigBuilders.usageReplacementConfigBuilder(usage)
+            val message = MessageConfig.invalidUsage.replaceText(replacementConfig)
+            sender.sendMessage(message)
+            return true
+        }
+        return false
+    }
 
     companion object{
 

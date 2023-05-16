@@ -2,8 +2,8 @@ package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import com.cocahonka.comfywhitelist.storage.Storage
-import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
@@ -18,22 +18,17 @@ class ListCommand(private val storage: Storage) : SubCommand {
     override val usage = "/comfywl list"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
-        if (args.isNotEmpty()) {
-            val message = MessageConfig.invalidUsage.replace("%s", usage)
-            sender.sendMessage(Component.text(message))
-            return false
-        }
+        if(isInvalidUsage(sender) { args.isEmpty() }) return false
 
         val playerNameList = storage.getAllWhitelistedPlayers()
 
-        val message = if (playerNameList.isEmpty()) {
+        val messageComponent = if (playerNameList.isEmpty()) {
             MessageConfig.emptyWhitelistedPlayersList
         } else {
-            MessageConfig.whitelistedPlayersList
-                .replace("%s", playerNameList.joinToString())
+            val replacementConfig = MessageFormat.ConfigBuilders.playersReplacementConfigBuilder(playerNameList)
+            MessageConfig.whitelistedPlayersList.replaceText(replacementConfig)
         }
-
-        sender.sendMessage(Component.text(message))
+        sender.sendMessage(messageComponent)
         return true
     }
 

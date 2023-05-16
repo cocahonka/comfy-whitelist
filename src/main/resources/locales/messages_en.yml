@@ -1,23 +1,23 @@
 # General messages
-no-permission: "You do not have permission to use this command."
-invalid-usage: "Invalid command usage. (correct use: %s)"
-unknown-subcommand: "Unknown subcommand. Type /comfywl help for a list of commands."
-invalid-player-name: "Invalid player name."
-plugin-reloaded: "ComfyWhitelist has been successfully reloaded."
+no-permission: "<warning>You do not have permission to use this command.</warning>"
+invalid-usage: "<warning>Invalid command usage.</warning> Use: <usage>"
+unknown-subcommand: "<warning>Unknown subcommand.</warning> Type /comfywl help for a list of commands."
+invalid-player-name: "<warning>Invalid player name.</warning>"
+plugin-reloaded: "ComfyWhitelist <success>has been successfully reloaded.</success>"
 
 # Whitelist status messages
-whitelist-enabled: "ComfyWhitelist enabled."
-whitelist-disabled: "ComfyWhitelist disabled."
-whitelist-already-enabled: "ComfyWhitelist already enabled."
-whitelist-already-disabled: "ComfyWhitelist already disabled."
+whitelist-enabled: "ComfyWhitelist <success>enabled.</success>"
+whitelist-disabled: "ComfyWhitelist <off>disabled.</off>"
+whitelist-already-enabled: "ComfyWhitelist <success>already enabled.</success>"
+whitelist-already-disabled: "ComfyWhitelist <off>already disabled.</off>"
 
 # Player management messages
-not-whitelisted: "You are not whitelisted."
-player-added: "Player %s has been added to the whitelist."
-player-removed: "Player %s has been removed from the whitelist."
-non-existent-player-name: "There is no player named %s in the whitelist."
+not-whitelisted: "<warning>You are not whitelisted.</warning>"
+player-added: "Player <success><name></success> has been <success>added</success> to the whitelist."
+player-removed: "Player <remove><name></remove> has been <remove>removed</remove> from the whitelist."
+non-existent-player-name: "There is <warning>no</warning> player named <warning><name></warning> in the whitelist."
 
 # Whitelist display messages
-whitelisted-players-list: "Whitelisted players: %s"
-empty-whitelisted-players-list: "Whitelist is empty."
-whitelist-cleared: "All players have been removed from the whitelist."
+whitelisted-players-list: "Whitelisted players: <success><players></success>"
+empty-whitelisted-players-list: "Whitelist is <off>empty.</off>"
+whitelist-cleared: "All players have been <remove>removed</remove> from the whitelist."

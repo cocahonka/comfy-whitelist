@@ -3,6 +3,7 @@ package com.cocahonka.comfywhitelist.commands.sub
 import be.seeseemelk.mockbukkit.command.MessageTarget
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.commands.SubCommand
+import com.cocahonka.comfywhitelist.config.message.Message
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,7 +15,7 @@ class HelpCommandTest : CommandTestBase() {
 
     private lateinit var commands: List<SubCommand>
     private val helpMessage: String =
-        "ComfyWhitelist >\n" +
+        "\n" +
                 "> /comfywl add <name>\n" +
                 "> /comfywl remove <name>\n" +
                 "> /comfywl list\n" +
@@ -45,7 +46,7 @@ class HelpCommandTest : CommandTestBase() {
     private fun assertOnlyHelpMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            helpMessage
+            legacySection.serialize(Message.joinWithPrefix(helpMessage))
         )
         sender.assertNoMoreSaid()
     }

@@ -2,9 +2,9 @@ package com.cocahonka.comfywhitelist.config.general
 
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.base.Locale
-import kotlin.properties.Delegates
 import org.bukkit.plugin.Plugin
 import java.io.File
+import kotlin.properties.Delegates
 
 /**
  * A class responsible for managing the general configuration of the plugin,

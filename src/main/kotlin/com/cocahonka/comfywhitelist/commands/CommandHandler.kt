@@ -4,8 +4,8 @@ import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.commands.sub.*
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import com.cocahonka.comfywhitelist.storage.Storage
-import net.kyori.adventure.text.Component
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -47,23 +47,22 @@ class CommandHandler(
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>?): Boolean {
-       if (args.isNullOrEmpty()) {
-           val message = MessageConfig.invalidUsage.replace("%s", usage)
-           sender.sendMessage(Component.text(message))
-           return false
-       }
+        if (args.isNullOrEmpty()) {
+            val replacementConfig = MessageFormat.ConfigBuilders.usageReplacementConfigBuilder(usage)
+            val message = MessageConfig.invalidUsage.replaceText(replacementConfig)
+            sender.sendMessage(message)
+            return false
+        }
 
         val subCommandName = args[0]
         val subCommand = subCommands.find { it.identifier.equals(subCommandName, true) }
         if (subCommand == null) {
-            val message = MessageConfig.unknownSubcommand
-            sender.sendMessage(Component.text(message))
+            sender.sendMessage(MessageConfig.unknownSubcommand)
             return false
         }
 
-        if (sender !is ConsoleCommandSender && !sender.hasPermission(subCommand.permission)){
-            val message = MessageConfig.noPermission
-            sender.sendMessage(Component.text(message))
+        if (sender !is ConsoleCommandSender && !sender.hasPermission(subCommand.permission)) {
+            sender.sendMessage(MessageConfig.noPermission)
             return false
         }
 

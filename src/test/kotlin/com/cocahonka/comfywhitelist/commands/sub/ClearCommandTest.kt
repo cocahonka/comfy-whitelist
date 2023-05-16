@@ -4,6 +4,7 @@ import be.seeseemelk.mockbukkit.command.MessageTarget
 import be.seeseemelk.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -35,7 +36,7 @@ class ClearCommandTest : CommandTestBase() {
     private fun assertOnlyWhitelistClearedMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            Message.WhitelistCleared.getDefault(locale)
+            legacySection.serialize(Message.WhitelistCleared.getDefaultWithPrefix(locale))
         )
         sender.assertNoMoreSaid()
     }

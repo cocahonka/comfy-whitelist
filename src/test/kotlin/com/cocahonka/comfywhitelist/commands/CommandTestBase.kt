@@ -9,9 +9,12 @@ import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.config.base.Locale
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.Message
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import com.cocahonka.comfywhitelist.storage.Storage
 import com.cocahonka.comfywhitelist.storage.YamlStorage
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import org.bukkit.command.PluginCommand
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import org.junit.jupiter.api.AfterEach
@@ -34,6 +37,8 @@ abstract class CommandTestBase {
 
     protected lateinit var command: PluginCommand
     protected lateinit var handler: CommandHandler
+
+    protected val legacySection = LegacyComponentSerializer.legacySection()
 
     @BeforeEach
     open fun setUp() {
@@ -81,7 +86,7 @@ abstract class CommandTestBase {
     protected fun assertOnlyNoPermissionMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            Message.NoPermission.getDefault(locale)
+            legacySection.serialize(Message.NoPermission.getDefaultWithPrefix(locale))
         )
         sender.assertNoMoreSaid()
     }
@@ -89,15 +94,17 @@ abstract class CommandTestBase {
     protected fun assertOnlyInvalidPlayerNameMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            Message.InvalidPlayerName.getDefault(locale)
+            legacySection.serialize(Message.InvalidPlayerName.getDefaultWithPrefix(locale))
         )
         sender.assertNoMoreSaid()
     }
 
     protected fun assertOnlyInvalidUsageMessage(sender: MessageTarget, usage: String) {
+        val replacementConfig = MessageFormat.ConfigBuilders.usageReplacementConfigBuilder(usage)
+        val message = Message.InvalidUsage.getDefaultWithPrefix(locale).replaceText(replacementConfig)
         assertEquals(
             sender.nextMessage(),
-            Message.InvalidUsage.getDefault(locale).replace("%s", usage)
+            legacySection.serialize(message)
         )
         sender.assertNoMoreSaid()
     }

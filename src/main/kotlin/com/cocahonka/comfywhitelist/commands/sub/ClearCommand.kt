@@ -3,7 +3,6 @@ package com.cocahonka.comfywhitelist.commands.sub
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.storage.Storage
-import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
@@ -18,14 +17,10 @@ class ClearCommand(private val storage: Storage) : SubCommand {
     override val usage = "/comfywl clear"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
-        if (args.isNotEmpty()){
-            val message = MessageConfig.invalidUsage.replace("%s", usage)
-            sender.sendMessage(Component.text(message))
-            return false
-        }
+        if(isInvalidUsage(sender) { args.isEmpty() }) return false
 
-        val message = MessageConfig.whitelistCleared
-        sender.sendMessage(Component.text(message))
+        sender.sendMessage(MessageConfig.whitelistCleared)
+
         return storage.clear()
     }
 

@@ -4,6 +4,8 @@ import be.seeseemelk.mockbukkit.command.MessageTarget
 import be.seeseemelk.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -28,17 +30,21 @@ class RemoveCommandTest : CommandTestBase() {
     }
 
     private fun assertOnlyPlayerRemovedMessage(sender: MessageTarget, player: PlayerMock) {
+        val replacementConfig = MessageFormat.ConfigBuilders.nameReplacementConfigBuilder(player.name)
+        val message = Message.PlayerRemoved.getDefaultWithPrefix(locale).replaceText(replacementConfig)
         assertEquals(
             sender.nextMessage(),
-            Message.PlayerRemoved.getDefault(locale).replace("%s", player.name)
+            legacySection.serialize(message)
         )
         sender.assertNoMoreSaid()
     }
 
     private fun assertOnlyNonExistentPlayerName(sender: MessageTarget, player: PlayerMock) {
+        val replacementConfig = MessageFormat.ConfigBuilders.nameReplacementConfigBuilder(player.name)
+        val message = Message.NonExistentPlayerName.getDefaultWithPrefix(locale).replaceText(replacementConfig)
         assertEquals(
             sender.nextMessage(),
-            Message.NonExistentPlayerName.getDefault(locale).replace("%s", player.name)
+            legacySection.serialize(message)
         )
         sender.assertNoMoreSaid()
     }

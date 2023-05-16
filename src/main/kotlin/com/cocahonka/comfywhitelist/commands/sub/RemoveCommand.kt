@@ -2,8 +2,8 @@ package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import com.cocahonka.comfywhitelist.storage.Storage
-import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
 /**
@@ -18,27 +18,24 @@ class RemoveCommand(private val storage: Storage) : SubCommand {
     override val usage = "/comfywl remove <name>"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
-        if (args.size != 1){
-            val message = MessageConfig.invalidUsage.replace("%s", usage)
-            sender.sendMessage(Component.text(message))
-            return false
-        }
+        if(isInvalidUsage(sender) { args.size == 1 }) return false
 
         val playerName = args[0]
         if (!playerName.matches(SubCommand.playerNameRegex)){
-            val message = MessageConfig.invalidPlayerName
-            sender.sendMessage(Component.text(message))
+            sender.sendMessage(MessageConfig.invalidPlayerName)
             return false
         }
 
         if(!storage.isPlayerWhitelisted(playerName)) {
-            val message = MessageConfig.nonExistentPlayerName.replace("%s", playerName)
-            sender.sendMessage(Component.text(message))
+            val replacementConfig = MessageFormat.ConfigBuilders.nameReplacementConfigBuilder(playerName)
+            val message = MessageConfig.nonExistentPlayerName.replaceText(replacementConfig)
+            sender.sendMessage(message)
             return false
         }
 
-        val message = MessageConfig.playerRemoved.replace("%s", playerName)
-        sender.sendMessage(Component.text(message))
+        val replacementConfig = MessageFormat.ConfigBuilders.nameReplacementConfigBuilder(playerName)
+        val message = MessageConfig.playerRemoved.replaceText(replacementConfig)
+        sender.sendMessage(message)
         return storage.removePlayer(playerName)
     }
 
