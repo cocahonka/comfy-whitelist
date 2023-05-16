@@ -51,7 +51,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "<warning>You do not have permission to use this command.</warning>"
                 }
             )
 
@@ -66,7 +66,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "<warning>Invalid command usage.</warning> (correct use: <usage>)"
                 }
             )
 
@@ -81,7 +81,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "<warning>Unknown subcommand.</warning> Type /comfywl help for a list of commands."
                 }
             )
 
@@ -96,7 +96,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "<warning>Invalid player name.</warning>"
                 }
             )
 
@@ -111,7 +111,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "ComfyWhitelist <success>has been successfully reloaded.</success>"
                 }
             )
 
@@ -129,7 +129,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "ComfyWhitelist <success>enabled.</success>"
                 }
             )
 
@@ -144,7 +144,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "ComfyWhitelist <off>disabled.</off>"
                 }
             )
 
@@ -159,7 +159,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "ComfyWhitelist <success>already enabled.</success>"
                 }
             )
 
@@ -174,7 +174,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "ComfyWhitelist <off>already disabled.</off>"
                 }
             )
 
@@ -192,7 +192,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "<warning>You are not whitelisted.</warning>"
                 }
             )
 
@@ -208,7 +208,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "Player <success><name></success> has been <success>added</success> to the whitelist."
                 }
             )
 
@@ -223,7 +223,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "Player <remove><name></remove> has been <remove>removed</remove> from the whitelist."
                 }
             )
 
@@ -238,7 +238,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "There is <warning>no</warning> player named <warning><name></warning> in the whitelist."
                 }
             )
 
@@ -256,7 +256,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "Whitelisted players: <success><players></success>"
                 }
             )
 
@@ -271,7 +271,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "Whitelist is <off>empty.</off>"
                 }
             )
 
@@ -286,7 +286,7 @@ sealed class Message(val key: String) {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
                     Locale.RU -> "Вы не в вайтлисте."
-                    Locale.EN -> "You are not whitelisted."
+                    Locale.EN -> "All players have been <remove>removed</remove> from the whitelist."
                 }
             )
 
