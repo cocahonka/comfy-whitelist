@@ -7,32 +7,44 @@ import net.kyori.adventure.text.JoinConfiguration
 import org.bukkit.configuration.file.FileConfiguration
 
 /**
- * Sealed class that represents a message to be displayed to the user.
- * @param key The configuration key for the message.
+ * Sealed class for managing plugin messages.
+ *
+ * @property key The key to look up the message in the configuration.
  */
 sealed class Message(val key: String) {
 
     /**
      * Returns the default message for the given locale.
+     *
      * @param locale The locale to get the default message for.
      * @return The default message for the specified locale.
      */
     abstract fun getDefault(locale: Locale): Component
 
+    /**
+     * Applies styling to the raw message string.
+     *
+     * @param rawMessage The raw message string.
+     * @return The styled message component.
+     */
     abstract fun applyStyles(rawMessage: String): Component
 
     companion object {
 
-        val prefixComponent = Component.text(ComfyWhitelist.DISPLAY_NAME + " > ").color(MessageFormat.Colors.prefix)
+        /**
+         * A prefix component for all plugin messages.
+         */
+        private val prefixComponent = Component.text(ComfyWhitelist.DISPLAY_NAME + " > ").color(MessageFormat.Colors.prefix)
 
         /**
-         * Retrieves a message from the configuration using the message key, and falls back
-         * to the default message for the given locale if the key is not found.
+         * Retrieves a message from the configuration and applies styling.
+         * If the message is not found, the default message for the specified locale is used.
+         *
          * @param M The type of message object that extends [Message].
          * @param message The message object containing the key and default message.
          * @param locale The locale to be used for retrieving the default message if the key is not found in the configuration.
-         * @return The message string from the configuration if the key exists, otherwise the default message for the specified locale.
-         */
+         * @return The styled message component.
+         */     
         fun <M : Message> FileConfiguration.getFormattedWithDefault(
             message: M,
             locale: Locale,
@@ -52,6 +64,13 @@ sealed class Message(val key: String) {
             )
         }
 
+        /**
+         * Returns the default message for the given locale, prefixed.
+         *
+         * @param M The type of message object that extends [Message].
+         * @param locale The locale to get the default message for.
+         * @return The default message for the specified locale, prefixed.
+         */
         fun <M : Message> M.getDefaultWithPrefix(locale: Locale) : Component =
             Component.join(
                 JoinConfiguration.noSeparators(),
@@ -59,6 +78,12 @@ sealed class Message(val key: String) {
                 getDefault(locale)
             )
 
+        /**
+         * Joins the prefix with the raw message.
+         *
+         * @param rawMessage The raw message string.
+         * @return The combined message component.
+         */
         fun joinWithPrefix(rawMessage: String) =
             Component.join(
                 JoinConfiguration.noSeparators(),
