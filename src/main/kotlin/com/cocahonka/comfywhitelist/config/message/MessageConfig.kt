@@ -2,7 +2,7 @@ package com.cocahonka.comfywhitelist.config.message
 
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.base.Locale
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getFormattedMessage
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.getFormattedWithDefault
 import net.kyori.adventure.text.Component
 import org.bukkit.plugin.Plugin
 import java.io.File
@@ -60,28 +60,28 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
 
     override fun updateProperties() {
         // General messages
-        noPermission = config.getFormattedMessage(Message.General.NoPermission, locale)
-        invalidUsage = config.getFormattedMessage(Message.General.InvalidUsage, locale)
-        unknownSubcommand = config.getFormattedMessage(Message.General.UnknownSubcommand, locale)
-        invalidPlayerName = config.getFormattedMessage(Message.General.InvalidPlayerName, locale)
-        pluginReloaded = config.getFormattedMessage(Message.General.PluginReloaded, locale)
+        noPermission = config.getFormattedWithDefault(Message.NoPermission, locale)
+        invalidUsage = config.getFormattedWithDefault(Message.InvalidUsage, locale)
+        unknownSubcommand = config.getFormattedWithDefault(Message.UnknownSubcommand, locale)
+        invalidPlayerName = config.getFormattedWithDefault(Message.InvalidPlayerName, locale)
+        pluginReloaded = config.getFormattedWithDefault(Message.PluginReloaded, locale)
 
         // Whitelist status messages
-        whitelistEnabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistEnabled, locale)
-        whitelistDisabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistDisabled, locale)
-        whitelistAlreadyEnabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistAlreadyEnabled, locale)
-        whitelistAlreadyDisabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistAlreadyDisabled, locale)
+        whitelistEnabled = config.getFormattedWithDefault(Message.WhitelistEnabled, locale)
+        whitelistDisabled = config.getFormattedWithDefault(Message.WhitelistDisabled, locale)
+        whitelistAlreadyEnabled = config.getFormattedWithDefault(Message.WhitelistAlreadyEnabled, locale)
+        whitelistAlreadyDisabled = config.getFormattedWithDefault(Message.WhitelistAlreadyDisabled, locale)
 
         // Player management messages
-        notWhitelisted = config.getFormattedMessage(Message.PlayerManagement.NotWhitelisted, locale)
-        playerAdded = config.getFormattedMessage(Message.PlayerManagement.PlayerAdded, locale)
-        playerRemoved = config.getFormattedMessage(Message.PlayerManagement.PlayerRemoved, locale)
-        nonExistentPlayerName = config.getFormattedMessage(Message.PlayerManagement.NonExistentPlayerName, locale)
+        notWhitelisted = config.getFormattedWithDefault(Message.NotWhitelisted, locale)
+        playerAdded = config.getFormattedWithDefault(Message.PlayerAdded, locale)
+        playerRemoved = config.getFormattedWithDefault(Message.PlayerRemoved, locale)
+        nonExistentPlayerName = config.getFormattedWithDefault(Message.NonExistentPlayerName, locale)
 
         // Whitelist display messages
-        whitelistedPlayersList = config.getFormattedMessage(Message.WhitelistDisplay.WhitelistedPlayersList, locale)
-        emptyWhitelistedPlayersList = config.getFormattedMessage(Message.WhitelistDisplay.EmptyWhitelistedPlayersList, locale)
-        whitelistCleared = config.getFormattedMessage(Message.WhitelistDisplay.WhitelistCleared, locale)
+        whitelistedPlayersList = config.getFormattedWithDefault(Message.WhitelistedPlayersList, locale)
+        emptyWhitelistedPlayersList = config.getFormattedWithDefault(Message.EmptyWhitelistedPlayersList, locale)
+        whitelistCleared = config.getFormattedWithDefault(Message.WhitelistCleared, locale)
     }
 
 }

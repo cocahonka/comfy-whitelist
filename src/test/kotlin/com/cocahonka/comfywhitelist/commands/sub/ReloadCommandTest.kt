@@ -5,13 +5,14 @@ import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.Message
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import org.bukkit.configuration.file.FileConfiguration
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.File
-import java.util.UUID
+import java.util.*
 import kotlin.properties.Delegates
 
 class ReloadCommandTest : CommandTestBase() {
@@ -21,15 +22,6 @@ class ReloadCommandTest : CommandTestBase() {
 
     private var newEnabled by Delegates.notNull<Boolean>()
     private lateinit var newPlayerAddedMessage: String
-
-
-    private fun assertOnlyPluginReloadedMessage(sender: MessageTarget) {
-        assertEquals(
-            sender.nextMessage(),
-            Message.PluginReloaded.getDefault(locale)
-        )
-        sender.assertNoMoreSaid()
-    }
 
     @BeforeEach
     override fun setUp() {
@@ -76,6 +68,14 @@ class ReloadCommandTest : CommandTestBase() {
         playerWithPermission.addAttachment(plugin, reloadCommand.permission, true)
     }
 
+    private fun assertOnlyPluginReloadedMessage(sender: MessageTarget) {
+        assertEquals(
+            sender.nextMessage(),
+            legacySection.serialize(Message.PluginReloaded.getDefaultWithPrefix(locale))
+        )
+        sender.assertNoMoreSaid()
+    }
+
     private fun assertEnabledUpdatedTrue() =
         assertEquals(GeneralConfig.whitelistEnabled, newEnabled)
 
@@ -83,10 +83,10 @@ class ReloadCommandTest : CommandTestBase() {
         assertNotEquals(GeneralConfig.whitelistEnabled, newEnabled)
 
     private fun assertMessageUpdatedTrue() =
-        assertEquals(MessageConfig.playerAdded, newPlayerAddedMessage)
+        assertEquals(MessageConfig.playerAdded, Message.joinWithPrefix(newPlayerAddedMessage))
 
     private fun assertMessageUpdatedFalse() =
-        assertNotEquals(MessageConfig.playerAdded, newPlayerAddedMessage)
+        assertNotEquals(MessageConfig.playerAdded, Message.joinWithPrefix(newPlayerAddedMessage))
 
     @Test
     fun `when console is sender`() {

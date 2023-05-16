@@ -3,6 +3,7 @@ package com.cocahonka.comfywhitelist.config.message
 import be.seeseemelk.mockbukkit.MockBukkit
 import be.seeseemelk.mockbukkit.ServerMock
 import com.cocahonka.comfywhitelist.config.base.Locale
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
 import org.junit.jupiter.api.AfterEach
@@ -35,14 +36,14 @@ class MessageConfigTest {
     fun `loadConfig sets default messages when config file does not exist`() {
         messageConfig.loadConfig()
 
-        assertEquals(Message.NotWhitelisted.getDefault(locale), MessageConfig.notWhitelisted)
-        assertEquals(Message.PlayerAdded.getDefault(locale), MessageConfig.playerAdded)
+        assertEquals(Message.NotWhitelisted.getDefaultWithPrefix(locale), MessageConfig.notWhitelisted)
+        assertEquals(Message.PlayerAdded.getDefaultWithPrefix(locale), MessageConfig.playerAdded)
 
         val newLocate = Locale.RU
         messageConfig = MessageConfig(plugin, newLocate).apply { loadConfig() }
 
-        assertEquals(Message.NotWhitelisted.getDefault(newLocate), MessageConfig.notWhitelisted)
-        assertEquals(Message.PlayerAdded.getDefault(newLocate), MessageConfig.playerAdded)
+        assertEquals(Message.NotWhitelisted.getDefaultWithPrefix(newLocate), MessageConfig.notWhitelisted)
+        assertEquals(Message.PlayerAdded.getDefaultWithPrefix(newLocate), MessageConfig.playerAdded)
     }
 
     @Test
@@ -51,7 +52,11 @@ class MessageConfigTest {
         configFile.parentFile.mkdirs()
 
         val notWhitelistedCustomMessage = "Not whitelisted custom message"
+        val notWhitelistedCustomMessageComponent = Message.joinWithPrefix(notWhitelistedCustomMessage)
+
         val playerAddedCustomMessage = "Player added custom message"
+        val playerAddedCustomMessageComponent = Message.joinWithPrefix(playerAddedCustomMessage)
+
         YamlConfiguration.loadConfiguration(configFile).apply {
             set(Message.NotWhitelisted.key, notWhitelistedCustomMessage)
             set(Message.PlayerAdded.key, playerAddedCustomMessage)
@@ -60,7 +65,7 @@ class MessageConfigTest {
 
         messageConfig.loadConfig()
 
-        assertEquals(notWhitelistedCustomMessage, MessageConfig.notWhitelisted)
-        assertEquals(playerAddedCustomMessage, MessageConfig.playerAdded)
+        assertEquals(notWhitelistedCustomMessageComponent, MessageConfig.notWhitelisted)
+        assertEquals(playerAddedCustomMessageComponent, MessageConfig.playerAdded)
     }
 }

@@ -1,8 +1,7 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
-import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.commands.SubCommand
-import net.kyori.adventure.text.Component
+import com.cocahonka.comfywhitelist.config.message.Message
 import org.bukkit.command.CommandSender
 
 /**
@@ -17,7 +16,7 @@ class HelpCommand(private val commands: List<SubCommand>) : SubCommand {
     override val usage = "/comfywl help"
 
     private val helpMessage by lazy {
-        val builder = StringBuilder(ComfyWhitelist.DISPLAY_NAME + " >\n")
+        val builder = StringBuilder("\n")
         for (command in commands) {
             builder.append("> ${command.usage}\n")
         }
@@ -28,7 +27,8 @@ class HelpCommand(private val commands: List<SubCommand>) : SubCommand {
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         if(isInvalidUsage(sender) { args.isEmpty() }) return false
 
-        sender.sendMessage(Component.text(helpMessage))
+        val message = Message.joinWithPrefix(helpMessage)
+        sender.sendMessage(message)
         return true
     }
 
