@@ -4,7 +4,6 @@ import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.config.message.MessageTagResolvers
 import com.cocahonka.comfywhitelist.storage.Storage
-import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
@@ -20,15 +19,7 @@ class RemoveCommand(private val storage: Storage) : SubCommand {
     override val usage = "/comfywl remove <name>"
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
-        if (args.size != 1){
-            val message = MessageConfig.invalidUsage
-            val messageComponent = MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.warning,
-                MessageTagResolvers.insertUsage(usage),
-            )
-            return false
-        }
+        if(isInvalidUsage(sender) { args.size == 1 }) return false
 
         val playerName = args[0]
         if (!playerName.matches(SubCommand.playerNameRegex)){
@@ -37,6 +28,7 @@ class RemoveCommand(private val storage: Storage) : SubCommand {
                 message,
                 MessageTagResolvers.warning,
             )
+            sender.sendMessage(messageComponent)
             return false
         }
 
@@ -47,6 +39,7 @@ class RemoveCommand(private val storage: Storage) : SubCommand {
                 MessageTagResolvers.warning,
                 MessageTagResolvers.insertName(playerName),
             )
+            sender.sendMessage(messageComponent)
             return false
         }
 
@@ -56,6 +49,7 @@ class RemoveCommand(private val storage: Storage) : SubCommand {
             MessageTagResolvers.remove,
             MessageTagResolvers.insertName(playerName),
         )
+        sender.sendMessage(messageComponent)
         return storage.removePlayer(playerName)
     }
 

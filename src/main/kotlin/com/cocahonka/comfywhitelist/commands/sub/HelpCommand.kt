@@ -2,7 +2,6 @@ package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.commands.SubCommand
-import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 
@@ -27,11 +26,7 @@ class HelpCommand(private val commands: List<SubCommand>) : SubCommand {
     }
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
-        if (args.isNotEmpty()) {
-            val message = MessageConfig.invalidUsage.replace("%s", usage)
-            sender.sendMessage(Component.text(message))
-            return false
-        }
+        if(isInvalidUsage(sender) { args.isEmpty() }) return false
 
         sender.sendMessage(Component.text(helpMessage))
         return true

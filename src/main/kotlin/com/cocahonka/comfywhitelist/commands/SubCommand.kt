@@ -1,5 +1,8 @@
 package com.cocahonka.comfywhitelist.commands
 
+import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageTagResolvers
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
 /**
@@ -34,6 +37,20 @@ interface SubCommand {
      * @return true if the command executed successfully, false otherwise.
      */
     fun execute(sender: CommandSender, args: Array<String>): Boolean
+
+    fun isInvalidUsage(sender: CommandSender, expected: () -> Boolean): Boolean {
+        if (!expected()){
+            val message = MessageConfig.invalidUsage
+            val messageComponent = MiniMessage.miniMessage().deserialize(
+                message,
+                MessageTagResolvers.warning,
+                MessageTagResolvers.insertUsage(usage),
+            )
+            sender.sendMessage(messageComponent)
+            return true
+        }
+        return false
+    }
 
     companion object{
 
