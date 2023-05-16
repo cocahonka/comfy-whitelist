@@ -2,7 +2,7 @@ package com.cocahonka.comfywhitelist.config.message
 
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.base.Locale
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getMessageWithDefault
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.getFormattedMessage
 import net.kyori.adventure.text.Component
 import org.bukkit.plugin.Plugin
 import java.io.File
@@ -60,28 +60,28 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
 
     override fun updateProperties() {
         // General messages
-        noPermission = config.getMessageWithDefault(Message.General.NoPermission, locale)
-        invalidUsage = config.getMessageWithDefault(Message.General.InvalidUsage, locale)
-        unknownSubcommand = config.getMessageWithDefault(Message.General.UnknownSubcommand, locale)
-        invalidPlayerName = config.getMessageWithDefault(Message.General.InvalidPlayerName, locale)
-        pluginReloaded = config.getMessageWithDefault(Message.General.PluginReloaded, locale)
+        noPermission = config.getFormattedMessage(Message.General.NoPermission, locale)
+        invalidUsage = config.getFormattedMessage(Message.General.InvalidUsage, locale)
+        unknownSubcommand = config.getFormattedMessage(Message.General.UnknownSubcommand, locale)
+        invalidPlayerName = config.getFormattedMessage(Message.General.InvalidPlayerName, locale)
+        pluginReloaded = config.getFormattedMessage(Message.General.PluginReloaded, locale)
 
         // Whitelist status messages
-        whitelistEnabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistEnabled, locale)
-        whitelistDisabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistDisabled, locale)
-        whitelistAlreadyEnabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistAlreadyEnabled, locale)
-        whitelistAlreadyDisabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistAlreadyDisabled, locale)
+        whitelistEnabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistEnabled, locale)
+        whitelistDisabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistDisabled, locale)
+        whitelistAlreadyEnabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistAlreadyEnabled, locale)
+        whitelistAlreadyDisabled = config.getFormattedMessage(Message.WhitelistStatus.WhitelistAlreadyDisabled, locale)
 
         // Player management messages
-        notWhitelisted = config.getMessageWithDefault(Message.PlayerManagement.NotWhitelisted, locale)
-        playerAdded = config.getMessageWithDefault(Message.PlayerManagement.PlayerAdded, locale)
-        playerRemoved = config.getMessageWithDefault(Message.PlayerManagement.PlayerRemoved, locale)
-        nonExistentPlayerName = config.getMessageWithDefault(Message.PlayerManagement.NonExistentPlayerName, locale)
+        notWhitelisted = config.getFormattedMessage(Message.PlayerManagement.NotWhitelisted, locale)
+        playerAdded = config.getFormattedMessage(Message.PlayerManagement.PlayerAdded, locale)
+        playerRemoved = config.getFormattedMessage(Message.PlayerManagement.PlayerRemoved, locale)
+        nonExistentPlayerName = config.getFormattedMessage(Message.PlayerManagement.NonExistentPlayerName, locale)
 
         // Whitelist display messages
-        whitelistedPlayersList = config.getMessageWithDefault(Message.WhitelistDisplay.WhitelistedPlayersList, locale)
-        emptyWhitelistedPlayersList = config.getMessageWithDefault(Message.WhitelistDisplay.EmptyWhitelistedPlayersList, locale)
-        whitelistCleared = config.getMessageWithDefault(Message.WhitelistDisplay.WhitelistCleared, locale)
+        whitelistedPlayersList = config.getFormattedMessage(Message.WhitelistDisplay.WhitelistedPlayersList, locale)
+        emptyWhitelistedPlayersList = config.getFormattedMessage(Message.WhitelistDisplay.EmptyWhitelistedPlayersList, locale)
+        whitelistCleared = config.getFormattedMessage(Message.WhitelistDisplay.WhitelistCleared, locale)
     }
 
 }

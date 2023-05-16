@@ -1,8 +1,9 @@
 package com.cocahonka.comfywhitelist.config.message
 
+import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.config.base.Locale
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.MiniMessage
+import net.kyori.adventure.text.JoinConfiguration
 import org.bukkit.configuration.file.FileConfiguration
 
 /**
@@ -22,6 +23,8 @@ sealed class Message(val key: String) {
 
     companion object {
 
+        val prefixComponent = Component.text(ComfyWhitelist.DISPLAY_NAME + " > ").color(MessageFormat.Colors.prefix)
+
         /**
          * Retrieves a message from the configuration using the message key, and falls back
          * to the default message for the given locale if the key is not found.
@@ -30,20 +33,25 @@ sealed class Message(val key: String) {
          * @param locale The locale to be used for retrieving the default message if the key is not found in the configuration.
          * @return The message string from the configuration if the key exists, otherwise the default message for the specified locale.
          */
-        fun <M : Message> FileConfiguration.getMessageWithDefault(
+        fun <M : Message> FileConfiguration.getFormattedMessage(
             message: M,
             locale: Locale,
         ): Component {
             val rawMessageFromConfig = this.getString(message.key)
 
-            return if(rawMessageFromConfig == null) {
+            val messageComponent = if (rawMessageFromConfig == null) {
                 message.getDefault(locale)
             } else {
                 message.applyStyles(rawMessageFromConfig)
             }
+
+            return Component.join (
+                JoinConfiguration.noSeparators(),
+                prefixComponent,
+                messageComponent
+            )
         }
 
-        val miniMessage = MiniMessage.miniMessage()
     }
 
     object General {
@@ -56,24 +64,24 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.warning
+                    MessageFormat.Resolvers.warning
                 )
         }
 
         object InvalidUsage : Message("invalid-usage") {
             override fun getDefault(locale: Locale): Component = applyStyles(
                 when (locale) {
-                    Locale.RU -> "<warning>Недопустимое использование команды</warning> (правильное использование: <usage>)"
-                    Locale.EN -> "<warning>Invalid command usage.</warning> (correct use: <usage>)"
+                    Locale.RU -> "<warning>Недопустимое использование команды.</warning> Используйте: <usage>"
+                    Locale.EN -> "<warning>Invalid command usage.</warning> Use: <usage>"
                 }
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.warning
+                    MessageFormat.Resolvers.warning
                 )
         }
 
@@ -86,9 +94,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.warning
+                    MessageFormat.Resolvers.warning
                 )
         }
 
@@ -101,9 +109,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.warning
+                    MessageFormat.Resolvers.warning
                 )
         }
 
@@ -116,9 +124,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.success
+                    MessageFormat.Resolvers.success
                 )
         }
 
@@ -134,9 +142,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.success
+                    MessageFormat.Resolvers.success
                 )
         }
 
@@ -149,9 +157,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.off
+                    MessageFormat.Resolvers.off
                 )
         }
 
@@ -164,9 +172,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.success
+                    MessageFormat.Resolvers.success
                 )
         }
 
@@ -179,9 +187,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.off
+                    MessageFormat.Resolvers.off
                 )
         }
 
@@ -197,9 +205,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.warning
+                    MessageFormat.Resolvers.warning
                 )
 
         }
@@ -213,9 +221,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.success
+                    MessageFormat.Resolvers.success
                 )
         }
 
@@ -228,9 +236,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.remove
+                    MessageFormat.Resolvers.remove
                 )
         }
 
@@ -243,9 +251,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.warning
+                    MessageFormat.Resolvers.warning
                 )
         }
 
@@ -261,9 +269,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.success
+                    MessageFormat.Resolvers.success
                 )
         }
 
@@ -276,9 +284,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.off
+                    MessageFormat.Resolvers.off
                 )
         }
 
@@ -291,9 +299,9 @@ sealed class Message(val key: String) {
             )
 
             override fun applyStyles(rawMessage: String): Component =
-                miniMessage.deserialize(
+                MessageFormat.miniMessage.deserialize(
                     rawMessage,
-                    MessageTagResolvers.remove
+                    MessageFormat.Resolvers.remove
                 )
         }
     }

@@ -3,8 +3,6 @@ package com.cocahonka.comfywhitelist.commands.sub
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
-import com.cocahonka.comfywhitelist.config.message.MessageTagResolvers
-import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
 /**
@@ -21,22 +19,13 @@ class EnableCommand(private val generalConfig: GeneralConfig) : SubCommand {
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         if(isInvalidUsage(sender) { args.isEmpty() }) return false
 
-        val messageComponent = if (GeneralConfig.whitelistEnabled){
-            val message = MessageConfig.whitelistAlreadyEnabled
-            MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.success,
-            )
+        val message = if (GeneralConfig.whitelistEnabled){
+            MessageConfig.whitelistAlreadyEnabled
         } else {
             generalConfig.enableWhitelist()
-            val message = MessageConfig.whitelistEnabled
-            MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.success,
-            )
+            MessageConfig.whitelistEnabled
         }
-        sender.sendMessage(messageComponent)
-
+        sender.sendMessage(message)
         return true
     }
 

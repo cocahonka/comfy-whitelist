@@ -3,8 +3,6 @@ package com.cocahonka.comfywhitelist.commands.sub
 import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
-import com.cocahonka.comfywhitelist.config.message.MessageTagResolvers
-import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
 /**
@@ -21,12 +19,7 @@ class ReloadCommand(private val plugin: ComfyWhitelist) : SubCommand {
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         if(isInvalidUsage(sender) { args.isEmpty() }) return false
 
-        val message = MessageConfig.pluginReloaded
-        val messageComponent = MiniMessage.miniMessage().deserialize(
-            message,
-            MessageTagResolvers.success,
-        )
-        sender.sendMessage(messageComponent)
+        sender.sendMessage(MessageConfig.pluginReloaded)
         plugin.reloadConfigs()
 
         return true

@@ -2,9 +2,8 @@ package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
-import com.cocahonka.comfywhitelist.config.message.MessageTagResolvers
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import com.cocahonka.comfywhitelist.storage.Storage
-import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
 /**
@@ -24,21 +23,12 @@ class ListCommand(private val storage: Storage) : SubCommand {
         val playerNameList = storage.getAllWhitelistedPlayers()
 
         val messageComponent = if (playerNameList.isEmpty()) {
-            val message = MessageConfig.emptyWhitelistedPlayersList
-            MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.off,
-            )
+            MessageConfig.emptyWhitelistedPlayersList
         } else {
-            val message = MessageConfig.whitelistedPlayersList
-            MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.success,
-                MessageTagResolvers.insertPlayers(playerNameList),
-            )
+            val replacementConfig = MessageFormat.ConfigBuilders.playersReplacementConfigBuilder(playerNameList)
+            MessageConfig.whitelistedPlayersList.replaceText(replacementConfig)
         }
         sender.sendMessage(messageComponent)
-
         return true
     }
 

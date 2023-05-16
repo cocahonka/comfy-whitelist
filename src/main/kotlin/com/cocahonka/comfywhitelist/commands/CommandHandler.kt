@@ -4,13 +4,8 @@ import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.commands.sub.*
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
-import com.cocahonka.comfywhitelist.config.message.MessageTagResolvers
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import com.cocahonka.comfywhitelist.storage.Storage
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.format.TextColor
-import net.kyori.adventure.text.minimessage.MiniMessage
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -53,35 +48,21 @@ class CommandHandler(
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>?): Boolean {
         if (args.isNullOrEmpty()) {
-            val message = MessageConfig.invalidUsage
-            val messageComponent = MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.warning,
-                MessageTagResolvers.insertUsage(usage),
-            )
-            sender.sendMessage(messageComponent)
+            val replacementConfig = MessageFormat.ConfigBuilders.usageReplacementConfigBuilder(usage)
+            val message = MessageConfig.invalidUsage.replaceText(replacementConfig)
+            sender.sendMessage(message)
             return false
         }
 
         val subCommandName = args[0]
         val subCommand = subCommands.find { it.identifier.equals(subCommandName, true) }
         if (subCommand == null) {
-            val message = MessageConfig.unknownSubcommand
-            val messageComponent = MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.warning,
-            )
-            sender.sendMessage(messageComponent)
+            sender.sendMessage(MessageConfig.unknownSubcommand)
             return false
         }
 
         if (sender !is ConsoleCommandSender && !sender.hasPermission(subCommand.permission)) {
-            val message = MessageConfig.noPermission
-            val messageComponent = MiniMessage.miniMessage().deserialize(
-                message,
-                MessageTagResolvers.warning,
-            )
-            sender.sendMessage(messageComponent)
+            sender.sendMessage(MessageConfig.noPermission)
             return false
         }
 
