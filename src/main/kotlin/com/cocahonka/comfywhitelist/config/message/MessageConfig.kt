@@ -3,6 +3,7 @@ package com.cocahonka.comfywhitelist.config.message
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.base.Locale
 import com.cocahonka.comfywhitelist.config.message.Message.Companion.getMessageWithDefault
+import net.kyori.adventure.text.Component
 import org.bukkit.plugin.Plugin
 import java.io.File
 
@@ -15,22 +16,30 @@ import java.io.File
  */
 class MessageConfig(private val plugin: Plugin, private val locale: Locale) : ConfigManager() {
     companion object {
-        lateinit var notWhitelisted: String private set
-        lateinit var playerAdded: String private set
-        lateinit var playerRemoved: String private set
-        lateinit var whitelistCleared: String private set
-        lateinit var whitelistEnabled: String private set
-        lateinit var whitelistDisabled: String private set
-        lateinit var pluginReloaded: String private set
-        lateinit var noPermission: String private set
-        lateinit var invalidUsage: String private set
-        lateinit var whitelistedPlayersList: String private set
-        lateinit var emptyWhitelistedPlayersList: String private set
-        lateinit var unknownSubcommand: String private set
-        lateinit var invalidPlayerName: String private set
-        lateinit var nonExistentPlayerName : String private set
-        lateinit var whitelistAlreadyEnabled: String private set
-        lateinit var whitelistAlreadyDisabled: String private set
+        // General messages
+        lateinit var noPermission: Component internal set
+        lateinit var invalidUsage: Component private set
+        lateinit var unknownSubcommand: Component private set
+        lateinit var invalidPlayerName: Component private set
+        lateinit var pluginReloaded: Component private set
+
+        // Whitelist status messages
+        lateinit var whitelistEnabled: Component private set
+        lateinit var whitelistDisabled: Component private set
+        lateinit var whitelistAlreadyEnabled: Component private set
+        lateinit var whitelistAlreadyDisabled: Component private set
+
+        // Player management messages
+        lateinit var notWhitelisted: Component private set
+        lateinit var playerAdded: Component private set
+        lateinit var playerRemoved: Component private set
+        lateinit var nonExistentPlayerName: Component private set
+
+        // Whitelist display messages
+        lateinit var whitelistedPlayersList: Component private set
+        lateinit var emptyWhitelistedPlayersList: Component private set
+        lateinit var whitelistCleared: Component private set
+
     }
 
     override fun createConfig() {
@@ -50,22 +59,29 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
     }
 
     override fun updateProperties() {
-        notWhitelisted = config.getMessageWithDefault(Message.NotWhitelisted, locale)
-        playerAdded = config.getMessageWithDefault(Message.PlayerAdded, locale)
-        playerRemoved = config.getMessageWithDefault(Message.PlayerRemoved, locale)
-        whitelistCleared = config.getMessageWithDefault(Message.WhitelistCleared, locale)
-        whitelistEnabled = config.getMessageWithDefault(Message.WhitelistEnabled, locale)
-        whitelistDisabled = config.getMessageWithDefault(Message.WhitelistDisabled, locale)
-        pluginReloaded = config.getMessageWithDefault(Message.PluginReloaded, locale)
-        noPermission = config.getMessageWithDefault(Message.NoPermission, locale)
-        invalidUsage = config.getMessageWithDefault(Message.InvalidUsage, locale)
-        whitelistedPlayersList = config.getMessageWithDefault(Message.WhitelistedPlayersList, locale)
-        emptyWhitelistedPlayersList = config.getMessageWithDefault(Message.EmptyWhitelistedPlayersList, locale)
-        unknownSubcommand = config.getMessageWithDefault(Message.UnknownSubcommand, locale)
-        invalidPlayerName = config.getMessageWithDefault(Message.InvalidPlayerName, locale)
-        nonExistentPlayerName = config.getMessageWithDefault(Message.NonExistentPlayerName, locale)
-        whitelistAlreadyEnabled = config.getMessageWithDefault(Message.WhitelistAlreadyEnabled, locale)
-        whitelistAlreadyDisabled = config.getMessageWithDefault(Message.WhitelistAlreadyDisabled, locale)
+        // General messages
+        noPermission = config.getMessageWithDefault(Message.General.NoPermission, locale)
+        invalidUsage = config.getMessageWithDefault(Message.General.InvalidUsage, locale)
+        unknownSubcommand = config.getMessageWithDefault(Message.General.UnknownSubcommand, locale)
+        invalidPlayerName = config.getMessageWithDefault(Message.General.InvalidPlayerName, locale)
+        pluginReloaded = config.getMessageWithDefault(Message.General.PluginReloaded, locale)
+
+        // Whitelist status messages
+        whitelistEnabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistEnabled, locale)
+        whitelistDisabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistDisabled, locale)
+        whitelistAlreadyEnabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistAlreadyEnabled, locale)
+        whitelistAlreadyDisabled = config.getMessageWithDefault(Message.WhitelistStatus.WhitelistAlreadyDisabled, locale)
+
+        // Player management messages
+        notWhitelisted = config.getMessageWithDefault(Message.PlayerManagement.NotWhitelisted, locale)
+        playerAdded = config.getMessageWithDefault(Message.PlayerManagement.PlayerAdded, locale)
+        playerRemoved = config.getMessageWithDefault(Message.PlayerManagement.PlayerRemoved, locale)
+        nonExistentPlayerName = config.getMessageWithDefault(Message.PlayerManagement.NonExistentPlayerName, locale)
+
+        // Whitelist display messages
+        whitelistedPlayersList = config.getMessageWithDefault(Message.WhitelistDisplay.WhitelistedPlayersList, locale)
+        emptyWhitelistedPlayersList = config.getMessageWithDefault(Message.WhitelistDisplay.EmptyWhitelistedPlayersList, locale)
+        whitelistCleared = config.getMessageWithDefault(Message.WhitelistDisplay.WhitelistCleared, locale)
     }
 
 }
