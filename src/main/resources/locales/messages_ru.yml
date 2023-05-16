@@ -13,9 +13,9 @@ whitelist-already-disabled: "ComfyWhitelist <off>уже выключен.</off>"
 
 # Сообщения об управлении игроками
 not-whitelisted: "<warning>Вы не в вайтлисте.</warning>"
-player-added: "Игрок <success><name></success> добавлен в вайтлист."
-player-removed: "Игрок <remove><name></remove> удален из вайтлиста."
-non-existent-player-name: "Игрока с именем <warning><name></warning> нет в вайтлисте."
+player-added: "Игрок <success><name></success> <success>добавлен</success> в вайтлист."
+player-removed: "Игрок <remove><name></remove> <remove>удален</remove> из вайтлиста."
+non-existent-player-name: "Игрока с именем <warning><name></warning> <warning>нет</warning> в вайтлисте."
 
 # Сообщения о отображении вайтлиста
 whitelisted-players-list: "Игроки в вайтлисте: <success><players></success>"

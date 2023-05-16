@@ -13,9 +13,9 @@ whitelist-already-disabled: "ComfyWhitelist <off>already disabled.</off>"
 
 # Player management messages
 not-whitelisted: "<warning>You are not whitelisted.</warning>"
-player-added: "Player <success><name></success> has been added to the whitelist."
-player-removed: "Player <remove><name></remove> has been removed from the whitelist."
-non-existent-player-name: "There is no player named <warning><name></warning> in the whitelist."
+player-added: "Player <success><name></success> has been <success>added</success> to the whitelist."
+player-removed: "Player <remove><name></remove> has been <remove>removed</remove> from the whitelist."
+non-existent-player-name: "There is <warning>no</warning> player named <warning><name></warning> in the whitelist."
 
 # Whitelist display messages
 whitelisted-players-list: "Whitelisted players: <success><players></success>"
