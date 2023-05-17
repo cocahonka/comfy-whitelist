@@ -32,7 +32,7 @@ abstract class StorageTestBase {
         val playerNames = listOf("player1", "player2", "player3")
 
         playerNames.forEach { storage.addPlayer(it) }
-        assertEquals(playerNames, storage.getAllWhitelistedPlayers().toList())
+        assertEquals(playerNames, storage.allWhitelistedPlayers.toList())
     }
 
     @Test
@@ -43,7 +43,7 @@ abstract class StorageTestBase {
         playerNames.forEach { storage.addPlayer(it) }
         storage.clear()
 
-        assertEquals(emptyList<String>(), storage.getAllWhitelistedPlayers().toList())
+        assertEquals(emptyList<String>(), storage.allWhitelistedPlayers.toList())
     }
 
     @Test
@@ -56,7 +56,7 @@ abstract class StorageTestBase {
 
         val storage2 = createStorage()
         assertTrue(storage2.load(), "Failed to load data")
-        val loadedPlayers = storage2.getAllWhitelistedPlayers().toList()
+        val loadedPlayers = storage2.allWhitelistedPlayers.toList()
 
         assertEquals(playerNames.size, loadedPlayers.size)
         assertTrue(loadedPlayers.containsAll(playerNames))
@@ -69,7 +69,7 @@ abstract class StorageTestBase {
 
         val storage2 = createStorage()
         assertTrue(storage2.load(), "Failed to load data")
-        assertEquals(emptyList<String>(), storage2.getAllWhitelistedPlayers().toList())
+        assertEquals(emptyList<String>(), storage2.allWhitelistedPlayers.toList())
     }
 
 }

@@ -1,6 +1,7 @@
 package com.cocahonka.comfywhitelist.storage
 
 import com.cocahonka.comfywhitelist.api.Storage
+import org.bukkit.Bukkit.getLogger
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
@@ -63,6 +64,7 @@ class YamlStorage(dataFolder: File) : Storage {
             whitelistedPlayers.addAll(config.getStringList(WHITELISTED_PLAYERS_KEY))
             true
         } catch (e: Exception) {
+            getLogger().warning(e.stackTraceToString())
             false
         }
     }
@@ -73,6 +75,7 @@ class YamlStorage(dataFolder: File) : Storage {
             config.save(storageFile)
             true
         } catch (e: Exception) {
+            getLogger().warning(e.stackTraceToString())
             false
         }
     }
