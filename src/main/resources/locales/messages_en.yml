@@ -1,6 +1,6 @@
 # General messages
 no-permission: "<comfy><warning>You do not have permission to use this command.</warning>"
-invalid-usage: "<comfy><warning>Invalid command usage.</warning> Use: <usage>"
+invalid-usage: "<comfy><warning>Invalid command usage.</warning>\nUse: <usage>"
 unknown-subcommand: "<comfy><warning>Unknown subcommand.</warning> Type /comfywl help for a list of commands."
 invalid-player-name: "<comfy><warning>Invalid player name.</warning>"
 plugin-reloaded: "<comfy>ComfyWhitelist <success>has been successfully reloaded.</success>"

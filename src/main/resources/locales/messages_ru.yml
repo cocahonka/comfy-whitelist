@@ -1,6 +1,6 @@
 # Общие сообщения
 no-permission: "<comfy><warning>У вас недостаточно полномочий для использования этой команды.</warning>"
-invalid-usage: "<comfy><warning>Недопустимое использование команды.</warning> Используйте: <usage>"
+invalid-usage: "<comfy><warning>Недопустимое использование команды.</warning>\nИспользуйте: <usage>"
 unknown-subcommand: "<comfy><warning>Неизвестная подкоманда.</warning> Введите /comfywl help для отображения доступных подкоманд."
 invalid-player-name: "<comfy><warning>Некорректный формат имени игрока.</warning>"
 plugin-reloaded: "<comfy>ComfyWhitelist <success>успешно перезагружен.</success>"

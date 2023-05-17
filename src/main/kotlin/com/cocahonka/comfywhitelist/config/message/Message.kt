@@ -63,8 +63,8 @@ sealed class Message(val key: String) {
     object InvalidUsage : Message("invalid-usage") {
         override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "<comfy><warning>Недопустимое использование команды.</warning> Используйте: <usage>"
-                Locale.EN -> "<comfy><warning>Invalid command usage.</warning> Use: <usage>"
+                Locale.RU -> "<comfy><warning>Недопустимое использование команды.</warning>\nИспользуйте: <usage>"
+                Locale.EN -> "<comfy><warning>Invalid command usage.</warning>\nUse: <usage>"
             }
         )
     }
