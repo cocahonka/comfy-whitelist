@@ -81,7 +81,7 @@ abstract class CommandTestBase {
         assertFalse(storage.isPlayerWhitelisted(player.name))
 
     protected fun assertStorageEmpty() =
-        assertTrue(storage.getAllWhitelistedPlayers().isEmpty())
+        assertTrue(storage.allWhitelistedPlayers.isEmpty())
 
     protected fun assertOnlyNoPermissionMessage(sender: MessageTarget) {
         assertEquals(

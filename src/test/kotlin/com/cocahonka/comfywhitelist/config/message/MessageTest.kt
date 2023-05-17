@@ -3,6 +3,7 @@ package com.cocahonka.comfywhitelist.config.message
 import com.cocahonka.comfywhitelist.config.base.Locale
 import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.Message.Companion.getFormattedWithDefault
+import com.cocahonka.comfywhitelist.config.message.Message.Companion.joinWithPrefix
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -16,7 +17,7 @@ class MessageTest {
 
         val emptyFileConfiguration: FileConfiguration = YamlConfiguration()
 
-        val messageWithDefault = emptyFileConfiguration.getFormattedWithDefault(Message.WhitelistDisabled, locale)
+        val messageWithDefault = emptyFileConfiguration.getFormattedWithDefault(Message.WhitelistDisabled, locale).joinWithPrefix()
 
         assertEquals(defaultMessage, messageWithDefault)
     }
@@ -31,7 +32,7 @@ class MessageTest {
         val configFileConfiguration: FileConfiguration = YamlConfiguration()
         configFileConfiguration.set(Message.WhitelistDisabled.key, configuredMessage)
 
-        val messageWithDefault = configFileConfiguration.getFormattedWithDefault(Message.WhitelistDisabled, locale)
+        val messageWithDefault = configFileConfiguration.getFormattedWithDefault(Message.WhitelistDisabled, locale).joinWithPrefix()
 
         assertEquals(configuredMessageComponent, messageWithDefault)
     }

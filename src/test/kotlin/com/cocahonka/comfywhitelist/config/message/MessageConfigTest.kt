@@ -4,6 +4,7 @@ import be.seeseemelk.mockbukkit.MockBukkit
 import be.seeseemelk.mockbukkit.ServerMock
 import com.cocahonka.comfywhitelist.config.base.Locale
 import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
+import net.kyori.adventure.text.Component
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
 import org.junit.jupiter.api.AfterEach
@@ -36,13 +37,13 @@ class MessageConfigTest {
     fun `loadConfig sets default messages when config file does not exist`() {
         messageConfig.loadConfig()
 
-        assertEquals(Message.NotWhitelisted.getDefaultWithPrefix(locale), MessageConfig.notWhitelisted)
+        assertEquals(Message.NotWhitelisted.getDefault(locale), MessageConfig.notWhitelisted)
         assertEquals(Message.PlayerAdded.getDefaultWithPrefix(locale), MessageConfig.playerAdded)
 
         val newLocate = Locale.RU
         messageConfig = MessageConfig(plugin, newLocate).apply { loadConfig() }
 
-        assertEquals(Message.NotWhitelisted.getDefaultWithPrefix(newLocate), MessageConfig.notWhitelisted)
+        assertEquals(Message.NotWhitelisted.getDefault(newLocate), MessageConfig.notWhitelisted)
         assertEquals(Message.PlayerAdded.getDefaultWithPrefix(newLocate), MessageConfig.playerAdded)
     }
 
@@ -52,7 +53,7 @@ class MessageConfigTest {
         configFile.parentFile.mkdirs()
 
         val notWhitelistedCustomMessage = "Not whitelisted custom message"
-        val notWhitelistedCustomMessageComponent = Message.joinWithPrefix(notWhitelistedCustomMessage)
+        val notWhitelistedCustomMessageComponent = Component.text(notWhitelistedCustomMessage)
 
         val playerAddedCustomMessage = "Player added custom message"
         val playerAddedCustomMessageComponent = Message.joinWithPrefix(playerAddedCustomMessage)

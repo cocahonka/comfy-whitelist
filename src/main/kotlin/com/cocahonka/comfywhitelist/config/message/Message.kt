@@ -51,17 +51,11 @@ sealed class Message(val key: String) {
         ): Component {
             val rawMessageFromConfig = this.getString(message.key)
 
-            val messageComponent = if (rawMessageFromConfig == null) {
+            return if (rawMessageFromConfig == null) {
                 message.getDefault(locale)
             } else {
                 message.applyStyles(rawMessageFromConfig)
             }
-
-            return Component.join(
-                JoinConfiguration.noSeparators(),
-                prefixComponent,
-                messageComponent
-            )
         }
 
         /**
@@ -89,6 +83,13 @@ sealed class Message(val key: String) {
                 JoinConfiguration.noSeparators(),
                 prefixComponent,
                 Component.text(rawMessage)
+            )
+
+        fun Component.joinWithPrefix() =
+            Component.join(
+                JoinConfiguration.noSeparators(),
+                prefixComponent,
+                this
             )
 
     }

@@ -24,7 +24,7 @@ class ListCommandTest : CommandTestBase() {
     }
 
     private fun assertOnlyWhitelistedPlayersListMessage(sender: MessageTarget) {
-        val whitelistedPlayers = storage.getAllWhitelistedPlayers()
+        val whitelistedPlayers = storage.allWhitelistedPlayers
         val replacementConfig = MessageFormat.ConfigBuilders.playersReplacementConfigBuilder(whitelistedPlayers)
         val message = Message.WhitelistedPlayersList.getDefaultWithPrefix(locale).replaceText(replacementConfig)
         assertEquals(
