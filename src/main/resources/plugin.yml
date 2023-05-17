@@ -5,6 +5,7 @@ authors:
   - vmlakk
 main: com.cocahonka.comfywhitelist.ComfyWhitelist
 version: @version@
+softdepend: ["kotlin-stdlib"]
 commands:
   comfywhitelist:
     description: ComfyWhitelist management.

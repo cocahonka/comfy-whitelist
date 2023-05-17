@@ -14,7 +14,7 @@ designed to work with nicknames instead of UUIDs. This makes it an excellent cho
 - :control_knobs: **Configurable Settings**: Customize the behavior of the plugin through a configuration file,
   allowing you to tailor its functionality to your server's needs.
 
-## :hammer_and_wrench: For Developers
+## :computer: For Developers
 
 ComfyWhitelist provides a developer-friendly API that can be used to leverage
 the plugin's functionalities in your own plugins. You can find more details and
@@ -24,10 +24,10 @@ usage examples in our [ComfyWhitelistApi](https://github.com/cocahonka/comfy-whi
 
 To install the plugin, navigate to the 'Releases' section of our GitHub
 repository. Here you will find two versions of the plugin for each release:
-'standalone' and 'lightweight'.
+**standalone** and **lightweight**.
 
-The 'standalone' version includes standard Kotlin dependency.
-The 'lightweight' version requires a separate [Kotlin dependency](https://www.spigotmc.org/resources/kotlin-stdlib.80808/)
+- The '**standalone**' version works right out of the box, you just need to put it in the plugin's folder.
+- The '**lightweight**' version requires a separate [Kotlin dependency](https://www.spigotmc.org/resources/kotlin-stdlib.80808/)
 to be downloaded and placed in the plugin folder.
 
 The versioning follows this format: MAJOR.MINOR.FIX-MINECRAFT_VERSION.
@@ -59,6 +59,16 @@ ComfyWhitelist provides a broad range of permissions for flexible configuration:
 - comfywhitelist.reload
 - comfywhitelist.help
 </details>
+
+## :building_construction: Building the Project
+To build the project, you can use the Gradle menu and go to the 'build' section.
+There you will find the tasks '**standalone**' and '**lightweight**'. 
+You can also use the console command to build the project:
+```bash
+./gradlew standalone
+# or
+./gradlew lightweight
+```
 
 ## :handshake: Support
 
