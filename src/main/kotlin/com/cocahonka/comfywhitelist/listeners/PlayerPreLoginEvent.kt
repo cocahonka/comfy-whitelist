@@ -1,8 +1,8 @@
 package com.cocahonka.comfywhitelist.listeners
 
+import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
-import com.cocahonka.comfywhitelist.storage.Storage
 import net.kyori.adventure.text.Component
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority

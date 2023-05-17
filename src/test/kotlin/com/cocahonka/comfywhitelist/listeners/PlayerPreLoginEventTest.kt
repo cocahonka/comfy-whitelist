@@ -4,8 +4,8 @@ import be.seeseemelk.mockbukkit.MockBukkit
 import be.seeseemelk.mockbukkit.ServerMock
 import be.seeseemelk.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.ComfyWhitelist
+import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
-import com.cocahonka.comfywhitelist.storage.Storage
 import com.cocahonka.comfywhitelist.storage.YamlStorage
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import org.junit.jupiter.api.AfterEach

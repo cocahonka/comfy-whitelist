@@ -6,11 +6,11 @@ import be.seeseemelk.mockbukkit.command.ConsoleCommandSenderMock
 import be.seeseemelk.mockbukkit.command.MessageTarget
 import be.seeseemelk.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.ComfyWhitelist
+import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.config.base.Locale
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.Message
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
-import com.cocahonka.comfywhitelist.storage.Storage
 import com.cocahonka.comfywhitelist.storage.YamlStorage
 import org.bukkit.command.PluginCommand
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
