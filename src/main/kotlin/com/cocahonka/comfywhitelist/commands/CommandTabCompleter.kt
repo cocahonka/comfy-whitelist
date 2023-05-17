@@ -1,8 +1,8 @@
 package com.cocahonka.comfywhitelist.commands
 
+import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.commands.sub.AddCommand
 import com.cocahonka.comfywhitelist.commands.sub.RemoveCommand
-import com.cocahonka.comfywhitelist.storage.Storage
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
@@ -36,7 +36,7 @@ class CommandTabCompleter(private val storage: Storage, private val subCommands:
                     return onlinePlayers.filter { it.startsWith(subCommandParam, ignoreCase = true) }.toMutableList()
                 }
                 removeCommand?.identifier -> {
-                    val whitelistedPlayers = storage.getAllWhitelistedPlayers()
+                    val whitelistedPlayers = storage.allWhitelistedPlayers
                     return whitelistedPlayers.filter { it.startsWith(subCommandParam, ignoreCase = true) }.toMutableList()
                 }
             }

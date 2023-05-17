@@ -13,17 +13,17 @@ version = "0.0.1"
 
 repositories {
     maven(url = "https://repo.papermc.io/repository/maven-public/")
+    maven(url = "https://jitpack.io")
 }
 
 val paperApiVersion: String by project
-val striktCoreVersion: String by project
 val mockBukkitVersion: String by project
 dependencies {
     compileOnly("io.papermc.paper:paper-api:$paperApiVersion")
 
-    testImplementation(kotlin("test"))
+    implementation("com.github.cocahonka:comfy-whitelist-api:af9d085e3f")
 
-    testImplementation("io.strikt:strikt-core:$striktCoreVersion")
+    testImplementation(kotlin("test"))
 
     testImplementation("com.github.seeseemelk:MockBukkit-v$mockBukkitVersion")
 }

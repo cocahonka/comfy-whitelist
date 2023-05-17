@@ -1,9 +1,10 @@
 package com.cocahonka.comfywhitelist.listeners
 
+import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
-import com.cocahonka.comfywhitelist.storage.Storage
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST
@@ -23,7 +24,7 @@ class PlayerPreLoginEvent(private val storage: Storage) : Listener {
      *
      * @param event The [AsyncPlayerPreLoginEvent] instance representing the event being handled.
      */
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     fun onPlayerPreLoginEvent(event: AsyncPlayerPreLoginEvent) {
         if (!GeneralConfig.whitelistEnabled) {
             return

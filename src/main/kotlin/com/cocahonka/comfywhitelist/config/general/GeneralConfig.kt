@@ -1,5 +1,6 @@
 package com.cocahonka.comfywhitelist.config.general
 
+import com.cocahonka.comfywhitelist.api.WhitelistManager
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.base.Locale
 import org.bukkit.plugin.Plugin
@@ -12,7 +13,7 @@ import kotlin.properties.Delegates
  *
  * @param plugin The plugin instance.
  */
-class GeneralConfig(private val plugin: Plugin) : ConfigManager() {
+class GeneralConfig(private val plugin: Plugin) : WhitelistManager, ConfigManager() {
     companion object {
         var whitelistEnabled: Boolean by Delegates.notNull()
             private set
@@ -35,13 +36,15 @@ class GeneralConfig(private val plugin: Plugin) : ConfigManager() {
         locale = Locale.fromString(config.getString(localeKey))
     }
 
-    fun enableWhitelist() {
+    override fun isWhitelistEnabled(): Boolean = whitelistEnabled
+
+    override fun enableWhitelist() {
         whitelistEnabled = true
         config.set(enabledKey, true)
         config.save(configFile)
     }
 
-    fun disableWhitelist() {
+    override fun disableWhitelist() {
         whitelistEnabled = false
         config.set(enabledKey, false)
         config.save(configFile)

@@ -1,9 +1,9 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
+import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.config.message.MessageFormat
-import com.cocahonka.comfywhitelist.storage.Storage
 import org.bukkit.command.CommandSender
 
 /**
@@ -20,7 +20,7 @@ class ListCommand(private val storage: Storage) : SubCommand {
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         if(isInvalidUsage(sender) { args.isEmpty() }) return false
 
-        val playerNameList = storage.getAllWhitelistedPlayers()
+        val playerNameList = storage.allWhitelistedPlayers
 
         val messageComponent = if (playerNameList.isEmpty()) {
             MessageConfig.emptyWhitelistedPlayersList

@@ -1,11 +1,11 @@
 package com.cocahonka.comfywhitelist.commands
 
 import com.cocahonka.comfywhitelist.ComfyWhitelist
+import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.commands.sub.*
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.config.message.MessageFormat
-import com.cocahonka.comfywhitelist.storage.Storage
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender

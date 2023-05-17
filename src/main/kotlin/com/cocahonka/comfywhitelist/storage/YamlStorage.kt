@@ -1,5 +1,6 @@
 package com.cocahonka.comfywhitelist.storage
 
+import com.cocahonka.comfywhitelist.api.Storage
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 

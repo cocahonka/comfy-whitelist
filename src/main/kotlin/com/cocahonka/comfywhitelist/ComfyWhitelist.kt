@@ -2,6 +2,9 @@
 
 package com.cocahonka.comfywhitelist
 
+import com.cocahonka.comfywhitelist.api.ComfyWhitelistAPI
+import com.cocahonka.comfywhitelist.api.Storage
+import com.cocahonka.comfywhitelist.api.WhitelistManager
 import com.cocahonka.comfywhitelist.commands.CommandHandler
 import com.cocahonka.comfywhitelist.commands.CommandTabCompleter
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
@@ -9,6 +12,7 @@ import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.listeners.PlayerPreLoginEvent
 import com.cocahonka.comfywhitelist.storage.YamlStorage
 import org.bukkit.plugin.PluginDescriptionFile
+import org.bukkit.plugin.ServicePriority
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.plugin.java.JavaPluginLoader
 import java.io.File
@@ -92,5 +96,13 @@ class ComfyWhitelist : JavaPlugin {
         for(alias in aliases) {
             server.commandMap.knownCommands.remove("$identifier:$alias")
         }
+    }
+
+    private fun emitAPI() {
+        val api = object : ComfyWhitelistAPI {
+            override fun getStorage(): Storage = this@ComfyWhitelist.storage
+            override fun getStateManager(): WhitelistManager = generalConfig
+        }
+        server.servicesManager.register(ComfyWhitelistAPI::class.java, api, this, ServicePriority.Normal)
     }
 }

@@ -1,5 +1,6 @@
 package com.cocahonka.comfywhitelist.storage
 
+import com.cocahonka.comfywhitelist.api.Storage
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
