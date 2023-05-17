@@ -135,8 +135,8 @@ sealed class Message(val key: String) {
     object NotWhitelisted : Message("not-whitelisted") {
         override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "<off>Вы не в вайтлисте.</off>"
-                Locale.EN -> "<off>You are not whitelisted.</off>"
+                Locale.RU -> "<warning>Вы не в вайтлисте.</warning>"
+                Locale.EN -> "<warning>You are not whitelisted.</warning>"
             }
         )
     }

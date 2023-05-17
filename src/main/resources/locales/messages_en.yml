@@ -12,7 +12,7 @@ whitelist-already-enabled: "<comfy>ComfyWhitelist <success>already enabled.</suc
 whitelist-already-disabled: "<comfy>ComfyWhitelist <off>already disabled.</off>"
 
 # Player management messages
-not-whitelisted: "<off>You are not whitelisted.</off>"
+not-whitelisted: "<warning>You are not whitelisted.</warning>"
 player-added: "<comfy>Player <success><name></success> has been <success>added</success> to the whitelist."
 player-removed: "<comfy>Player <remove><name></remove> has been <remove>removed</remove> from the whitelist."
 non-existent-player-name: "<comfy>There is <warning>no</warning> player named <warning><name></warning> in the whitelist."

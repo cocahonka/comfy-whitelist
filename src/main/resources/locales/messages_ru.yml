@@ -12,7 +12,7 @@ whitelist-already-enabled: "<comfy>ComfyWhitelist <success>уже включен
 whitelist-already-disabled: "<comfy>ComfyWhitelist <off>уже выключен.</off>"
 
 # Сообщения об управлении игроками
-not-whitelisted: "<off>Вы не в вайтлисте.</off>"
+not-whitelisted: "<warning>Вы не в вайтлисте.</warning>"
 player-added: "<comfy>Игрок <success><name></success> <success>добавлен</success> в вайтлист."
 player-removed: "<comfy>Игрок <remove><name></remove> <remove>удален</remove> из вайтлиста."
 non-existent-player-name: "<comfy>Игрока с именем <warning><name></warning> <warning>нет</warning> в вайтлисте."
