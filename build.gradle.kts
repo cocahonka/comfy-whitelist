@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.cocahonka"
-version = "0.0.1"
+version = "1.0.0-1.19.4"
 
 repositories {
     maven(url = "https://repo.papermc.io/repository/maven-public/")
@@ -18,10 +18,11 @@ repositories {
 
 val paperApiVersion: String by project
 val mockBukkitVersion: String by project
+val comfyWhitelistApiVersion: String by project
 dependencies {
     compileOnly("io.papermc.paper:paper-api:$paperApiVersion")
 
-    implementation("com.github.cocahonka:comfy-whitelist-api:af9d085e3f")
+    implementation("com.github.cocahonka:comfy-whitelist-api:$comfyWhitelistApiVersion")
 
     testImplementation(kotlin("test"))
 
