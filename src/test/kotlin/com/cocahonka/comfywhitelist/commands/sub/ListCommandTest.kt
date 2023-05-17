@@ -3,7 +3,6 @@ package com.cocahonka.comfywhitelist.commands.sub
 import be.seeseemelk.mockbukkit.command.MessageTarget
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -24,9 +23,9 @@ class ListCommandTest : CommandTestBase() {
     }
 
     private fun assertOnlyWhitelistedPlayersListMessage(sender: MessageTarget) {
-        val whitelistedPlayers = storage.getAllWhitelistedPlayers()
+        val whitelistedPlayers = storage.allWhitelistedPlayers
         val replacementConfig = MessageFormat.ConfigBuilders.playersReplacementConfigBuilder(whitelistedPlayers)
-        val message = Message.WhitelistedPlayersList.getDefaultWithPrefix(locale).replaceText(replacementConfig)
+        val message = Message.WhitelistedPlayersList.getDefault(locale).replaceText(replacementConfig)
         assertEquals(
             sender.nextMessage(),
             legacySection.serialize(message)
@@ -37,7 +36,7 @@ class ListCommandTest : CommandTestBase() {
     private fun assertOnlyEmptyWhitelistedPlayersListMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            legacySection.serialize(Message.EmptyWhitelistedPlayersList.getDefaultWithPrefix(locale))
+            legacySection.serialize(Message.EmptyWhitelistedPlayersList.getDefault(locale))
         )
         sender.assertNoMoreSaid()
     }

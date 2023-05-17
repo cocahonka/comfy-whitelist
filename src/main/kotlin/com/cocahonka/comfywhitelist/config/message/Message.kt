@@ -3,7 +3,6 @@ package com.cocahonka.comfywhitelist.config.message
 import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.config.base.Locale
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.JoinConfiguration
 import org.bukkit.configuration.file.FileConfiguration
 
 /**
@@ -21,20 +20,12 @@ sealed class Message(val key: String) {
      */
     abstract fun getDefault(locale: Locale): Component
 
-    /**
-     * Applies styling to the raw message string.
-     *
-     * @param rawMessage The raw message string.
-     * @return The styled message component.
-     */
-    abstract fun applyStyles(rawMessage: String): Component
-
     companion object {
 
         /**
          * A prefix component for all plugin messages.
          */
-        private val prefixComponent = Component.text(ComfyWhitelist.DISPLAY_NAME + " > ").color(MessageFormat.Colors.prefix)
+        val prefixComponent = Component.text(ComfyWhitelist.DISPLAY_NAME + " > ").color(MessageFormat.Colors.prefix)
 
         /**
          * Retrieves a message from the configuration and applies styling.
@@ -51,287 +42,157 @@ sealed class Message(val key: String) {
         ): Component {
             val rawMessageFromConfig = this.getString(message.key)
 
-            val messageComponent = if (rawMessageFromConfig == null) {
+            return if (rawMessageFromConfig == null) {
                 message.getDefault(locale)
             } else {
-                message.applyStyles(rawMessageFromConfig)
+                MessageFormat.applyStyles(rawMessageFromConfig)
             }
-
-            return Component.join(
-                JoinConfiguration.noSeparators(),
-                prefixComponent,
-                messageComponent
-            )
         }
-
-        /**
-         * Returns the default message for the given locale, prefixed.
-         *
-         * @param M The type of message object that extends [Message].
-         * @param locale The locale to get the default message for.
-         * @return The default message for the specified locale, prefixed.
-         */
-        fun <M : Message> M.getDefaultWithPrefix(locale: Locale) : Component =
-            Component.join(
-                JoinConfiguration.noSeparators(),
-                prefixComponent,
-                getDefault(locale)
-            )
-
-        /**
-         * Joins the prefix with the raw message.
-         *
-         * @param rawMessage The raw message string.
-         * @return The combined message component.
-         */
-        fun joinWithPrefix(rawMessage: String) =
-            Component.join(
-                JoinConfiguration.noSeparators(),
-                prefixComponent,
-                Component.text(rawMessage)
-            )
 
     }
 
     object NoPermission : Message("no-permission") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "<warning>У вас недостаточно полномочий для использования этой команды.</warning>"
-                Locale.EN -> "<warning>You do not have permission to use this command.</warning>"
+                Locale.RU -> "<comfy><warning>У вас недостаточно полномочий для использования этой команды.</warning>"
+                Locale.EN -> "<comfy><warning>You do not have permission to use this command.</warning>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.warning
-            )
     }
 
     object InvalidUsage : Message("invalid-usage") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "<warning>Недопустимое использование команды.</warning> Используйте: <usage>"
-                Locale.EN -> "<warning>Invalid command usage.</warning> Use: <usage>"
+                Locale.RU -> "<comfy><warning>Недопустимое использование команды.</warning>\nИспользуйте: <usage>"
+                Locale.EN -> "<comfy><warning>Invalid command usage.</warning>\nUse: <usage>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.warning
-            )
     }
 
     object UnknownSubcommand : Message("unknown-subcommand") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "<warning>Неизвестная подкоманда.</warning> Введите /comfywl help для отображения доступных подкоманд."
-                Locale.EN -> "<warning>Unknown subcommand.</warning> Type /comfywl help for a list of commands."
+                Locale.RU -> "<comfy><warning>Неизвестная подкоманда.</warning> Введите /comfywl help для отображения доступных подкоманд."
+                Locale.EN -> "<comfy><warning>Unknown subcommand.</warning> Type /comfywl help for a list of commands."
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.warning
-            )
     }
 
     object InvalidPlayerName : Message("invalid-player-name") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "<warning>Некорректный формат имени игрока.</warning>"
-                Locale.EN -> "<warning>Invalid player name.</warning>"
+                Locale.RU -> "<comfy><warning>Некорректный формат имени игрока.</warning>"
+                Locale.EN -> "<comfy><warning>Invalid player name.</warning>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.warning
-            )
     }
 
     object PluginReloaded : Message("plugin-reloaded") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "ComfyWhitelist <success>успешно перезагружен.</success>"
-                Locale.EN -> "ComfyWhitelist <success>has been successfully reloaded.</success>"
+                Locale.RU -> "<comfy>ComfyWhitelist <success>успешно перезагружен.</success>"
+                Locale.EN -> "<comfy>ComfyWhitelist <success>has been successfully reloaded.</success>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.success
-            )
     }
 
     object WhitelistEnabled : Message("whitelist-enabled") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "ComfyWhitelist <success>включен.</success>"
-                Locale.EN -> "ComfyWhitelist <success>enabled.</success>"
+                Locale.RU -> "<comfy>ComfyWhitelist <success>включен.</success>"
+                Locale.EN -> "<comfy>ComfyWhitelist <success>enabled.</success>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.success
-            )
     }
 
     object WhitelistDisabled : Message("whitelist-disabled") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "ComfyWhitelist <off>выключен.</off>"
-                Locale.EN -> "ComfyWhitelist <off>disabled.</off>"
+                Locale.RU -> "<comfy>ComfyWhitelist <off>выключен.</off>"
+                Locale.EN -> "<comfy>ComfyWhitelist <off>disabled.</off>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.off
-            )
     }
 
     object WhitelistAlreadyEnabled : Message("whitelist-already-enabled") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "ComfyWhitelist <success>уже включен.</success>"
-                Locale.EN -> "ComfyWhitelist <success>already enabled.</success>"
+                Locale.RU -> "<comfy>ComfyWhitelist <success>уже включен.</success>"
+                Locale.EN -> "<comfy>ComfyWhitelist <success>already enabled.</success>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.success
-            )
     }
 
     object WhitelistAlreadyDisabled : Message("whitelist-already-disabled") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "ComfyWhitelist <off>уже выключен.</off>"
-                Locale.EN -> "ComfyWhitelist <off>already disabled.</off>"
+                Locale.RU -> "<comfy>ComfyWhitelist <off>уже выключен.</off>"
+                Locale.EN -> "<comfy>ComfyWhitelist <off>already disabled.</off>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.off
-            )
     }
 
     object NotWhitelisted : Message("not-whitelisted") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
                 Locale.RU -> "<warning>Вы не в вайтлисте.</warning>"
                 Locale.EN -> "<warning>You are not whitelisted.</warning>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.warning
-            )
-
     }
 
     object PlayerAdded : Message("player-added") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "Игрок <success><name></success> <success>добавлен</success> в вайтлист."
-                Locale.EN -> "Player <success><name></success> has been <success>added</success> to the whitelist."
+                Locale.RU -> "<comfy>Игрок <success><name></success> <success>добавлен</success> в вайтлист."
+                Locale.EN -> "<comfy>Player <success><name></success> has been <success>added</success> to the whitelist."
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.success
-            )
     }
 
     object PlayerRemoved : Message("player-removed") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "Игрок <remove><name></remove> <remove>удален</remove> из вайтлиста."
-                Locale.EN -> "Player <remove><name></remove> has been <remove>removed</remove> from the whitelist."
+                Locale.RU -> "<comfy>Игрок <remove><name></remove> <remove>удален</remove> из вайтлиста."
+                Locale.EN -> "<comfy>Player <remove><name></remove> has been <remove>removed</remove> from the whitelist."
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.remove
-            )
     }
 
     object NonExistentPlayerName : Message("non-existent-player-name") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "Игрока с именем <warning><name></warning> <warning>нет</warning> в вайтлисте."
-                Locale.EN -> "There is <warning>no</warning> player named <warning><name></warning> in the whitelist."
+                Locale.RU -> "<comfy>Игрока с именем <warning><name></warning> <warning>нет</warning> в вайтлисте."
+                Locale.EN -> "<comfy>There is <warning>no</warning> player named <warning><name></warning> in the whitelist."
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.warning
-            )
     }
 
     object WhitelistedPlayersList : Message("whitelisted-players-list") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "Игроки в вайтлисте: <success><players></success>"
-                Locale.EN -> "Whitelisted players: <success><players></success>"
+                Locale.RU -> "<comfy>Игроки в вайтлисте: <success><players></success>"
+                Locale.EN -> "<comfy>Whitelisted players: <success><players></success>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.success
-            )
     }
 
     object EmptyWhitelistedPlayersList : Message("empty-whitelisted-players-list") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "В вайтлисте <off>нет игроков.</off>"
-                Locale.EN -> "Whitelist is <off>empty.</off>"
+                Locale.RU -> "<comfy>В вайтлисте <off>нет игроков.</off>"
+                Locale.EN -> "<comfy>Whitelist is <off>empty.</off>"
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.off
-            )
     }
 
     object WhitelistCleared : Message("whitelist-cleared") {
-        override fun getDefault(locale: Locale): Component = applyStyles(
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
             when (locale) {
-                Locale.RU -> "Все игроки <remove>удалены</remove> из вайтлиста."
-                Locale.EN -> "All players have been <remove>removed</remove> from the whitelist."
+                Locale.RU -> "<comfy>Все игроки <remove>удалены</remove> из вайтлиста."
+                Locale.EN -> "<comfy>All players have been <remove>removed</remove> from the whitelist."
             }
         )
-
-        override fun applyStyles(rawMessage: String): Component =
-            MessageFormat.miniMessage.deserialize(
-                rawMessage,
-                MessageFormat.Resolvers.remove
-            )
     }
 
 }

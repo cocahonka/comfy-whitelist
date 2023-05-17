@@ -3,7 +3,6 @@ package com.cocahonka.comfywhitelist.commands.sub
 import be.seeseemelk.mockbukkit.command.MessageTarget
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.listeners.PlayerPreLoginEvent
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import org.junit.jupiter.api.Assertions.*
@@ -53,7 +52,7 @@ class EnableCommandTest : CommandTestBase() {
     private fun assertOnlyEnableMessage(sender: MessageTarget){
         assertEquals(
             sender.nextMessage(),
-            legacySection.serialize(Message.WhitelistEnabled.getDefaultWithPrefix(locale))
+            legacySection.serialize(Message.WhitelistEnabled.getDefault(locale))
         )
         sender.assertNoMoreSaid()
     }
@@ -61,7 +60,7 @@ class EnableCommandTest : CommandTestBase() {
     private fun assertOnlyAlreadyEnableMessage(sender: MessageTarget){
         assertEquals(
             sender.nextMessage(),
-            legacySection.serialize(Message.WhitelistAlreadyEnabled.getDefaultWithPrefix(locale))
+            legacySection.serialize(Message.WhitelistAlreadyEnabled.getDefault(locale))
         )
         sender.assertNoMoreSaid()
     }

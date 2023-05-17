@@ -62,6 +62,7 @@ class ComfyWhitelist : JavaPlugin {
         loadStorage()
         registerEvents()
         registerCommands()
+        emitAPI()
     }
 
     private fun loadConfigs() {

@@ -1,7 +1,6 @@
 package com.cocahonka.comfywhitelist.config.message
 
 import com.cocahonka.comfywhitelist.config.base.Locale
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.Message.Companion.getFormattedWithDefault
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
@@ -12,7 +11,7 @@ class MessageTest {
     @Test
     fun `getMessageWithDefault returns default message when configuration is empty`() {
         val locale = Locale.RU
-        val defaultMessage = Message.WhitelistDisabled.getDefaultWithPrefix(locale)
+        val defaultMessage = Message.WhitelistDisabled.getDefault(locale)
 
         val emptyFileConfiguration: FileConfiguration = YamlConfiguration()
 
@@ -25,7 +24,7 @@ class MessageTest {
     fun `getMessageWithDefault returns configured message when configuration is not empty`() {
         val locale = Locale.RU
         val configuredMessage = "Configured message"
-        val configuredMessageComponent = Message.joinWithPrefix(configuredMessage)
+        val configuredMessageComponent = MessageFormat.applyStyles(configuredMessage)
 
 
         val configFileConfiguration: FileConfiguration = YamlConfiguration()

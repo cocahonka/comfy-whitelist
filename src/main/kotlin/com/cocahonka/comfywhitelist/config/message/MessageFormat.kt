@@ -4,6 +4,7 @@ import net.kyori.adventure.text.TextReplacementConfig
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.minimessage.tag.Tag
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 
 /**
@@ -14,7 +15,17 @@ object MessageFormat {
     /**
      * A [MiniMessage] instance for parsing mini messages.
      */
-    val miniMessage = MiniMessage.miniMessage()
+    private val miniMessage = MiniMessage.miniMessage()
+
+    fun applyStyles(rawMessage: String) =
+        miniMessage.deserialize(
+            rawMessage,
+            Resolvers.off,
+            Resolvers.success,
+            Resolvers.warning,
+            Resolvers.remove,
+            Placeholders.prefix
+        )
 
     /**
      * Contains builders for various text replacement configurations.
@@ -80,6 +91,10 @@ object MessageFormat {
         val success = TagResolver.resolver("success", Tag.styling(Colors.success))
         val remove = TagResolver.resolver("remove", Tag.styling(Colors.remove))
         val off = TagResolver.resolver("off", Tag.styling(Colors.off))
+    }
+
+    object Placeholders {
+        val prefix = Placeholder.component("comfy", Message.prefixComponent)
     }
 
 }

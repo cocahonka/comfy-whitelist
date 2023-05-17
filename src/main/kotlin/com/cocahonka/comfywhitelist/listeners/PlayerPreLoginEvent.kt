@@ -7,7 +7,6 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST
 
 /**
  * This class represents a listener for the PlayerPreLoginEvent.
@@ -20,7 +19,7 @@ class PlayerPreLoginEvent(private val storage: Storage) : Listener {
     /**
      * Handles the [AsyncPlayerPreLoginEvent] by checking if the player is whitelisted.
      * If the player is not on the whitelist and the whitelist is enabled, they will be
-     * disallowed from joining the server with a [KICK_WHITELIST] result.
+     * disallowed from joining the server with a [AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST] result.
      *
      * @param event The [AsyncPlayerPreLoginEvent] instance representing the event being handled.
      */
@@ -33,7 +32,7 @@ class PlayerPreLoginEvent(private val storage: Storage) : Listener {
         val playerName = event.name
         if (!storage.isPlayerWhitelisted(playerName)) {
             event.disallow(
-                KICK_WHITELIST,
+                AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
                 MessageConfig.notWhitelisted
             )
         }
