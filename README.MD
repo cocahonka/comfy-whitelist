@@ -1,26 +1,26 @@
-# ComfyWhitelist
+# ComfyWhitelist :scroll:
 
 ComfyWhitelist is a flexible and user-friendly whitelist plugin for Minecraft Paper servers,
 designed to work with nicknames instead of UUIDs. This makes it an excellent choice for offline server configurations.
 
-## Features and Benefits
+## Features and Benefits :star2:
 
-- **Nickname-based Whitelisting**: ComfyWhitelist uses player nicknames for whitelisting,
+- :name_badge: **Nickname-based Whitelisting**: ComfyWhitelist uses player nicknames for whitelisting,
   making it compatible with both online and offline Minecraft servers.
-- **API for Plugin Integration**: ComfyWhitelist provides an easy-to-use API for other plugin developers,
+- :wrench: **API for Plugin Integration**: ComfyWhitelist provides an easy-to-use API for other plugin developers,
   enabling seamless integration with their projects.
-- **Permissions and Commands**: Manage your server's whitelist with simple and intuitive commands,
+- :hammer_and_wrench: **Permissions and Commands**: Manage your server's whitelist with simple and intuitive commands,
   along with permission-based access control for better security.
-- **Configurable Settings**: Customize the behavior of the plugin through a configuration file,
+- :control_knobs: **Configurable Settings**: Customize the behavior of the plugin through a configuration file,
   allowing you to tailor its functionality to your server's needs.
 
-## For Developers
+## :hammer_and_wrench: For Developers
 
 ComfyWhitelist provides a developer-friendly API that can be used to leverage
 the plugin's functionalities in your own plugins. You can find more details and
 usage examples in our [ComfyWhitelistApi](https://github.com/cocahonka/comfy-whitelist-api).
 
-## Installation
+## :inbox_tray: Installation
 
 To install the plugin, navigate to the 'Releases' section of our GitHub
 repository. Here you will find two versions of the plugin for each release:
@@ -34,7 +34,7 @@ The versioning follows this format: MAJOR.MINOR.FIX-MINECRAFT_VERSION.
 For example, 1.0.0-1.19.4 is the first major release compatible with
 Minecraft 1.19.4.
 
-## Configuration
+## :gear: Configuration
 
 The plugin offers extensive customization options through its configuration
 files. You can modify messages, change their colors using tags provided by
@@ -45,7 +45,7 @@ The plugin-specific color tags are:
 - `<remove>`
 - `<off>`
 
-<details><summary><h2>Permissions</h2>></summary>
+<details><summary><h2>:closed_lock_with_key: Permissions</h2></summary>
 
 ComfyWhitelist provides a broad range of permissions for flexible configuration:
 - comfywhitelist.*
@@ -60,23 +60,23 @@ ComfyWhitelist provides a broad range of permissions for flexible configuration:
 - comfywhitelist.help
 </details>
 
-## Support
+## :handshake: Support
 
 If you encounter any issues or have questions, please open an issue on the GitHub repository. 
 We'll be happy to assist you.
 
-## Contribute
+## :loudspeaker: Contribute
 
 We welcome any contributions to the ComfyWhitelist project. Whether it's
 improving the code, adding features, or reporting bugs, every bit helps
 in making this plugin better for everyone.
 
-## Acknowledgments
+## :pray: Acknowledgments
 
 A huge thank you to [vmlakk](https://github.com/vmlakk) for their invaluable help in developing
 this plugin. Without their guidance, this project wouldn't be what it is today ;)
 
-## License
+## :scroll: License
 
 ComfyWhitelist is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE)
 file for more information.
