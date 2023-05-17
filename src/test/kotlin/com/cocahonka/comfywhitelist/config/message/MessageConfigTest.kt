@@ -3,8 +3,6 @@ package com.cocahonka.comfywhitelist.config.message
 import be.seeseemelk.mockbukkit.MockBukkit
 import be.seeseemelk.mockbukkit.ServerMock
 import com.cocahonka.comfywhitelist.config.base.Locale
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
-import net.kyori.adventure.text.Component
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
 import org.junit.jupiter.api.AfterEach
@@ -38,13 +36,13 @@ class MessageConfigTest {
         messageConfig.loadConfig()
 
         assertEquals(Message.NotWhitelisted.getDefault(locale), MessageConfig.notWhitelisted)
-        assertEquals(Message.PlayerAdded.getDefaultWithPrefix(locale), MessageConfig.playerAdded)
+        assertEquals(Message.PlayerAdded.getDefault(locale), MessageConfig.playerAdded)
 
         val newLocate = Locale.RU
         messageConfig = MessageConfig(plugin, newLocate).apply { loadConfig() }
 
         assertEquals(Message.NotWhitelisted.getDefault(newLocate), MessageConfig.notWhitelisted)
-        assertEquals(Message.PlayerAdded.getDefaultWithPrefix(newLocate), MessageConfig.playerAdded)
+        assertEquals(Message.PlayerAdded.getDefault(newLocate), MessageConfig.playerAdded)
     }
 
     @Test
@@ -53,10 +51,10 @@ class MessageConfigTest {
         configFile.parentFile.mkdirs()
 
         val notWhitelistedCustomMessage = "Not whitelisted custom message"
-        val notWhitelistedCustomMessageComponent = Component.text(notWhitelistedCustomMessage)
+        val notWhitelistedCustomMessageComponent = MessageFormat.applyStyles(notWhitelistedCustomMessage)
 
-        val playerAddedCustomMessage = "Player added custom message"
-        val playerAddedCustomMessageComponent = Message.joinWithPrefix(playerAddedCustomMessage)
+        val playerAddedCustomMessage = "<warning>Player added custom<warning> message"
+        val playerAddedCustomMessageComponent = MessageFormat.applyStyles(playerAddedCustomMessage)
 
         YamlConfiguration.loadConfiguration(configFile).apply {
             set(Message.NotWhitelisted.key, notWhitelistedCustomMessage)

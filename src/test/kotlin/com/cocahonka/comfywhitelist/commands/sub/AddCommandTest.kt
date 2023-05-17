@@ -4,7 +4,6 @@ import be.seeseemelk.mockbukkit.command.MessageTarget
 import be.seeseemelk.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -30,7 +29,7 @@ class AddCommandTest : CommandTestBase() {
 
     private fun assertOnlyPlayerAddedMessage(sender: MessageTarget, player: PlayerMock) {
         val replacementConfig = MessageFormat.ConfigBuilders.nameReplacementConfigBuilder(player.name)
-        val message = Message.PlayerAdded.getDefaultWithPrefix(locale).replaceText(replacementConfig)
+        val message = Message.PlayerAdded.getDefault(locale).replaceText(replacementConfig)
         assertEquals(
             sender.nextMessage(),
             legacySection.serialize(message)

@@ -1,23 +1,23 @@
 # Общие сообщения
-no-permission: "<warning>У вас недостаточно полномочий для использования этой команды.</warning>"
-invalid-usage: "<warning>Недопустимое использование команды.</warning> Используйте: <usage>"
-unknown-subcommand: "<warning>Неизвестная подкоманда.</warning> Введите /comfywl help для отображения доступных подкоманд."
-invalid-player-name: "<warning>Некорректный формат имени игрока.</warning>"
-plugin-reloaded: "ComfyWhitelist <success>успешно перезагружен.</success>"
+no-permission: "<comfy><warning>У вас недостаточно полномочий для использования этой команды.</warning>"
+invalid-usage: "<comfy><warning>Недопустимое использование команды.</warning> Используйте: <usage>"
+unknown-subcommand: "<comfy><warning>Неизвестная подкоманда.</warning> Введите /comfywl help для отображения доступных подкоманд."
+invalid-player-name: "<comfy><warning>Некорректный формат имени игрока.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>успешно перезагружен.</success>"
 
 # Сообщения о статусе вайтлиста
-whitelist-enabled: "ComfyWhitelist <success>включен.</success>"
-whitelist-disabled: "ComfyWhitelist <off>выключен.</off>"
-whitelist-already-enabled: "ComfyWhitelist <success>уже включен.</success>"
-whitelist-already-disabled: "ComfyWhitelist <off>уже выключен.</off>"
+whitelist-enabled: "<comfy>ComfyWhitelist <success>включен.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>выключен.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>уже включен.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>уже выключен.</off>"
 
 # Сообщения об управлении игроками
-not-whitelisted: "<warning>Вы не в вайтлисте.</warning>"
-player-added: "Игрок <success><name></success> <success>добавлен</success> в вайтлист."
-player-removed: "Игрок <remove><name></remove> <remove>удален</remove> из вайтлиста."
-non-existent-player-name: "Игрока с именем <warning><name></warning> <warning>нет</warning> в вайтлисте."
+not-whitelisted: "<off>Вы не в вайтлисте.</off>"
+player-added: "<comfy>Игрок <success><name></success> <success>добавлен</success> в вайтлист."
+player-removed: "<comfy>Игрок <remove><name></remove> <remove>удален</remove> из вайтлиста."
+non-existent-player-name: "<comfy>Игрока с именем <warning><name></warning> <warning>нет</warning> в вайтлисте."
 
 # Сообщения о отображении вайтлиста
-whitelisted-players-list: "Игроки в вайтлисте: <success><players></success>"
-empty-whitelisted-players-list: "В вайтлисте <off>нет игроков.</off>"
-whitelist-cleared: "Все игроки <remove>удалены</remove> из вайтлиста."
+whitelisted-players-list: "<comfy>Игроки в вайтлисте: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>В вайтлисте <off>нет игроков.</off>"
+whitelist-cleared: "<comfy>Все игроки <remove>удалены</remove> из вайтлиста."

@@ -10,7 +10,6 @@ import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.config.base.Locale
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.Message
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import com.cocahonka.comfywhitelist.storage.YamlStorage
@@ -86,7 +85,7 @@ abstract class CommandTestBase {
     protected fun assertOnlyNoPermissionMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            legacySection.serialize(Message.NoPermission.getDefaultWithPrefix(locale))
+            legacySection.serialize(Message.NoPermission.getDefault(locale))
         )
         sender.assertNoMoreSaid()
     }
@@ -94,14 +93,14 @@ abstract class CommandTestBase {
     protected fun assertOnlyInvalidPlayerNameMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            legacySection.serialize(Message.InvalidPlayerName.getDefaultWithPrefix(locale))
+            legacySection.serialize(Message.InvalidPlayerName.getDefault(locale))
         )
         sender.assertNoMoreSaid()
     }
 
     protected fun assertOnlyInvalidUsageMessage(sender: MessageTarget, usage: String) {
         val replacementConfig = MessageFormat.ConfigBuilders.usageReplacementConfigBuilder(usage)
-        val message = Message.InvalidUsage.getDefaultWithPrefix(locale).replaceText(replacementConfig)
+        val message = Message.InvalidUsage.getDefault(locale).replaceText(replacementConfig)
         assertEquals(
             sender.nextMessage(),
             legacySection.serialize(message)

@@ -5,8 +5,8 @@ import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.Message
-import com.cocahonka.comfywhitelist.config.message.Message.Companion.getDefaultWithPrefix
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
+import com.cocahonka.comfywhitelist.config.message.MessageFormat
 import org.bukkit.configuration.file.FileConfiguration
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -71,7 +71,7 @@ class ReloadCommandTest : CommandTestBase() {
     private fun assertOnlyPluginReloadedMessage(sender: MessageTarget) {
         assertEquals(
             sender.nextMessage(),
-            legacySection.serialize(Message.PluginReloaded.getDefaultWithPrefix(locale))
+            legacySection.serialize(Message.PluginReloaded.getDefault(locale))
         )
         sender.assertNoMoreSaid()
     }
@@ -83,10 +83,10 @@ class ReloadCommandTest : CommandTestBase() {
         assertNotEquals(GeneralConfig.whitelistEnabled, newEnabled)
 
     private fun assertMessageUpdatedTrue() =
-        assertEquals(MessageConfig.playerAdded, Message.joinWithPrefix(newPlayerAddedMessage))
+        assertEquals(MessageConfig.playerAdded, MessageFormat.applyStyles(newPlayerAddedMessage))
 
     private fun assertMessageUpdatedFalse() =
-        assertNotEquals(MessageConfig.playerAdded, Message.joinWithPrefix(newPlayerAddedMessage))
+        assertNotEquals(MessageConfig.playerAdded, MessageFormat.applyStyles(newPlayerAddedMessage))
 
     @Test
     fun `when console is sender`() {
