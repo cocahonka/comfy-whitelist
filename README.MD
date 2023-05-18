@@ -30,9 +30,9 @@ repository. Here you will find two versions of the plugin for each release:
 - The '**lightweight**' version requires a separate [Kotlin dependency](https://www.spigotmc.org/resources/kotlin-stdlib.80808/)
 to be downloaded and placed in the plugin folder.
 
-The versioning follows this format: MAJOR.MINOR.FIX-MINECRAFT_VERSION.
-For example, 1.0.0-1.19.4 is the first major release compatible with
-Minecraft 1.19.4.
+The versioning follows this format: MAJOR.MINOR.FIX
+
+The latest release is capable of running on versions `1.18.* - 1.19.*`
 
 ## :gear: Configuration
 

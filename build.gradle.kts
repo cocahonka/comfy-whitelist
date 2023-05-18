@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.cocahonka"
-version = "1.0.0-1.19.4"
+version = "1.0.0"
 
 repositories {
     maven(url = "https://repo.papermc.io/repository/maven-public/")
