@@ -81,6 +81,9 @@ We welcome any contributions to the ComfyWhitelist project. Whether it's
 improving the code, adding features, or reporting bugs, every bit helps
 in making this plugin better for everyone.
 
+**:star2: Special Request**: We would greatly appreciate any assistance in adapting the project to support
+older Minecraft versions!
+
 ## :pray: Acknowledgments
 
 A huge thank you to [vmlakk](https://github.com/vmlakk) for their invaluable help in developing
