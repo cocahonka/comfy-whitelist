@@ -13,9 +13,15 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+tasks.withType<JavaCompile> {
+    if (name == "compileTestJava") {
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
+    }
+}
 
 group = "com.cocahonka"
-version = "1.0.0"
+version = "1.1.0"
 
 repositories {
     mavenCentral()
@@ -93,7 +99,7 @@ tasks {
 
     withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget = if (name.contains("Test")) "17" else "1.8"
         }
     }
 }
