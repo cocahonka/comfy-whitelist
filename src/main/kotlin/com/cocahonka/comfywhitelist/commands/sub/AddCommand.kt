@@ -1,5 +1,6 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
+import com.cocahonka.comfywhitelist.LegacyUtils.sendMessage
 import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig

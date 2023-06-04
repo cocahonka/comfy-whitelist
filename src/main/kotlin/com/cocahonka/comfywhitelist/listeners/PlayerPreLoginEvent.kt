@@ -1,5 +1,6 @@
 package com.cocahonka.comfywhitelist.listeners
 
+import com.cocahonka.comfywhitelist.LegacyUtils.toLegacyText
 import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
@@ -33,7 +34,7 @@ class PlayerPreLoginEvent(private val storage: Storage) : Listener {
         if (!storage.isPlayerWhitelisted(playerName)) {
             event.disallow(
                 AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
-                MessageConfig.notWhitelisted
+                MessageConfig.notWhitelisted.toLegacyText()
             )
         }
     }
