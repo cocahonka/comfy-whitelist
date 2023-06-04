@@ -1,6 +1,7 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
 import com.cocahonka.comfywhitelist.ComfyWhitelist
+import com.cocahonka.comfywhitelist.LegacyUtils.sendMessage
 import com.cocahonka.comfywhitelist.commands.SubCommand
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import org.bukkit.command.CommandSender

@@ -8,10 +8,23 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType<JavaCompile> {
+    if (name == "compileTestJava") {
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
+    }
+}
+
 group = "com.cocahonka"
-version = "1.0.0"
+version = "1.1.0"
 
 repositories {
+    mavenCentral()
     maven(url = "https://repo.papermc.io/repository/maven-public/")
     maven(url = "https://jitpack.io")
 }
@@ -19,14 +32,20 @@ repositories {
 val paperApiVersion: String by project
 val mockBukkitVersion: String by project
 val comfyWhitelistApiVersion: String by project
+val kyoriAdventureVersion: String by project
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:$paperApiVersion")
+
+    compileOnly("com.destroystokyo.paper:paper-api:$paperApiVersion")
+
+    implementation("net.kyori:adventure-text-minimessage:$kyoriAdventureVersion")
+    implementation("net.kyori:adventure-text-serializer-legacy:$kyoriAdventureVersion")
+    implementation("net.kyori:adventure-api:$kyoriAdventureVersion")
 
     implementation("com.github.cocahonka:comfy-whitelist-api:$comfyWhitelistApiVersion")
 
     testImplementation(kotlin("test"))
 
-    testImplementation("com.github.seeseemelk:MockBukkit-v$mockBukkitVersion")
+    testImplementation("com.github.seeseemelk:MockBukkit-v1.19:$mockBukkitVersion")
 }
 
 configurations {
@@ -80,7 +99,7 @@ tasks {
 
     withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "17"
+            jvmTarget = if (name.contains("Test")) "17" else "1.8"
         }
     }
 }
