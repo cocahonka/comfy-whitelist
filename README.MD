@@ -1,5 +1,7 @@
 # ComfyWhitelist :scroll:
 
+[![Github All Releases](https://img.shields.io/github/downloads/cocahonka/comfy-whitelist/total)]()
+
 ComfyWhitelist is a flexible and user-friendly whitelist plugin for Minecraft Paper servers,
 designed to work with nicknames instead of UUIDs. This makes it an excellent choice for offline server configurations.
 
