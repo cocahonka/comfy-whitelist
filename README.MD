@@ -34,7 +34,7 @@ to be downloaded and placed in the plugin folder.
 
 The versioning follows this format: MAJOR.MINOR.FIX
 
-The latest release is capable of running on versions `1.13.* - 1.19.*`
+The latest release is capable of running on versions `1.13.* - 1.20.*`
 
 ## :gear: Configuration
 
