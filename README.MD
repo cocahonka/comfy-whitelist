@@ -14,7 +14,7 @@ designed to work with nicknames instead of UUIDs. This makes it an excellent cho
 - :control_knobs: **Configurable Settings**: Customize the behavior of the plugin through a configuration file,
   allowing you to tailor its functionality to your server's needs.
 - :globe_with_meridians: **Broad Version Support**: ComfyWhitelist is designed to support a wide range of Minecraft versions
-  (from 1.13 to 1.19), ensuring usability across different server setups.
+  (from 1.13 to 1.20), ensuring usability across different server setups.
 
 ## :computer: For Developers
 
