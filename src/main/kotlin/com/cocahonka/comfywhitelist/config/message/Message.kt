@@ -35,7 +35,7 @@ sealed class Message(val key: String) {
          * @param message The message object containing the key and default message.
          * @param locale The locale to be used for retrieving the default message if the key is not found in the configuration.
          * @return The styled message component.
-         */     
+         */
         fun <M : Message> FileConfiguration.getFormattedWithDefault(
             message: M,
             locale: Locale,
@@ -56,6 +56,15 @@ sealed class Message(val key: String) {
             when (locale) {
                 Locale.RU -> "<comfy><warning>У вас недостаточно полномочий для использования этой команды.</warning>"
                 Locale.EN -> "<comfy><warning>You do not have permission to use this command.</warning>"
+            }
+        )
+    }
+
+    object InactiveCommand : Message("inactive-command") {
+        override fun getDefault(locale: Locale): Component = MessageFormat.applyStyles(
+            when (locale) {
+                Locale.RU -> "<comfy>Данная команда <off>выключена</off> через конфиг."
+                Locale.EN -> "<comfy>This command is <off>disabled</off> via config."
             }
         )
     }

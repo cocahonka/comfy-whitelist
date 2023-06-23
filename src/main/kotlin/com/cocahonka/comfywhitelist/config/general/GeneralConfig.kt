@@ -17,11 +17,15 @@ class GeneralConfig(private val plugin: Plugin) : WhitelistManager, ConfigManage
     companion object {
         var whitelistEnabled: Boolean by Delegates.notNull()
             private set
-        lateinit var locale: Locale private set
+        lateinit var locale: Locale
+            private set
+        var clearCommandEnabled: Boolean by Delegates.notNull()
+            private set
 
         private const val filePath = "config.yml"
         private const val enabledKey = "enabled"
         private const val localeKey = "locale"
+        private const val clearCommandKey = "clear-command"
     }
 
     override fun createConfig() {
@@ -34,6 +38,7 @@ class GeneralConfig(private val plugin: Plugin) : WhitelistManager, ConfigManage
     override fun updateProperties() {
         whitelistEnabled = config.getBoolean(enabledKey, true)
         locale = Locale.fromString(config.getString(localeKey))
+        clearCommandEnabled = config.getBoolean(clearCommandKey, false)
     }
 
     override fun isWhitelistEnabled(): Boolean = whitelistEnabled

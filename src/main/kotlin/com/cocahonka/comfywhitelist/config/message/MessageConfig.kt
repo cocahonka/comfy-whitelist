@@ -18,6 +18,7 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
     companion object {
         // General messages
         lateinit var noPermission: Component internal set
+        lateinit var inactiveCommand: Component internal set
         lateinit var invalidUsage: Component private set
         lateinit var unknownSubcommand: Component private set
         lateinit var invalidPlayerName: Component private set
@@ -61,6 +62,7 @@ class MessageConfig(private val plugin: Plugin, private val locale: Locale) : Co
     override fun updateProperties() {
         // General messages
         noPermission = config.getFormattedWithDefault(Message.NoPermission, locale)
+        inactiveCommand = config.getFormattedWithDefault(Message.InactiveCommand, locale)
         invalidUsage = config.getFormattedWithDefault(Message.InvalidUsage, locale)
         unknownSubcommand = config.getFormattedWithDefault(Message.UnknownSubcommand, locale)
         invalidPlayerName = config.getFormattedWithDefault(Message.InvalidPlayerName, locale)
