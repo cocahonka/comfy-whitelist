@@ -53,3 +53,6 @@ permissions:
   comfywhitelist.help:
     description: Displays information about ComfyWhitelist commands
     default: op
+  comfywhitelist.status:
+    description: Displays status of the ComfyWhitelist (on/off)
+    default: op

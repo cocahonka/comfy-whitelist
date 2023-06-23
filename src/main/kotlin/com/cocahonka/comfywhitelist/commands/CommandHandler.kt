@@ -38,6 +38,7 @@ class CommandHandler(
             AddCommand(storage),
             RemoveCommand(storage),
             ListCommand(storage),
+            StatusCommand(),
             EnableCommand(generalConfig),
             DisableCommand(generalConfig),
             ClearCommand(storage),

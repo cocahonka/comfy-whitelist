@@ -19,6 +19,7 @@ class HelpCommandTest : CommandTestBase() {
                 "> /comfywl add <name>\n" +
                 "> /comfywl remove <name>\n" +
                 "> /comfywl list\n" +
+                "> /comfywl status\n" +
                 "> /comfywl on\n" +
                 "> /comfywl off\n" +
                 "> /comfywl clear\n" +

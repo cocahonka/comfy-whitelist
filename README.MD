@@ -68,6 +68,7 @@ ComfyWhitelist provides a broad range of permissions for flexible configuration:
 - comfywhitelist.off
 - comfywhitelist.reload
 - comfywhitelist.help
+- comfywhitelist.status
 </details>
 
 ## :building_construction: Building the Project
