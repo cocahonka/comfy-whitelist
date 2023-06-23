@@ -1,5 +1,10 @@
-# Enabling or disabling ComfyWhitelist.
+# Enabling or disabling ComfyWhitelist. (true / false)
 enabled: false
 
 # Plugin's interface locales (ru, en).
 locale: en
+
+# Enabling or disabling clear command. (true / false)
+# HIGH RISK COMMAND - DATA FROM THE WHITELIST WILL NOT BE RETURNED!!!
+# enable this command ONLY if you really need it and trust your administrators
+clear-command: false

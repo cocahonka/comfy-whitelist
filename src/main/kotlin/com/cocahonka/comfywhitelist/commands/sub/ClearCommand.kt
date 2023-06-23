@@ -3,6 +3,7 @@ package com.cocahonka.comfywhitelist.commands.sub
 import com.cocahonka.comfywhitelist.LegacyUtils.sendMessage
 import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.commands.SubCommand
+import com.cocahonka.comfywhitelist.config.general.GeneralConfig
 import com.cocahonka.comfywhitelist.config.message.MessageConfig
 import org.bukkit.command.CommandSender
 
@@ -19,6 +20,11 @@ class ClearCommand(private val storage: Storage) : SubCommand {
 
     override fun execute(sender: CommandSender, args: Array<String>): Boolean {
         if(isInvalidUsage(sender) { args.isEmpty() }) return false
+
+        if(!GeneralConfig.clearCommandEnabled) {
+            sender.sendMessage(MessageConfig.inactiveCommand)
+            return false
+        }
 
         sender.sendMessage(MessageConfig.whitelistCleared)
 
