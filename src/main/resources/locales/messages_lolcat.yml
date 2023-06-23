@@ -1,0 +1,24 @@
+# GENERAL MESSAGES
+no-permission: "<comfy><warning>U CANT HAZ PERMISSION 2 USE DIS COMMAND.</warning>"
+inactive-command: "<comfy>DIS COMMAND IZ <off>OFF</off> VIA CONFIG."
+invalid-usage: "<comfy><warning>INVALID COMMAND USAGE.</warning>\nUSE: <usage>"
+unknown-subcommand: "<comfy><warning>UNKNOWN SUBCOMMAND.</warning> TYPE /COMFYWL HELP 4 LIST OF COMMANDS."
+invalid-player-name: "<comfy><warning>BAD PLAYER NAME.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>IZ BACK.</success>"
+
+# WHITELIST STATUS MESSAGES
+whitelist-enabled: "<comfy>ComfyWhitelist <success>ON.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>OFF.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>ALREADY ON.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>ALREADY OFF.</off>"
+
+# PLAYER MANAGEMENT MESSAGES
+not-whitelisted: "<warning>U NOT ON WHITELIST.</warning>"
+player-added: "<comfy>PLAYER <success><name></success> ADDED 2 <success>WHITELIST</success>."
+player-removed: "<comfy>PLAYER <remove><name></remove> <remove>REMOVED</remove> FROM WHITELIST."
+non-existent-player-name: "<comfy>NO PLAYER NAMED <warning><name></warning> ON WHITELIST."
+
+# WHITELIST DISPLAY MESSAGES
+whitelisted-players-list: "<comfy>PLAYERS ON WHITELIST: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>WHITELIST <off>EMPTY</off>."
+whitelist-cleared: "<comfy>ALL PLAYERS <remove>REMOVED</remove> FROM WHITELIST."

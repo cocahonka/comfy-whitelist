@@ -1,0 +1,24 @@
+# Genel mesajlar
+no-permission: "<comfy><warning>Bu komutu kullanma yetkiniz yok.</warning>"
+inactive-command: "<comfy>Bu komut, yapılandırma üzerinden <off>devre dışı</off>."
+invalid-usage: "<comfy><warning>Geçersiz komut kullanımı.</warning>\nKullan: <usage>"
+unknown-subcommand: "<comfy><warning>Bilinmeyen alt komut.</warning> Komut listesi için /comfywl help yazın."
+invalid-player-name: "<comfy><warning>Geçersiz oyuncu adı.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>başarıyla yeniden yüklendi.</success>"
+
+# Beyaz liste durum mesajları
+whitelist-enabled: "<comfy>ComfyWhitelist <success>etkinleştirildi.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>devre dışı bırakıldı.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>zaten etkin.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>zaten devre dışı.</off>"
+
+# Oyuncu yönetimi mesajları
+not-whitelisted: "<warning>Beyaz listeye eklenmemişsiniz.</warning>"
+player-added: "<comfy>Oyuncu <success><name></success>, beyaz listeye <success>eklendi</success>."
+player-removed: "<comfy>Oyuncu <remove><name></remove>, beyaz listeden <remove>çıkarıldı</remove>."
+non-existent-player-name: "<comfy>Beyaz listede <warning><name></warning> adında bir oyuncu <warning>yok</warning>."
+
+# Beyaz liste görüntüleme mesajları
+whitelisted-players-list: "<comfy>Beyaz listeye eklenmiş oyuncular: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>Beyaz liste <off>boş</off>."
+whitelist-cleared: "<comfy>Tüm oyuncular beyaz listeden <remove>kaldırıldı</remove>."

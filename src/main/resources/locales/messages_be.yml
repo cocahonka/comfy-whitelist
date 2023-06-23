@@ -1,0 +1,24 @@
+# Агульныя паведамленні
+no-permission: "<comfy><warning>У вас няма дазволу карыстацца гэтай камандай.</warning>"
+inactive-command: "<comfy>Гэтая каманда <off>адключана</off> праз канфігурацыю."
+invalid-usage: "<comfy><warning>Няправільнае выкарыстанне каманды.</warning>\nВыкарыстоўвайце: <usage>"
+unknown-subcommand: "<comfy><warning>Невядомая падкаманда.</warning> Напішыце /comfywl help для атрымання спісу каманд."
+invalid-player-name: "<comfy><warning>Няправільнае імя гульца.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>паспяхова перазагружана.</success>"
+
+# Паведамленні пра статус белага спісу
+whitelist-enabled: "<comfy>ComfyWhitelist <success>уключана.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>адключана.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>ужо уключана.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>ужо адключана.</off>"
+
+# Паведамленні пра кіраванне гульцамі
+not-whitelisted: "<warning>Вы не ў белым спісе.</warning>"
+player-added: "<comfy>Гулец <success><name></success> <success>дададзены</success> да белага спісу."
+player-removed: "<comfy>Гулец <remove><name></remove> <remove>выдалены</remove> з белага спісу."
+non-existent-player-name: "<comfy>У белым спісе <warning>немае</warning> гульца з імем <warning><name></warning>."
+
+# Паведамленні пра адлюстраванне белага спісу
+whitelisted-players-list: "<comfy>Гульцы ў белым спісе: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>Белы спіс <off>пусты.</off>"
+whitelist-cleared: "<comfy>Усе гульцы <remove>выдаленыя</remove> з белага спісу."

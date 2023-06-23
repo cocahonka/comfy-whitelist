@@ -1,0 +1,24 @@
+# Generella meddelanden
+no-permission: "<comfy><warning>Du har inte tillåtelse att använda detta kommando.</warning>"
+inactive-command: "<comfy>Det här kommandot är <off>inaktiverat</off> via konfigurationen."
+invalid-usage: "<comfy><warning>Ogiltig kommandoanvändning.</warning>\nAnvänd: <usage>"
+unknown-subcommand: "<comfy><warning>Okänt underkommando.</warning> Skriv /comfywl help för en lista över kommandon."
+invalid-player-name: "<comfy><warning>Ogiltigt spelarnamn.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>har laddats om framgångsrikt.</success>"
+
+# Whitelist statusmeddelanden
+whitelist-enabled: "<comfy>ComfyWhitelist <success>aktiverad.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>inaktiverad.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>är redan aktiverad.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>är redan inaktiverad.</off>"
+
+# Spelarhanteringsmeddelanden
+not-whitelisted: "<warning>Du finns inte i whitelist.</warning>"
+player-added: "<comfy>Spelaren <success><name></success> har <success>lagts till</success> i whitelist."
+player-removed: "<comfy>Spelaren <remove><name></remove> har <remove>tagits bort</remove> från whitelist."
+non-existent-player-name: "<comfy>Det finns <warning>ingen</warning> spelare med namnet <warning><name></warning> i whitelist."
+
+# Whitelist visningsmeddelanden
+whitelisted-players-list: "<comfy>Spelare i whitelist: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>Whitelist är <off>tom.</off>"
+whitelist-cleared: "<comfy>Alla spelare har <remove>tagits bort</remove> från whitelist."

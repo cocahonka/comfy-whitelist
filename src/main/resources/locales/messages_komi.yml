@@ -1,0 +1,24 @@
+# Обычные сообщения
+no-permission: "<comfy><warning>Тый сез командаыт корыстны и пырыш адӧмас.</warning>"
+inactive-command: "<comfy>Та команда <off>кытсӧмсь</off> ана конфигурация вара."
+invalid-usage: "<comfy><warning>Нырысь команда корыс.</warning>\nКорысӧм: <usage>"
+unknown-subcommand: "<comfy><warning>Нырысь пӧдкоманда.</warning> Командаысь списк вара /comfywl помощь тыны керет."
+invalid-player-name: "<comfy><warning>Нырысь игрокын ним.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>успешно перезагруженысь.</success>"
+
+# Сообщения статуса белого списка
+whitelist-enabled: "<comfy>ComfyWhitelist <success>включенысь.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>выключенысь.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>уже включенысь.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>уже выключенысь.</off>"
+
+# Сообщения управления игроками
+not-whitelisted: "<warning>Тый та белый списокын нет.</warning>"
+player-added: "<comfy>Игрок <success><name></success> белый списокын <success>добавленысь</success>."
+player-removed: "<comfy>Игрок <remove><name></remove> белый списокыннун <remove>удаленысь</remove>."
+non-existent-player-name: "<comfy>Белый списокын та <warning><name></warning> нимысь игрок нет."
+
+# Сообщения отображения белого списка
+whitelisted-players-list: "<comfy>Белый списокысь игрокыс: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>Белый список <off>пуст.</off>"
+whitelist-cleared: "<comfy>Белый списокыннун кышӧдӧй игрокыс <remove>удаленысь</remove>."

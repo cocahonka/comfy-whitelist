@@ -1,0 +1,24 @@
+# 일반 메시지
+no-permission: "<comfy><warning>이 명령어를 사용할 권한이 없습니다.</warning>"
+inactive-command: "<comfy>이 명령어는 설정을 통해 <off>비활성화</off>되었습니다."
+invalid-usage: "<comfy><warning>잘못된 명령어 사용입니다.</warning>\n사용법: <usage>"
+unknown-subcommand: "<comfy><warning>알 수 없는 하위 명령어입니다.</warning> 명령어 목록을 보려면 /comfywl help를 입력하세요."
+invalid-player-name: "<comfy><warning>잘못된 플레이어 이름입니다.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist가 <success>성공적으로 리로드되었습니다.</success>"
+
+# 화이트리스트 상태 메시지
+whitelist-enabled: "<comfy>ComfyWhitelist가 <success>활성화되었습니다.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist가 <off>비활성화</off>되었습니다."
+whitelist-already-enabled: "<comfy>ComfyWhitelist는 이미 <success>활성화</success>된 상태입니다."
+whitelist-already-disabled: "<comfy>ComfyWhitelist는 이미 <off>비활성화</off>된 상태입니다."
+
+# 플레이어 관리 메시지
+not-whitelisted: "<warning>화이트리스트에 없습니다.</warning>"
+player-added: "<comfy>플레이어 <success><name></success>가 화이트리스트에 <success>추가</success>되었습니다."
+player-removed: "<comfy>플레이어 <remove><name></remove>가 화이트리스트에서 <remove>제거</remove>되었습니다."
+non-existent-player-name: "<comfy>화이트리스트에 <warning><name></warning>라는 이름의 플레이어는 <warning>존재하지 않습니다</warning>."
+
+# 화이트리스트 표시 메시지
+whitelisted-players-list: "<comfy>화이트리스트의 플레이어들: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>화이트리스트가 <off>비어있습니다</off>."
+whitelist-cleared: "<comfy>모든 플레이어가 화이트리스트에서 <remove>제거</remove>되었습니다."
