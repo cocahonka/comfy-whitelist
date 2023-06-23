@@ -9,7 +9,24 @@ import org.bukkit.Bukkit.getLogger
  */
 enum class Locale(val code: String, val filePath: String) {
     RU("ru", "locales/messages_ru.yml"),
-    EN("en", "locales/messages_en.yml");
+    EN("en", "locales/messages_en.yml"),
+    DE("de", "locales/messages_de.yml"),
+    ES("es", "locales/messages_es.yml"),
+    FR("fr", "locales/messages_fr.yml"),
+    IT("it", "locales/messages_it.yml"),
+    JA("ja", "locales/messages_ja.yml"),
+    KO("ko", "locales/messages_ko.yml"),
+    NL("nl", "locales/messages_nl.yml"),
+    PT("pt", "locales/messages_pt.yml"),
+    SV("sv", "locales/messages_sv.yml"),
+    TR("tr", "locales/messages_tr.yml"),
+    ZH("zh", "locales/messages_zh.yml"),
+    UK("uk", "locales/messages_uk.yml"),
+    BE("be", "locales/messages_be.yml"),
+
+    // KEKW
+    KOMI("komi", "locales/messages_komi.yml"),
+    LOLCAT("lolcat", "locales/messages_lolcat.yml");
 
     companion object {
 

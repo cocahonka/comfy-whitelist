@@ -1,7 +1,8 @@
 # Enabling or disabling ComfyWhitelist. (true / false)
 enabled: false
 
-# Plugin's interface locales (ru, en).
+# Plugin's interface locales.
+# (en, ru, uk, be, de, es, fr, it, ja, ko, nl, pt, sv, tr, zh, komi, lolcat).
 locale: en
 
 # Enabling or disabling clear command. (true / false)

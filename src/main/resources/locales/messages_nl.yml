@@ -1,0 +1,24 @@
+# Algemene berichten
+no-permission: "<comfy><warning>Je hebt geen toestemming om dit commando te gebruiken.</warning>"
+inactive-command: "<comfy>Dit commando is <off>uitgeschakeld</off> via de configuratie."
+invalid-usage: "<comfy><warning>Ongeldig commandogebruik.</warning>\nGebruik: <usage>"
+unknown-subcommand: "<comfy><warning>Onbekend subcommando.</warning> Typ /comfywl help voor een lijst met commando's."
+invalid-player-name: "<comfy><warning>Ongeldige spelersnaam.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>is succesvol herladen.</success>"
+
+# Whitelist statusberichten
+whitelist-enabled: "<comfy>ComfyWhitelist <success>ingeschakeld.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>uitgeschakeld.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>al ingeschakeld.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>al uitgeschakeld.</off>"
+
+# Spelersbeheer berichten
+not-whitelisted: "<warning>Je staat niet op de whitelist.</warning>"
+player-added: "<comfy>Speler <success><name></success> is <success>toegevoegd</success> aan de whitelist."
+player-removed: "<comfy>Speler <remove><name></remove> is <remove>verwijderd</remove> van de whitelist."
+non-existent-player-name: "<comfy>Er is <warning>geen</warning> speler met de naam <warning><name></warning> op de whitelist."
+
+# Whitelist weergave berichten
+whitelisted-players-list: "<comfy>Whitelist spelers: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>Whitelist is <off>leeg.</off>"
+whitelist-cleared: "<comfy>Alle spelers zijn <remove>verwijderd</remove> van de whitelist."

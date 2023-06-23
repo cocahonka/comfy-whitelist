@@ -1,0 +1,24 @@
+# 一般的なメッセージ
+no-permission: "<comfy><warning>このコマンドを使用する権限がありません。</warning>"
+inactive-command: "<comfy>このコマンドは設定で<off>無効化</off>されています。"
+invalid-usage: "<comfy><warning>コマンドの使用が無効です。</warning>\n使い方: <usage>"
+unknown-subcommand: "<comfy><warning>未知のサブコマンド。</warning> コマンドリストを表示するには /comfywl help を入力します。"
+invalid-player-name: "<comfy><warning>プレイヤー名が無効です。</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist が<success>成功裏にリロードされました。</success>"
+
+# ホワイトリストステータスメッセージ
+whitelist-enabled: "<comfy>ComfyWhitelist が<success>有効になりました。</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist が<off>無効化</off>されました。"
+whitelist-already-enabled: "<comfy>ComfyWhitelist は既に<success>有効化</success>されています。"
+whitelist-already-disabled: "<comfy>ComfyWhitelist は既に<off>無効化</off>されています。"
+
+# プレイヤー管理メッセージ
+not-whitelisted: "<warning>あなたはホワイトリストに登録されていません。</warning>"
+player-added: "<comfy>プレイヤー <success><name></success> がホワイトリストに<success>追加</success>されました。"
+player-removed: "<comfy>プレイヤー <remove><name></remove> がホワイトリストから<remove>削除</remove>されました。"
+non-existent-player-name: "<comfy>ホワイトリストには <warning><name></warning> という名前のプレイヤーは<warning>存在しません</warning>。"
+
+# ホワイトリスト表示メッセージ
+whitelisted-players-list: "<comfy>ホワイトリストのプレイヤー: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>ホワイトリストは<off>空</off>です。"
+whitelist-cleared: "<comfy>全プレイヤーがホワイトリストから<remove>削除</remove>されました。"

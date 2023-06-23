@@ -1,0 +1,24 @@
+# Загальні повідомлення
+no-permission: "<comfy><warning>У вас немає дозволу використовувати цю команду.</warning>"
+inactive-command: "<comfy>Ця команда <off>вимкнена</off> через конфігурацію."
+invalid-usage: "<comfy><warning>Недійсне використання команди.</warning>\nВикористовуйте: <usage>"
+unknown-subcommand: "<comfy><warning>Невідома підкоманда.</warning> Введіть /comfywl help для отримання списку команд."
+invalid-player-name: "<comfy><warning>Недійсне ім'я гравця.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>успішно перезавантажено.</success>"
+
+# Повідомлення про статус білого списку
+whitelist-enabled: "<comfy>ComfyWhitelist <success>увімкнено.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>вимкнено.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>уже увімкнено.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>уже вимкнено.</off>"
+
+# Повідомлення про управління гравцями
+not-whitelisted: "<warning>Ви не в білому списку.</warning>"
+player-added: "<comfy>Гравець <success><name></success> <success>додано</success> до білого списку."
+player-removed: "<comfy>Гравець <remove><name></remove> <remove>видалено</remove> з білого списку."
+non-existent-player-name: "<comfy>У білому списку <warning>немає</warning> гравця з ім'ям <warning><name></warning>."
+
+# Повідомлення про відображення білого списку
+whitelisted-players-list: "<comfy>Гравці в білому списку: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>Білий список <off>порожній.</off>"
+whitelist-cleared: "<comfy>Всі гравці <remove>видалені</remove> з білого списку."

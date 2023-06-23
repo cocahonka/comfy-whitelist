@@ -1,0 +1,24 @@
+# 一般消息
+no-permission: "<comfy><warning>您没有权限使用此命令。</warning>"
+inactive-command: "<comfy>此命令已通过配置<off>禁用</off>。"
+invalid-usage: "<comfy><warning>命令使用无效。</warning>\n使用：<usage>"
+unknown-subcommand: "<comfy><warning>未知的子命令。</warning>键入/comfywl help以获取命令列表。"
+invalid-player-name: "<comfy><warning>玩家名称无效。</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>已成功重新加载。</success>"
+
+# 白名单状态消息
+whitelist-enabled: "<comfy>ComfyWhitelist <success>已启用。</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>已禁用。</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>已经启用。</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>已经禁用。</off>"
+
+# 玩家管理消息
+not-whitelisted: "<warning>你不在白名单中。</warning>"
+player-added: "<comfy>玩家 <success><name></success> 已被<success>添加</success>到白名单中。"
+player-removed: "<comfy>玩家 <remove><name></remove> 已从白名单中<remove>移除</remove>。"
+non-existent-player-name: "<comfy>白名单中没有名为 <warning><name></warning> 的玩家。"
+
+# 白名单显示消息
+whitelisted-players-list: "<comfy>白名单中的玩家：<success><players></success>"
+empty-whitelisted-players-list: "<comfy>白名单<off>为空。</off>"
+whitelist-cleared: "<comfy>所有玩家已从白名单中<remove>移除</remove>。"

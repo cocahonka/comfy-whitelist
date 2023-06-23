@@ -1,0 +1,24 @@
+# Mensagens gerais
+no-permission: "<comfy><warning>Você não tem permissão para usar este comando.</warning>"
+inactive-command: "<comfy>Este comando está <off>desativado</off> via configuração."
+invalid-usage: "<comfy><warning>Uso inválido do comando.</warning>\nUse: <usage>"
+unknown-subcommand: "<comfy><warning>Subcomando desconhecido.</warning> Digite /comfywl help para uma lista de comandos."
+invalid-player-name: "<comfy><warning>Nome de jogador inválido.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>foi recarregado com sucesso.</success>"
+
+# Mensagens de status da lista de permissões
+whitelist-enabled: "<comfy>ComfyWhitelist <success>ativado.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>desativado.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>já ativado.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>já desativado.</off>"
+
+# Mensagens de gerenciamento de jogadores
+not-whitelisted: "<warning>Você não está na lista de permissões.</warning>"
+player-added: "<comfy>Jogador <success><name></success> foi <success>adicionado</success> à lista de permissões."
+player-removed: "<comfy>Jogador <remove><name></remove> foi <remove>removido</remove> da lista de permissões."
+non-existent-player-name: "<comfy>Não existe <warning>nenhum</warning> jogador chamado <warning><name></warning> na lista de permissões."
+
+# Mensagens de exibição da lista de permissões
+whitelisted-players-list: "<comfy>Jogadores na lista de permissões: <success><players></success>"
+empty-whitelisted-players-list: "<comfy>A lista de permissões está <off>vazia.</off>"
+whitelist-cleared: "<comfy>Todos os jogadores foram <remove>removidos</remove> da lista de permissões."

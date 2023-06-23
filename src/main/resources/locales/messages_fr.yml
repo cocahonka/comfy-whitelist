@@ -1,0 +1,24 @@
+# Messages généraux
+no-permission: "<comfy><warning>Vous n'avez pas la permission d'utiliser cette commande.</warning>"
+inactive-command: "<comfy>Cette commande est <off>désactivée</off> via la configuration."
+invalid-usage: "<comfy><warning>Utilisation de la commande invalide.</warning>\nUtilisez : <usage>"
+unknown-subcommand: "<comfy><warning>Sous-commande inconnue.</warning> Tapez /comfywl help pour une liste de commandes."
+invalid-player-name: "<comfy><warning>Nom de joueur invalide.</warning>"
+plugin-reloaded: "<comfy>ComfyWhitelist <success>a été rechargé avec succès.</success>"
+
+# Messages de statut de la liste blanche
+whitelist-enabled: "<comfy>ComfyWhitelist <success>activé.</success>"
+whitelist-disabled: "<comfy>ComfyWhitelist <off>désactivé.</off>"
+whitelist-already-enabled: "<comfy>ComfyWhitelist <success>déjà activé.</success>"
+whitelist-already-disabled: "<comfy>ComfyWhitelist <off>déjà désactivé.</off>"
+
+# Messages de gestion des joueurs
+not-whitelisted: "<warning>Vous n'êtes pas sur la liste blanche.</warning>"
+player-added: "<comfy>Joueur <success><name></success> a été <success>ajouté</success> à la liste blanche."
+player-removed: "<comfy>Joueur <remove><name></remove> a été <remove>supprimé</remove> de la liste blanche."
+non-existent-player-name: "<comfy>Il n'y a <warning>pas</warning> de joueur nommé <warning><name></warning> dans la liste blanche."
+
+# Messages d'affichage de la liste blanche
+whitelisted-players-list: "<comfy>Joueurs sur liste blanche : <success><players></success>"
+empty-whitelisted-players-list: "<comfy>La liste blanche est <off>vide.</off>"
+whitelist-cleared: "<comfy>Tous les joueurs ont été <remove>supprimés</remove> de la liste blanche."
