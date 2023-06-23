@@ -17,7 +17,7 @@ designed to work with nicknames instead of UUIDs. This makes it an excellent cho
   allowing you to tailor its functionality to your server's needs.
 - :globe_with_meridians: **Broad Version Support**: ComfyWhitelist is designed to support a wide range of Minecraft versions
   (from 1.13 to 1.20), ensuring usability across different server setups.
-- :speaking_head: Multilingual Support: ComfyWhitelist boasts multi-language support. 
+- :speaking_head: **Multilingual Support**: ComfyWhitelist boasts multi-language support. 
   It caters to a broad array of languages including English (**en**), Russian (**ru**), Ukrainian (**uk**), 
   Belarusian (**be**), German (**de**), Spanish (**es**), French (**fr**), Italian (**it**), Japanese (**ja**), Korean (**ko**),
   Dutch (**nl**), Portuguese (**pt**), Swedish (**sv**), Turkish (**tr**), Simplified Chinese (**zh**), Komi (**komi**)
