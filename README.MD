@@ -3,7 +3,8 @@
 [![Github All Releases](https://img.shields.io/github/downloads/cocahonka/comfy-whitelist/total)]()
 
 ComfyWhitelist is a flexible and user-friendly whitelist plugin for Minecraft Paper servers,
-designed to work with nicknames instead of UUIDs. This makes it an excellent choice for offline server configurations.
+designed to work with nicknames instead of UUIDs (but you can still use UUID).
+This makes it an excellent choice for **offline** and online server configurations.
 
 ## Features and Benefits :star2:
 
@@ -44,6 +45,8 @@ The versioning follows this format: MAJOR.MINOR.FIX
 
 The latest release is capable of running on versions `1.13.* - 1.20.*`
 
+By default, the type of login verification is set to nickname!
+
 ## :gear: Configuration
 
 The plugin offers extensive customization options through its configuration
@@ -54,6 +57,9 @@ The plugin-specific color tags are:
 - `<success>`
 - `<remove>`
 - `<off>`
+
+Also, you have the options to select the language, specify the type of login verification (either by nickname or UUID),
+among other settings.
 
 <details><summary><h2>:closed_lock_with_key: Permissions</h2></summary>
 
