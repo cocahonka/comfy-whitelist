@@ -60,8 +60,9 @@ class YamlStorage(dataFolder: File) : Storage {
                 storageFile.parentFile.mkdirs()
                 storageFile.createNewFile()
             }
+            val tempConfig = YamlConfiguration.loadConfiguration(storageFile) // Reload the config from the storage file
             whitelistedPlayers.clear()
-            whitelistedPlayers.addAll(config.getStringList(WHITELISTED_PLAYERS_KEY))
+            whitelistedPlayers.addAll(tempConfig.getStringList(WHITELISTED_PLAYERS_KEY))
             true
         } catch (e: Exception) {
             getLogger().warning(e.stackTraceToString())
