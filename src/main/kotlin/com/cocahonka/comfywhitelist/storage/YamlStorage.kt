@@ -60,6 +60,7 @@ class YamlStorage(dataFolder: File) : Storage {
                 storageFile.parentFile.mkdirs()
                 storageFile.createNewFile()
             }
+            config.load(storageFile)
             whitelistedPlayers.clear()
             whitelistedPlayers.addAll(config.getStringList(WHITELISTED_PLAYERS_KEY))
             true
