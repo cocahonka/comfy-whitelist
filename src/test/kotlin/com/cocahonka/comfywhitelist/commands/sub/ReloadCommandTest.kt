@@ -1,6 +1,6 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
-import be.seeseemelk.mockbukkit.command.MessageTarget
+import org.mockbukkit.mockbukkit.command.MessageTarget
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.base.ConfigManager
 import com.cocahonka.comfywhitelist.config.general.GeneralConfig

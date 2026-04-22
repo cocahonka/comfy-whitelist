@@ -4,7 +4,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "1.9.25"
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
@@ -15,13 +15,13 @@ java {
 
 tasks.withType<JavaCompile> {
     if (name == "compileTestJava") {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
+        sourceCompatibility = "21"
+        targetCompatibility = "21"
     }
 }
 
 group = "com.cocahonka"
-version = "1.3.1"
+version = "1.4.0"
 
 repositories {
     mavenCentral()
@@ -30,6 +30,7 @@ repositories {
 }
 
 val paperApiVersion: String by project
+val mockBukkitPaperApiVersion: String by project
 val mockBukkitVersion: String by project
 val comfyWhitelistApiVersion: String by project
 val kyoriAdventureVersion: String by project
@@ -45,7 +46,11 @@ dependencies {
 
     testImplementation(kotlin("test"))
 
-    testImplementation("com.github.seeseemelk:MockBukkit-v1.19:$mockBukkitVersion")
+    testImplementation("io.papermc.paper:paper-api:$mockBukkitPaperApiVersion")
+    testImplementation("org.mockbukkit.mockbukkit:mockbukkit-v1.21:$mockBukkitVersion")
+
+    testImplementation(platform("org.junit:junit-bom:5.11.4"))
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 configurations {
@@ -99,7 +104,7 @@ tasks {
 
     withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = if (name.contains("Test")) "17" else "1.8"
+            jvmTarget = if (name.contains("Test")) "21" else "1.8"
         }
     }
 }
