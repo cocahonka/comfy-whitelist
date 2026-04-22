@@ -1,10 +1,10 @@
 package com.cocahonka.comfywhitelist.commands
 
-import be.seeseemelk.mockbukkit.MockBukkit
-import be.seeseemelk.mockbukkit.ServerMock
-import be.seeseemelk.mockbukkit.command.ConsoleCommandSenderMock
-import be.seeseemelk.mockbukkit.command.MessageTarget
-import be.seeseemelk.mockbukkit.entity.PlayerMock
+import org.mockbukkit.mockbukkit.MockBukkit
+import org.mockbukkit.mockbukkit.ServerMock
+import org.mockbukkit.mockbukkit.command.ConsoleCommandSenderMock
+import org.mockbukkit.mockbukkit.command.MessageTarget
+import org.mockbukkit.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.ComfyWhitelist
 import com.cocahonka.comfywhitelist.api.Storage
 import com.cocahonka.comfywhitelist.config.base.Locale

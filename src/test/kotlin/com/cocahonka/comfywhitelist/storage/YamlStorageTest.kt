@@ -1,7 +1,7 @@
 package com.cocahonka.comfywhitelist.storage
 
-import be.seeseemelk.mockbukkit.MockBukkit
-import be.seeseemelk.mockbukkit.ServerMock
+import org.mockbukkit.mockbukkit.MockBukkit
+import org.mockbukkit.mockbukkit.ServerMock
 import com.cocahonka.comfywhitelist.api.Storage
 import org.bukkit.plugin.Plugin
 import org.junit.jupiter.api.AfterEach

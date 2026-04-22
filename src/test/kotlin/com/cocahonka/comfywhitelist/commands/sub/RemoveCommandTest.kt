@@ -1,7 +1,7 @@
 package com.cocahonka.comfywhitelist.commands.sub
 
-import be.seeseemelk.mockbukkit.command.MessageTarget
-import be.seeseemelk.mockbukkit.entity.PlayerMock
+import org.mockbukkit.mockbukkit.command.MessageTarget
+import org.mockbukkit.mockbukkit.entity.PlayerMock
 import com.cocahonka.comfywhitelist.commands.CommandTestBase
 import com.cocahonka.comfywhitelist.config.message.Message
 import com.cocahonka.comfywhitelist.config.message.MessageFormat

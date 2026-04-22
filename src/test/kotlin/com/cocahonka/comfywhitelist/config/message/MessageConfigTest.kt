@@ -1,7 +1,7 @@
 package com.cocahonka.comfywhitelist.config.message
 
-import be.seeseemelk.mockbukkit.MockBukkit
-import be.seeseemelk.mockbukkit.ServerMock
+import org.mockbukkit.mockbukkit.MockBukkit
+import org.mockbukkit.mockbukkit.ServerMock
 import com.cocahonka.comfywhitelist.config.base.Locale
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
